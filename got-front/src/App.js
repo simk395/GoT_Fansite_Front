@@ -28,13 +28,13 @@ class App extends Component {
           {categories.map(category => {
             const path = `/forum/${category.id}`
             switch(category.id){
-              case 1: return <Route path={path} render={() => <General info={category}/>}/>
-              case 2: return <Route path={path} render={() => <Stark info={category}/>}/>
-              case 3: return <Route path={path} render={() => <Baratheon info={category}/>}/>
-              case 4: return <Route path={path} render={() => <Targaryen info={category}/>}/>
-              case 5: return <Route path={path} render={(props) => <Lannister {...props} info={category}/>}/>;
-              case 6: return <Route path={path} render={() => <Other info={category}/>}/>
-              case 7: return <Route path={path} render={() => <Off_Topic info={category}/>}/>
+              case 1: return <Route exact path={path} render={() => <General info={category}/>}/>
+              case 2: return <Route exact path={path} render={() => <Stark info={category}/>}/>
+              case 3: return <Route exact path={path} render={() => <Baratheon info={category}/>}/>
+              case 4: return <Route exact path={path} render={() => <Targaryen info={category}/>}/>
+              case 5: return <Route exact path={path} render={(props) => <Lannister {...props} info={category}/>}/>;
+              case 6: return <Route exact path={path} render={() => <Other info={category}/>}/>
+              case 7: return <Route exact path={path} render={() => <Off_Topic info={category}/>}/>
             }
           })}
           <Route path="/" component={Forum}/>

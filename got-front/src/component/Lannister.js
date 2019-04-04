@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { Route , Link } from 'react-router-dom'
 import { Adapter } from '../Adapter'
 import PostTitle from './PostTitle'
+import Post from './Post'
 
 export class Lannister extends Component {
     state = {
@@ -17,11 +19,13 @@ export class Lannister extends Component {
   render() {
       const {match} = this.props
       const {posts} = this.state
-    //   console.log(match)
     //   const url = `http://localhost:3001/forum/${id}`
     return (
       <div>
-        {posts.map(post => <PostTitle details={post} match={match}/>)}
+        <ul>
+            {posts.map(post => <li><Link to={`${match.url}/${post.id}`}>{post.title}</Link></li>)}
+        </ul>
+         <Route exact path={`{$match.url}/:id`} render= {() => ( <div> <h3> 1 </h3></div>)}/>
       </div>
     )
   }
