@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "live-server": "^1.2.1",
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -15,7 +16,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch:sass": "node-sass sass/main.scss src/css/style.css -w",
+    "compile:sass": "node-sass sass/main.scss src/css/style.comp.css",
+    "concat:css": "concat -o css/style.concat.css src/css/style.comp.css",
+    "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' style.concat.css -o src/css/style.prefix.css"
   },
   "eslintConfig": {
     "extends": "react-app"
