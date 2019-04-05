@@ -9,30 +9,34 @@ import Targaryen from '../component/Targaryen'
 import Other from '../component/Other'
 import Off_Topic from '../component/Off_Topic'
 import General from '../component/General'
+import Post from '../component/Post'
 
 export class Forum extends Component {
   state = {
     categories:[],
+    posts: []
   }
   componentDidMount(){
     Adapter.getCategory().then(categories => this.setState({categories:categories}));
+    Adapter.getPosts().then(posts => this.setState({posts: posts}))
   }
 
   render() {
-    const { categories } = this.state
+    const { categories, posts } = this.state
     return (
       <div>
         <Switch>
+          <Route path="/forum/:categoryId/:id" render={() => <Post posts={posts}/>}/>
           {categories.map(category => {
             const path = `/forum/${category.id}`
             switch(category.id){
-              case 1: return <Route path={path} render={() => <General id={category.id}/>}/>
-              case 2: return <Route path={path} render={() => <Stark id={category.id}/>}/>
-              case 3: return <Route path={path} render={() => <Baratheon id={category.id}/>}/>
-              case 4: return <Route path={path} render={() => <Targaryen id={category.id}/>}/>
-              case 5: return <Route path={path} render={(props) => <Lannister {...props} id={category.id}/>}/>;
-              case 6: return <Route path={path} render={() => <Other id={category.id}/>}/>
-              case 7: return <Route path={path} render={() => <Off_Topic id={category.id}/>}/>
+              case 1: return <Route path={path} render={(props) => <General {...props} id={category.id}/>}/>
+              case 2: return <Route path={path} render={(props) => <Stark {...props} id={category.id}/>}/>
+              case 3: return <Route path={path} render={(props) => <Baratheon {...props} id={category.id}/>}/>
+              case 4: return <Route path={path} render={(props) => <Targaryen {...props} id={category.id}/>}/>
+              case 5: return <Route path={path} render={(props) => <Lannister {...props} {...props} id={category.id} posts={posts}/>}/>;
+              case 6: return <Route path={path} render={(props) => <Other id={category.id}/>}/>
+              case 7: return <Route path={path} render={(props) => <Off_Topic {...props} id={category.id}/>}/>
             }
           })}
           <Route path='/' render={() => <Category categories={categories} />}/>
