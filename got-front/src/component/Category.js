@@ -1,21 +1,17 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { Adapter } from '../Adapter'
+import { Link } from 'react-router-dom'
 
-export class Category extends Component {
-  render() {
+
+export const Category = (props) => {
+    const { categories } = props
     return (
-      <ul className="categories">
-        <li><Link className="category__item" to="/forum/1">General</Link></li>
-        <li><Link className="category__item" to="/forum/2">Stark</Link></li>
-        <li><Link className="category__item" to="/forum/3">Baratheon</Link></li>
-        <li><Link className="category__item" to="/forum/4">Targaryen</Link></li>
-        <li><Link className="category__item" to="/forum/5">Lannister</Link></li>
-        <li><Link className="category__item" to="/forum/6">Other Houses</Link></li>
-        <li><Link className="category__item" to="/forum/7">Off-Topic Discussion</Link></li>
-      </ul>
+      <div>
+        <ul className="categories">
+          {categories.map(category => <li><Link className="category__item" to={`/forum/${category.id}`}>{category.title}</Link></li>)}
+        </ul>
+      </div>
     )
-  }
 }
 
 export default Category
