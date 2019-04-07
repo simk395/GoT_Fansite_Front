@@ -39,7 +39,7 @@ export class Forum extends Component {
               case 7: return <Route path={path} render={(props) => <Off_Topic {...props} id={category.id} posts={posts}/>}/>
             }
           })}
-          <Route path='/' render={() => <Category categories={categories} />}/>
+          <Route path='/forum' render={() => <Category categories={categories} />}/>
         </Switch>
       </div>
     )
