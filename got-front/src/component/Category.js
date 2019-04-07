@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 export const Category = (props) => {
     const { categories } = props
     return (
-      <div>
-        <ul className="categories">
-          {categories.map(category => <li><Link className="category__item" to={`/forum/${category.id}`}>{category.title}</Link></li>)}
+      <div className="forum__categories">
+        <ul className="forum__categories__list">
+          {categories.map(category => <li className="forum__categories__items"><Link className="category__item" to={`/forum/${category.id}`}>{category.title}</Link></li>)}
         </ul>
       </div>
     )

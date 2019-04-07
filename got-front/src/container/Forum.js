@@ -24,19 +24,19 @@ export class Forum extends Component {
   render() {
     const { categories, posts } = this.state
     return (
-      <div>
+      <div className="forum">
         <Switch>
           <Route path="/forum/:categoryId/:id" render={() => <Post posts={posts}/>}/>
           {categories.map(category => {
             const path = `/forum/${category.id}`
             switch(category.id){
-              case 1: return <Route path={path} render={(props) => <General {...props} id={category.id}/>}/>
-              case 2: return <Route path={path} render={(props) => <Stark {...props} id={category.id}/>}/>
-              case 3: return <Route path={path} render={(props) => <Baratheon {...props} id={category.id}/>}/>
-              case 4: return <Route path={path} render={(props) => <Targaryen {...props} id={category.id}/>}/>
+              case 1: return <Route path={path} render={(props) => <General {...props} id={category.id} posts={posts}/>}/>
+              case 2: return <Route path={path} render={(props) => <Stark {...props} id={category.id} posts={posts}/>}/>
+              case 3: return <Route path={path} render={(props) => <Baratheon {...props} id={category.id} posts={posts}/>}/>
+              case 4: return <Route path={path} render={(props) => <Targaryen {...props} id={category.id} posts={posts}/>}/>
               case 5: return <Route path={path} render={(props) => <Lannister {...props} {...props} id={category.id} posts={posts}/>}/>;
-              case 6: return <Route path={path} render={(props) => <Other id={category.id}/>}/>
-              case 7: return <Route path={path} render={(props) => <Off_Topic {...props} id={category.id}/>}/>
+              case 6: return <Route path={path} render={(props) => <Other {...props} id={category.id} posts={posts}/>}/>
+              case 7: return <Route path={path} render={(props) => <Off_Topic {...props} id={category.id} posts={posts}/>}/>
             }
           })}
           <Route path='/' render={() => <Category categories={categories} />}/>
