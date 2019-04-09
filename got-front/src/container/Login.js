@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import LoginForm from '../component/LoginForm'
 
 export class Login extends Component {
   render() {
     return (
       <div>
-        aaaaaaa
+        <LoginForm setLogin={this.props.setLogin} />
       </div>
     )
   }

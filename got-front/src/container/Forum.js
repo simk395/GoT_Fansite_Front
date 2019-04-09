@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route} from 'react-router-dom'
+import { Switch, Route, withRouter} from 'react-router-dom'
 import { Adapter } from '../Adapter'
 import Category from '../component/Category'
 import Lannister from '../component/Lannister'
@@ -23,10 +23,11 @@ export class Forum extends Component {
 
   render() {
     const { categories, posts } = this.state
+    const { user } = this.props
     return (
       <div className="forum">
         <Switch>
-          <Route path="/forum/:categoryId/:id" render={() => <Post posts={posts}/>}/>
+          <Route path="/forum/:categoryId/:id" render={() => <Post posts={posts} user={user}/>}/>
           {categories.map(category => {
             const path = `/forum/${category.id}`
             switch(category.id){
@@ -34,7 +35,7 @@ export class Forum extends Component {
               case 2: return <Route path={path} render={(props) => <Stark {...props} id={category.id} posts={posts}/>}/>
               case 3: return <Route path={path} render={(props) => <Baratheon {...props} id={category.id} posts={posts}/>}/>
               case 4: return <Route path={path} render={(props) => <Targaryen {...props} id={category.id} posts={posts}/>}/>
-              case 5: return <Route path={path} render={(props) => <Lannister {...props} {...props} id={category.id} posts={posts}/>}/>;
+              case 5: return <Route path={path} render={(props) => <Lannister {...props} id={category.id} posts={posts}/>}/>;
               case 6: return <Route path={path} render={(props) => <Other {...props} id={category.id} posts={posts}/>}/>
               case 7: return <Route path={path} render={(props) => <Off_Topic {...props} id={category.id} posts={posts}/>}/>
             }
@@ -46,4 +47,4 @@ export class Forum extends Component {
   }
 }
 
-export default Forum
+export default withRouter(Forum)

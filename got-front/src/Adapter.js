@@ -15,22 +15,36 @@ export class Adapter{
         return fetch(`${host}/comments`)
         .then(resp => resp.json())
     }
-    
-    static postComments = (id, message) => {
+
+    static getUser = () => {
+        return fetch(`${host}/api/v1/users`)
+        .then(resp => resp.json())
+    }
+
+    static postComment = (commentObj) => {
         fetch("http://localhost:3000/comments", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "applcation.json"
+                Accept: "applcation.json",
+                Authorization: localStorage.token
             },
-            body:JSON.stringify({
-                post_id: id, profile_id: 1, message: message
-            })
+            body:JSON.stringify({comment:commentObj})
         }).then(resp => {
             const allComments = document.querySelector(".forum__post__comments")
             const newComment = document.createElement("div")
-            newComment.innerText = message
+            newComment.innerText = commentObj.message
             allComments.append(newComment)
         })
+    }
+
+    static deleteComment = (commentId) => {
+      fetch(`http://localhost:3000/comments/${commentId}`,{
+      method: "DELETE",
+      headers: {'Content-Type': 'application/json'},
+    })
+    .then(resp => {
+      document.querySelector(`div[data-id="${commentId}"]`).remove()
+    })
     }
 }

@@ -1,19 +1,31 @@
 import React, { Component } from 'react'
 import Comments from './Comments'
 import { Adapter } from '../Adapter'
+import {withRouter} from 'react-router-dom'
+import { Helmet } from 'react-helmet'
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
 
 export class Post extends Component{
   state = {
     comments: [],
-    newComment: ""
-  }
-  componentDidMount(){
-    Adapter.getComments().then(comments => this.setState({comments:comments}))
+    newComment: "",
+    profiles: []
   }
 
-  formHandler = (e, id) => {
+  componentWillMount(){
+    Adapter.getComments().then(comments => this.setState({comments:comments}));
+    Adapter.getUser().then(profiles => this.setState({profiles:profiles}));
+  }
+
+  formHandler = (e, post_id, user_id) => {
     e.preventDefault()
-    Adapter.postComments(id, this.state.newComment)
+    const commentObj = {
+      post_id: post_id,
+      message: this.state.newComment,
+      user_id: user_id
+    }
+    Adapter.postComment(commentObj)
     this.setState({newComment: ""})
     
   }
@@ -21,11 +33,34 @@ export class Post extends Component{
   textHandler = (e) => {
     e.preventDefault()
     this.setState({newComment: e.target.value})
+    
+  }
+
+  logEmoji = (emoji) => {
+    this.setState({newComment: this.state.newComment + emoji.native})
+  }
+
+  createPoll = () => {
+    const strawpoll = require('strawpoll')
+
+    strawpoll.create({
+        title: 'My first poll',
+        options: [
+            'wow',
+            'awesome',
+            'amazing',
+            'nice'
+        ],
+        multi: false,
+        dupcheck: 'normal',
+        captcha: false
+    })
   }
   
   render(){
     const { posts } = this.props
-    const { comments, newComment } = this.state
+    const { user } = this.props.user
+    const { comments, newComment, profiles } = this.state
     let size = window.location.href.split("/"),
         post = posts.find(post => post.id === parseInt(size[size.length-1])),
         postComments = (post === undefined ? [] : comments.filter(comment => comment.post_id === post.id))
@@ -37,15 +72,17 @@ export class Post extends Component{
             <p>{post.message}</p>
           </div>}
         <div className="forum__post__comments">
-          {postComments.map(comment => <Comments comment={comment}/>)}
+          {postComments.map(comment => <Comments user={user} profiles={profiles} comment={comment}/>)}
         </div>
-        <form id="forum__create__comment" onSubmit={e => this.formHandler(e, post.id)}>
-            <textarea onChange={this.textHandler} value={newComment}></textarea>  
-            <input className="forum_submit_btn" type="submit"/>
+        <form id="forum__create__comment" onSubmit={e => this.formHandler(e, post.id, user.id)}>
+          <textarea onChange={this.textHandler} value={newComment}></textarea>
+          <Picker onSelect={this.logEmoji} set='emojione'/>
+          <input className="forum_submit_btn" type="submit"/>
         </form>      
+        <button onClick={this.createPoll}>Hello</button>
       </div>
     )
   }
 }
 
-export default Post
+export default withRouter(Post)
