@@ -4,6 +4,7 @@ import { Adapter } from '../Adapter'
 import {withRouter} from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import 'emoji-mart/css/emoji-mart.css'
+import { Link } from 'react-router-dom'
 import { Picker } from 'emoji-mart'
 
 export class Post extends Component{
@@ -76,6 +77,7 @@ export class Post extends Component{
           <div className="forum__post__main">
             <h2>{post.title}</h2>
             <p>{post.message}</p>
+            {post.user_id === user.id ? <Link to="/forum/post/edit">Edit</Link> : null}
           </div>}
         <div className="forum__post__comments">
           {postComments.map(comment => <Comments user={user} profiles={profiles} comment={comment}/>)}

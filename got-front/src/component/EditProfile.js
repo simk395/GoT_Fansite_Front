@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
 export class EditProfile extends Component {
     state = {
@@ -16,7 +17,7 @@ export class EditProfile extends Component {
                 Accept: "application/json",
                 Authorization: localStorage.token
             },
-            body:JSON.stringify({user: {bio:bio}})
+            body:JSON.stringify({user: {username: this.state.username, bio:bio}})
         })
     }
 
@@ -42,4 +43,4 @@ export class EditProfile extends Component {
   }
 }
 
-export default EditProfile
+export default withRouter(EditProfile)

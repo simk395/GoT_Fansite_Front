@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, Route } from 'react-router-dom'
+import { Link, Route, withRouter } from 'react-router-dom'
 import PostCreate from './PostCreate'
 
 export class Lannister extends Component {
@@ -17,4 +17,4 @@ export class Lannister extends Component {
   }
 }
 
-export default Lannister
+export default withRouter(Lannister)

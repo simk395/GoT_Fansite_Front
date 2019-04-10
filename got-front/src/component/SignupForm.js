@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {withRouter } from 'react-router-dom'
 
 
 export class SignupForm extends Component {
@@ -56,4 +57,4 @@ export class SignupForm extends Component {
       }
 }
 
-export default SignupForm
+export default withRouter(SignupForm)

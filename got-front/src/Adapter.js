@@ -44,7 +44,7 @@ export class Adapter{
     static deleteComment = (commentId) => {
       fetch(`http://localhost:3000/comments/${commentId}`,{
       method: "DELETE",
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/json'}
     })
     .then(resp => {
       document.querySelector(`div[data-id="${commentId}"]`).remove()

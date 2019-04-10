@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import { Picker } from 'emoji-mart'
 
 export class PostCreate extends Component {
@@ -63,4 +64,4 @@ export class PostCreate extends Component {
   }
 }
 
-export default PostCreate
+export default withRouter(PostCreate)
