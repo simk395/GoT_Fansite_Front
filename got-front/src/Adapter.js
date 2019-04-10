@@ -26,14 +26,17 @@ export class Adapter{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Accept: "applcation.json",
+                Accept: "application/json",
                 Authorization: localStorage.token
             },
             body:JSON.stringify({comment:commentObj})
         }).then(resp => {
             const allComments = document.querySelector(".forum__post__comments")
             const newComment = document.createElement("div")
+            const newButton = document.createElement("button")
             newComment.innerText = commentObj.message
+            newButton.innerText = "Delete"
+            newComment.append(newButton)
             allComments.append(newComment)
         })
     }

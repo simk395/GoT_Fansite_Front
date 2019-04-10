@@ -10,13 +10,15 @@ import Other from '../component/Other'
 import Off_Topic from '../component/Off_Topic'
 import General from '../component/General'
 import Post from '../component/Post'
+import PostCreate from '../component/PostCreate'
+import Profile from '../component/Profile';
 
 export class Forum extends Component {
   state = {
     categories:[],
     posts: []
   }
-  componentDidMount(){
+  componentWillMount(){
     Adapter.getCategory().then(categories => this.setState({categories:categories}));
     Adapter.getPosts().then(posts => this.setState({posts: posts}))
   }
@@ -28,6 +30,7 @@ export class Forum extends Component {
       <div className="forum">
         <Switch>
           <Route path="/forum/:categoryId/:id" render={() => <Post posts={posts} user={user}/>}/>
+          <Route path="/create/:id" render={(props) => <PostCreate {...props} user={user}/>}/>
           {categories.map(category => {
             const path = `/forum/${category.id}`
             switch(category.id){

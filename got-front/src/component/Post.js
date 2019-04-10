@@ -10,7 +10,8 @@ export class Post extends Component{
   state = {
     comments: [],
     newComment: "",
-    profiles: []
+    profiles: [],
+    emoji: false
   }
 
   componentWillMount(){
@@ -56,6 +57,11 @@ export class Post extends Component{
         captcha: false
     })
   }
+
+  showEmoji = (e) => {
+    e.preventDefault()
+    this.setState({emoji: !this.state.emoji})
+  }
   
   render(){
     const { posts } = this.props
@@ -76,7 +82,8 @@ export class Post extends Component{
         </div>
         <form id="forum__create__comment" onSubmit={e => this.formHandler(e, post.id, user.id)}>
           <textarea onChange={this.textHandler} value={newComment}></textarea>
-          <Picker onSelect={this.logEmoji} set='emojione'/>
+          <button onClick={this.showEmoji}>Emoji</button>
+          {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
           <input className="forum_submit_btn" type="submit"/>
         </form>      
         <button onClick={this.createPoll}>Hello</button>

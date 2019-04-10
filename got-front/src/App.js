@@ -5,9 +5,10 @@ import Login from './container/Login'
 import Logout from './component/Logout'
 import NavBar from './container/Navbar'
 import Profile from './component/Profile'
+import Landing from './component/Landing'
+import EditProfile from './component/EditProfile'
 import { Adapter } from './Adapter'
 import { Route, Switch, withRouter} from 'react-router-dom'
-import { Helmet } from 'react-helmet'
 import './css/style.css';
 
 class App extends Component {
@@ -33,7 +34,7 @@ class App extends Component {
         })
       }) 
     }else {
-      this.props.history.push("/login")
+      this.props.history.push("/landing")
     }
 }
 
@@ -67,10 +68,12 @@ handleLogout = () => {
         <NavBar/>
         <Forum user={this.state.user}/>
         <Switch>
-          <Route path="/profiles/:id" render={() => <Profile/>}/>
+          <Route path="/profile/:username/edit" render ={() => <EditProfile user={this.state.user}/>}/>
+          <Route path="/profile/:username" render={() => <Profile user={this.state.user}/>}/>
           <Route path="/login" render={() => <Login setLogin={this.setLogin} /> }/>
           <Route path="/signup" render={() => <Signup handleSignUp={this.handleSignUp} /> }/>
           <Route path="/logout" render={() => <Logout handleLogout={this.handleLogout} /> }/>
+          <Route exact path="/landing" component={Landing}/>
         </Switch>
       </div>
 

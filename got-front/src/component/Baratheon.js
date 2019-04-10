@@ -10,6 +10,7 @@ export class Baratheon extends Component {
         <ul className="forum__posts__lists">
           {barPosts.map(post => <li className="forum__posts__items"><Link to={`${match.url}/${post.id}`}>{post.title}</Link></li> )}
         </ul>
+        <Link to={`/create/${id}`}>Create a Post</Link> 
       </div>
     )
   }
