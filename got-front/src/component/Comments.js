@@ -3,9 +3,17 @@ import { withRouter, Link } from 'react-router-dom'
 import { Adapter } from '../Adapter'
 import { invoke } from 'q';
 
+
 export class Comments extends Component {
   state = {
     comment: this.props.comment.message,
+    likes: []
+  }
+
+  componentDidMount(){
+    fetch("http://localhost:3000//user_likes_comments")
+    .then(resp => resp.json())
+    .then(console.log)
   }
 
   handleEdit2 = () => {
@@ -31,11 +39,33 @@ export class Comments extends Component {
       body:JSON.stringify({comment: {message: div.innerText}})
     })
   }
-  
+
   commentHandler = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     })
+  }
+
+  likeHandler = (e) => {
+    const likeObj ={
+      user_id: this.props.user.id,
+      comment_id: this.props.comment.id
+    }
+    e.preventDefault()
+    fetch("http://localhost:3000/user_likes_comments",{
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: localStorage.token
+      },
+      body:JSON.stringify({like: likeObj})
+    })
+  }
+
+  dislikeHandler = (e) => {
+    e.preventDefault()
+    
   }
 
   render() {
@@ -50,6 +80,7 @@ export class Comments extends Component {
          <div className={`comment-${id}`}>
           {comment}
          </div>
+         <div><button onClick={this.likeHandler}>like</button><button>dislike</button></div>
         <br/>
         <Link to={`/profile/${username}`}>{username}</Link>
         {user_id === userId ? <div><button className={`edit-${id}`} onClick={this.handleEdit2}>Edit</button> <button className={`delete-${id}`} onClick={() => Adapter.deleteComment(id)}>Delete</button></div> : null}
