@@ -11,9 +11,9 @@ export class Comments extends Component {
   }
 
   componentDidMount(){
-    fetch("http://localhost:3000//user_likes_comments")
+    fetch("http://localhost:3000/user_likes_comments")
     .then(resp => resp.json())
-    .then(console.log)
+    .then(likes => this.setState({likes :likes}))
   }
 
   handleEdit2 = () => {
@@ -65,7 +65,15 @@ export class Comments extends Component {
 
   dislikeHandler = (e) => {
     e.preventDefault()
-    
+    const dislike = this.state.likes.find(like => like.comment_id === this.props.comment.id && like.user_id === this.props.user.id) 
+    fetch(`http://localhost:3000/user_likes_comments/${dislike.id}`,{
+      method: "DELETE",
+      headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: localStorage.token
+      }
+    })
   }
 
   render() {
@@ -80,7 +88,7 @@ export class Comments extends Component {
          <div className={`comment-${id}`}>
           {comment}
          </div>
-         <div><button onClick={this.likeHandler}>like</button><button>dislike</button></div>
+         <div><button onClick={this.likeHandler}>like</button><button onClick={this.dislikeHandler}>dislike</button></div>
         <br/>
         <Link to={`/profile/${username}`}>{username}</Link>
         {user_id === userId ? <div><button className={`edit-${id}`} onClick={this.handleEdit2}>Edit</button> <button className={`delete-${id}`} onClick={() => Adapter.deleteComment(id)}>Delete</button></div> : null}
