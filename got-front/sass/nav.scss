@@ -1,0 +1,32 @@
+@mixin listDeco{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    background: rgba(38,41,52, 0.97);
+    width: 100vw;
+}
+
+.nav{
+    display: flex;
+    flex-direction: column;
+
+    &_list{
+        @include listDeco;
+    }
+
+    &_user{
+        @include listDeco;
+        justify-content: flex-end;
+    }
+    &_item{
+        
+        &:focus{
+            border-bottom: 2px solid blue;
+        }
+    }
+}
+
+.hello{
+    display: flex;
+    flex-direction: row;
+}

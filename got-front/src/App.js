@@ -9,7 +9,11 @@ import Landing from './component/Landing'
 import EditProfile from './component/EditProfile'
 import { Adapter } from './Adapter'
 import { Route, Switch, withRouter} from 'react-router-dom'
+import bg from './images/main.png'
+
 import './css/style.css';
+
+
 
 class App extends Component {
   state = {
@@ -65,7 +69,9 @@ handleLogout = () => {
   render() {
     return (
       <div className="app__container">
+      <img className="bg_main" src={bg}></img>
         <NavBar/>
+        <h1>Forum</h1>
         <Forum user={this.state.user}/>
         <Switch>
           <Route path="/profile/:username/edit" render ={() => <EditProfile user={this.state.user}/>}/>
@@ -75,8 +81,10 @@ handleLogout = () => {
           <Route path="/logout" render={() => <Logout handleLogout={this.handleLogout} /> }/>
           <Route exact path="/landing" component={Landing}/>
         </Switch>
+        <footer id="footer">
+          <p>well hello there</p>
+        </footer>
       </div>
-
     );
   }
 }

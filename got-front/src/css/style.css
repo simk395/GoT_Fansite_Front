@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+#footer {
+  display: block;
+  background: #262934;
+  height: 7rem; }
+
+.forum_cat {
+  display: flex;
+  margin: 2.5rem; }
+  .forum_cat_list {
+    border-radius: 1rem;
+    box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
+    background: #aa9e74;
+    width: 70rem; }
+  .forum_cat_body {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+    padding-left: 1rem; }
+  .forum_cat_desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+  .forum_cat_title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: black; }
+    .forum_cat_title:hover {
+      color: #23394a; }
+  .forum_cat_subtitle {
+    color: #505050;
+    padding-top: 4px; }
+
+.even {
+  background: #beb274;
+  padding-top: 1rem;
+  padding-bottom: 1rem; }
+
+.nav {
+  display: flex;
+  flex-direction: column; }
+  .nav_list {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    background: rgba(38, 41, 52, 0.97);
+    width: 100vw; }
+  .nav_user {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    background: rgba(38, 41, 52, 0.97);
+    width: 100vw;
+    justify-content: flex-end; }
+  .nav_item:focus {
+    border-bottom: 2px solid blue; }
+
+.hello {
+  display: flex;
+  flex-direction: row; }
+
+.bg_main {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: -1; }

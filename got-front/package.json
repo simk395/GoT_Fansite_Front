@@ -3,24 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "emoji-js": "^3.4.1",
     "emoji-mart": "^2.11.0",
-    "emoji-picker-react": "^2.1.1",
-    "jquery": "^3.3.1",
-    "jquery-slim": "^3.0.0",
-    "jquery.emojiarea.js": "^0.1.8-beta",
+    "gulp": "^4.0.0",
     "live-server": "^1.2.1",
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-emojipicker": "^1.1.0",
-    "react-helmet": "^5.2.0",
     "react-redux": "^6.0.1",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
-    "redux": "^4.0.1",
-    "strawpoll": "^1.1.0"
+    "semantic": "0.0.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.86.0",
+    "semantic-ui-sass": "^2.4.1",
+    "ui": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,5 +37,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "semantic-ui": "^2.4.2"
+  }
 }

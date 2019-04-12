@@ -12,6 +12,7 @@ import General from '../component/General'
 import Post from '../component/Post'
 import PostCreate from '../component/PostCreate'
 import EditPost from '../component/EditPost'
+import bryan from '../images/bryan.jpg'
 
 export class Forum extends Component {
   state = {

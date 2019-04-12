@@ -1,0 +1,51 @@
+$border: 2px solid black;
+
+.forum_cat{
+    display:flex;
+    margin:2.5rem;
+
+    
+    
+    &_list{
+        border-radius: 1rem;
+        box-shadow: 0px 0px 12px 2px rgba(0,0,0,0.75);
+        background: rgb(170, 158,116);
+        width: 70rem;
+    }
+
+    &_body{
+        display:flex;
+        flex-direction: row;
+        margin: 1rem 0;
+        padding-left: 1rem;
+    }
+    &_desc{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+       
+    }
+    &_icon{
+        
+    }
+    &_title{
+        font-weight:700;
+        font-size: 1.5rem;
+        color: black;
+
+        &:hover{
+            color: rgb(35, 57, 74);
+        }
+    }
+
+    &_subtitle{
+        color:rgb(80, 80, 80);
+        padding-top: 4px;
+    }
+}
+
+.even{
+    background:rgb(190, 178, 116);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
