@@ -1,4 +1,6 @@
-@import "base";
-@import "category";
-@import "nav";
-@import "background";
+@import "base/base";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+@import "layout/nav";
+@import "layout/background";
+@import "forum/board";

@@ -42,23 +42,6 @@ export class Post extends Component{
     this.setState({newComment: this.state.newComment + emoji.native})
   }
 
-  createPoll = () => {
-    const strawpoll = require('strawpoll')
-
-    strawpoll.create({
-        title: 'My first poll',
-        options: [
-            'wow',
-            'awesome',
-            'amazing',
-            'nice'
-        ],
-        multi: false,
-        dupcheck: 'normal',
-        captcha: false
-    })
-  }
-
   showEmoji = (e) => {
     e.preventDefault()
     this.setState({emoji: !this.state.emoji})
@@ -72,9 +55,9 @@ export class Post extends Component{
         post = posts.find(post => post.id === parseInt(size[size.length-1])),
         postComments = (post === undefined ? [] : comments.filter(comment => comment.post_id === post.id))
     return (
-      <div className="forum__post__body">
+      <div className="forum_post">
           {post === undefined ? null : 
-          <div className="forum__post__main">
+          <div className="forum_post_main">
             <h2>{post.title}</h2>
             <p>{post.message}</p>
             {post.user_id === user.id ? <Link to="/forum/post/edit">Edit</Link> : null}

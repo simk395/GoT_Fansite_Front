@@ -12,7 +12,7 @@ import General from '../component/General'
 import Post from '../component/Post'
 import PostCreate from '../component/PostCreate'
 import EditPost from '../component/EditPost'
-import bryan from '../images/bryan.jpg'
+import bg from '../images/main.png'
 
 export class Forum extends Component {
   state = {

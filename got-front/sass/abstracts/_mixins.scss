@@ -1,0 +1,19 @@
+@mixin userBtn{
+    font-size: 1rem;
+    border-radius: 3px;
+    background: transparent;
+    height: 1.5625rem;
+    width: 65px;
+    cursor: pointer;
+    transition: color .2s;
+    font-weight: 500;
+    outline: none;
+}
+
+@mixin listDeco{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    background: rgba(38,41,52, 0.97);
+    align-items: center;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import banner from '../images/banner.jpg'
+import { StickyContainer, Sticky } from 'react-sticky';
 
 
 export class Navbar extends Component {
@@ -38,30 +39,39 @@ export class Navbar extends Component {
     const activeUser = localStorage.token
     return (
       <nav className="nav">
+
         <img className="nav_banner" src={banner}></img>
-        <div className="hello">
-        <ul className="nav_list">
-          <li className="nav_item"><NavLink className="nav_item" to="/landing">Home
+        <div className="nav-container">
+        <div className="nav_secondary">
+        <ul className="nav_secondary_list">
+          <li ><NavLink className="nav_item" to="/landing">Home
           </NavLink></li>
-          <li className="nav_item"><NavLink className="nav_item" to="/forum">
-            Community
+          <li ><NavLink className="nav_item" to="/forum">
+            Forum
           </NavLink></li>
-        </ul>
+          </ul>
+        </div>
         {!activeUser ? 
-          <ul className="nav_user">
-            <li> className="nav_item" <NavLink className="nav_item" to="/login">
-              Login
+        <div className="nav_user">
+          <ul className="nav_user_list">
+            <li> <NavLink className="nav_item" to="/login">
+            <button className="nav_user_log">LOG IN</button>
             </NavLink></li>
-            <li className="nav_item"><NavLink className="nav_item" to="/signup">
-              Signup
+            <li ><NavLink className="nav_item" to="/signup">
+            <button className="nav_user_sign">SIGN UP</button>
             </NavLink></li></ul> 
-            : <ul className="nav_user"><li className="nav_item"><NavLink className="nav_item" to="/logout">
-                Logout
-              </NavLink></li></ul>}
+            </div>
+            : 
+            <div className="nav_user">
+            <ul className="nav_user_list"><li ><NavLink className="nav_item" to="/logout">
+                <button className="nav_user_log">LOG OUT</button>
+              </NavLink></li></ul>
+              </div>}
+        </div>
         {/* <span id="demo"></span>
         <span id="winter">Winter is Coming!</span> */}
-        </div>
       </nav>
+      
     )
   }
 }

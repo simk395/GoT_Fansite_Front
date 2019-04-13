@@ -19,27 +19,27 @@ export const Category = (props) => {
                           "Other things about GoT",
                           "Anything not related to GoT"]
     return (
-      <div className="forum_cat">
-      <ul className="forum_cat_list">
+      <div className="fb_main">
+      <ul className="fb_list">
           {categories.map(category => 
           category.id % 2 === 0 ?
-            <li className="forum_cat_body even">
-                <img className="forum_cat_icon" src={families[category.id-1]}></img>
-                <div className="forum_cat_desc">
-                  <Link className="forum_cat_title" to={`/forum/${category.id}`}>
+            <li className="fb_body even">
+                <img className="fb_icon" src={families[category.id-1]}></img>
+                <div className="fb_desc">
+                  <Link className="fb_title" to={`/forum/${category.id}`}>
                     {category.title}
                   </Link>
-                  <p className="forum_cat_subtitle">{descriptions[category.id-1]}</p>
+                  <p className="fb_subtitle">{descriptions[category.id-1]}</p>
                 </div>
             </li>
             :
-            <li className="forum_cat_body odd">
-            <img className="forum_cat_icon" src={families[category.id-1]}></img>
-            <div className="forum_cat_desc">
-              <Link className="forum_cat_title" to={`/forum/${category.id}`}>
+            <li className="fb_body ">
+            <img className="fb_icon" src={families[category.id-1]}></img>
+            <div className="fb_desc">
+              <Link className="fb_title" to={`/forum/${category.id}`}>
                 {category.title}
               </Link>
-              <p className="forum_cat_subtitle">{descriptions[category.id-1]}</p>
+              <p className="fb_subtitle">{descriptions[category.id-1]}</p>
             </div>
         </li>
           )}

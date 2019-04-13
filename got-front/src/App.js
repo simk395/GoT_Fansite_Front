@@ -68,10 +68,9 @@ handleLogout = () => {
 }
   render() {
     return (
-      <div className="app__container">
-      <img className="bg_main" src={bg}></img>
+      <main className="main">
+      {/* <img className="bg_main" src={bg}></img> */}
         <NavBar/>
-        <h1>Forum</h1>
         <Forum user={this.state.user}/>
         <Switch>
           <Route path="/profile/:username/edit" render ={() => <EditProfile user={this.state.user}/>}/>
@@ -84,7 +83,7 @@ handleLogout = () => {
         <footer id="footer">
           <p>well hello there</p>
         </footer>
-      </div>
+      </main>
     );
   }
 }
