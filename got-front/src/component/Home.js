@@ -1,9 +1,4 @@
 import React, { Component } from 'react'
-import { Carousel } from 'react-bootstrap'
-// import { Carousel } from 'react-materialize'
-import baratheon from '../images/baratheon-home.jpg'
-import stark from '../images/stark-home.jpg'
-import targ from '../images/targaryen.jpg'
 import objectFitImages from 'object-fit-images'
 import { jarallax } from 'jarallax'
 import starkBanner from '../images/house_banners/house-stark.jpg'
@@ -11,34 +6,21 @@ import greyjoyBanner from '../images/house_banners/house-greyjoy.jpg'
 import lannisterBanner from '../images/house_banners/house-lannister.jpg'
 import targaryenBanner from '../images/house_banners/house-targaryen.jpg'
 import tyrellBanner from '../images/house_banners/house-tyrell.jpg'
+import tullyBanner from '../images/house_banners/house-tully.jpg'
+import arrynBanner from '../images/house_banners/house-arryn.jpg'
+import baratheonBanner from '../images/house_banners/house-baratheon.jpg'
+import martellBanner from '../images/house_banners/house-martell.jpg'
 
 export class Home extends Component {
-
   componentDidMount(){
-    // window.addEventListener("scroll", this.handleScroll)
     objectFitImages();
     jarallax(document.querySelectorAll('.jarallax'));
     jarallax(document.querySelectorAll('.jarallax-keep-img'), {
         keepImg: true,
     });
   }
-
-  // handleScroll = () => {
-  //   const carousel = document.querySelector(".got_slideshow");
-  //   const image = document.querySelectorAll(".got_slideshow_img");
-  //   if(window.scrollY > 0){
-  //     carousel.classList.add("move_back");
-  //     image.forEach(picture => picture.classList.add("blur_it"))
-  //   }else{
-  //     carousel.classList.remove("move_back");
-  //     image.forEach(picture => picture.classList.remove("blur_it"))
-  //   }
-  // }
   render() {
-    const images = [stark, baratheon, targ]
     return (
-      
-      
       <main>
         
         {/* starks */}
@@ -101,9 +83,10 @@ export class Home extends Component {
         <div className="container">
           <div className="row mb-5 pb-4">
             <div className="col-md-12 text-center">
-              <h2>House Lannister</h2>
+              <h2>House Targaryen</h2>
               <p align="justify">
-              House Targaryen of Dragonstone is a Great House of Westeros and was the ruling royal House of the Seven Kingdoms for three centuries since it conquered and unified the realm, before it was deposed during Robert's Rebellion and House Baratheon replaced it as the new royal House. The two surviving Targaryens fled into exile to the Free Cities of Essos across the Narrow Sea. Currently based on Dragonstone off of the eastern coast of Westeros, House Targaryen seeks to retake the Seven Kingdoms from House Lannister, who formally replaced House Baratheon as the royal House following the destruction of the Great Sept of Baelor.              </p>
+              House Targaryen of Dragonstone is a Great House of Westeros and was the ruling royal House of the Seven Kingdoms for three centuries since it conquered and unified the realm, before it was deposed during Robert's Rebellion and House Baratheon replaced it as the new royal House. The two surviving Targaryens fled into exile to the Free Cities of Essos across the Narrow Sea. Currently based on Dragonstone off of the eastern coast of Westeros, House Targaryen seeks to retake the Seven Kingdoms from House Lannister, who formally replaced House Baratheon as the royal House following the destruction of the Great Sept of Baelor.            
+              </p>
               <p align="justify">
               House Targaryen's sigil is a three-headed red dragon on a black background, and their house words are "Fire and Blood."              
               </p>
@@ -123,15 +106,19 @@ export class Home extends Component {
         <div className="container">
           <div className="row mb-5 pb-4">
             <div className="col-md-12 text-center">
-              <h2>House Lannister</h2>
+              <h2>House Tyrell</h2>
               <p align="justify">
-              House Targaryen of Dragonstone is a Great House of Westeros and was the ruling royal House of the Seven Kingdoms for three centuries since it conquered and unified the realm, before it was deposed during Robert's Rebellion and House Baratheon replaced it as the new royal House. The two surviving Targaryens fled into exile to the Free Cities of Essos across the Narrow Sea. Currently based on Dragonstone off of the eastern coast of Westeros, House Targaryen seeks to retake the Seven Kingdoms from House Lannister, who formally replaced House Baratheon as the royal House following the destruction of the Great Sept of Baelor.              </p>
-              <p align="justify">
-              House Targaryen's sigil is a three-headed red dragon on a black background, and their house words are "Fire and Blood."              
+              House Tyrell of Highgarden is an extinct Great House of Westeros. It ruled over the Reach, a vast, fertile, and heavily-populated region of southwestern Westeros, from their castle-seat of Highgarden as Lords Paramount of the Reach and Wardens of the South after taking control of the region from House Gardener during the Targaryen conquest.
               </p>
               <p align="justify">
-              "Half the Targaryens went mad, didn't they? What's the saying? 'Every time a Targaryen is born the gods flip a coin.'"
-              ―Cersei Lannister to Tyrion Lannister
+              The House was formerly led by Lord Mace Tyrell. Mace's son Loras was a noted tournament knight and, secretly, the lover of Lord Renly Baratheon. Mace's daughter Margaery married Renly when he crowned himself king in the War of the Five Kings to cement an alliance between Renly and her father. Following Renly's death, Margaery was then married to King Joffrey Baratheon before his assassination at his wedding feast. She was then married to his younger brother, King Tommen Baratheon. Mace's mother, the indomitable Olenna Tyrell, assumed House Tyrell's lordship after Margaery, Loras, and Mace Tyrell were all killed by wildfire at the destruction of the Great Sept of Baelor. Under Olenna, House Tyrell realigned itself with House Targaryen and declared for Daenerys Targaryen in opposition against Cersei Lannister, who had orchestrated the downfall of House Tyrell. With the death of Olenna after the Sack of Highgarden, the House has officially become extinct.
+              </p>
+              <p align="justify">
+              The Tyrell sigil is a golden rose on a pale green field. Their house words are "Growing Strong."
+              </p>
+              <p align="justify">
+              "Luckily for us Tyrells, our blood runs quite warm."
+              ―Margaery Tyrell
               </p>
             </div>
           </div>
@@ -163,6 +150,121 @@ export class Home extends Component {
           </div>
         </div>
       
+        {/* Tully */}
+        <div className="view jarallax">
+          <img className="jarallax-img" src={tullyBanner} alt=""/>
+        </div>
+
+        <div className="container">
+          <div className="row mb-5 pb-4">
+            <div className="col-md-12 text-center">
+              <h2>House Tully</h2>
+              <p align="justify">
+              House Tully of Riverrun is a deposed Great House of Westeros. Its most senior member carried the title of Lord of Riverrun and Lord Paramount of the Trident, until the Red Wedding. The current head is Lord Edmure Tully, son of the late Hoster Tully. The Tully sigil is a silver trout on a red and blue background. Their house words are "Family, Duty, Honor."
+              </p>
+              <p align="justify">
+              At the onset of the War of the Five Kings, House Tully came under attack by House Lannister and lent its support for House Stark when they came to their aid in the liberation of the Riverlands. House Tully has since been formally stripped of lands and titles for rebellion against the Iron Throne, with Lord Edmure a captive of House Frey following the Red Wedding. 
+              </p>
+              <p align="justify">
+              Later, Ser Brynden Tully gathered the remaining Tully forces and reclaimed Riverrun from the Freys, reopening conflict between the Tullys and the Iron Throne. The Freys lay siege to Riverrun, and were later assisted by the Lannisters on the orders of King Tommen I. Ser Jaime Lannister managed to end the siege by convincing Edmure Tully to command the garrison to lay down their weapons in return for clemency and protection. Brynden was killed during a final stand with Lannister and Frey forces while Edmure was returned to the Freys as a prisoner.
+              </p>
+              <p align="justify">
+              "'Family, Duty, Honor.' Every Tully child learns our words. But I was a woman before I understood them."
+              ―Catelyn Tully
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Arryn */}
+        <div className="view jarallax">
+          <img className="jarallax-img" src={arrynBanner} alt=""/>
+        </div>
+
+        <div className="container">
+          <div className="row mb-5 pb-4">
+            <div className="col-md-12 text-center">
+              <h2>House Arryn</h2>
+              <p align="justify">
+              House Arryn of the Eyrie is one of the Great Houses of Westeros. It has ruled over the Vale of Arryn for millennia, originally as the Kings of Mountain and Vale and more recently as Lords Paramount of the Vale and Wardens of the East under the Targaryen kings and Baratheon-Lannister kings. The nominal head of House Arryn is Robin Arryn, the Lord of the Eyrie, with his stepfather Petyr Baelish acting as Lord Protector until he reaches the age of majority.
+              </p>
+              <p align="justify">
+              Their lands are in the central-eastern region of the continent. Their seat is the Eyrie, ancestral seat of the Mountain Kings. House Arryn's sigil is a white crescent moon and falcon on a blue field. Their house words are "As High as Honor."
+              </p>
+              <p align="justify">
+              At the start of the series, Lord Jon Arryn was killed under suspicious circumstances. His widow Lysa blamed House Lannister and sought refuge in the Eyrie. Despite her enmity towards the Lannisters, she remained neutral in the War of the Five Kings and aimed to use the forces of the Vale to defend Robin and the Eyrie if necessary. After killing Lysa and making it appear like an accident, Lord Petyr Baelish becomes Lord Protector of the Vale until young Robin comes of age. Under his rule, supervised by Baelish, the Vale assists House Stark in toppling House Bolton in the North during the Battle of the Bastards. After the battle, the Vale declares for House Stark and becomes part of the Kingdom of the North in defiance of the Iron Throne.
+              </p>
+              <p align="justify">
+              "The Arryns are direct descendants of Andal invaders... who sailed across the Narrow Sea and came ashore at the Fingers."
+              ―Catelyn Stark
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* baratheon */}
+        <div className="view jarallax">
+          <img className="jarallax-img" src={baratheonBanner} alt=""/>
+        </div>
+
+        <div className="container">
+          <div className="row mb-5 pb-4">
+            <div className="col-md-12 text-center">
+              <h2>House Baratheon</h2>
+              <p align="justify">
+              House Baratheon of Storm's End is a legally extinct Great House of Westeros. A cadet branch was formerly the royal house, but House Lannister now controls the throne. House Baratheon traditionally ruled the Stormlands on the eastern coast of Westeros, aptly named for its frequent storms, from their seat of Storm's End.
+              </p>
+              <p align="justify">
+              House Baratheon became the royal house of the Seven Kingdoms after Robert Baratheon led a rebellion against the Targaryen dynasty. At the end of the rebellion, Robert ascended the Iron Throne as Robert I and married Cersei Lannister after the death of Lyanna Stark.
+              </p>
+              <p align="justify">
+              House Baratheon's sigil is a crowned black stag on a gold background and their house words are "Ours Is the Fury."
+              </p>
+              <p align="justify">
+              House Baratheon is now legally extinct due to Stannis Baratheon's death, but the family bloodline lives on through Gendry, an unrecognized bastard son of Robert Baratheon and the last known living person with true blood ties to the Baratheon family.
+              </p>
+              <p align="justify">
+              Ours Is The Fury. These are the words of the black stag of Baratheon; a battle cry echoed throughout the land in rebellion when I, Robert Baratheon, the First of His Name seized the Iron Throne from the Mad King, Aerys Targaryen, ending a dynasty nearly three-hundred years old."
+              ―Robert Baratheon
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* martell */}
+        <div className="view jarallax">
+          <img className="jarallax-img" src={martellBanner} alt=""/>
+        </div>
+
+        <div className="container">
+          <div className="row mb-5 pb-4">
+            <div className="col-md-12 text-center">
+              <h2>House Martell</h2>
+              <p align="justify">
+              House Martell of Sunspear is a legally extinct Great House of Westeros. It ruled the peninsula of Dorne in the far south of the continent from their castle Sunspear. Though loyal to the Iron Throne, the Martells were never conquered by the Targaryens and pursued a more isolated role in wider political events since Robert's Rebellion.
+              </p>
+              <p align="justify">
+              House Martell's sigil is a red sun pierced by a golden spear, on an orange field, a combination of the original Martell sigil - a yellow spear - and the emblem of Princess Nymeria - a red sun - to symbolize the marriage of the warrior-queen to Mors Martell. Their house words are "Unbowed, Unbent, Unbroken."
+              </p>
+              <p align="justify">
+              With the assassinations of Prince Doran Martell and his only heir, Prince Trystane, by Ellaria Sand and the three eldest Sand Snakes, House Martell is legally extinct, although the Sand Snakes carry Martell blood through their father Oberyn Martell. The Sand Snakes also continue to use the Martell sigil to represent themselves and Dorne.
+              </p>
+              <p align="justify">
+              Under the leadership of Ellaria Sand and the Sand Snakes, the forces of House Martell and Dorne have aligned to support the cause of Daenerys Targaryen against House Lannister after they declared war against them.
+              </p>
+              <p align="justify">
+              Since the deaths of the older Sand Snakes and Ellaria's imprisonment in King's Landing, House Martell's future is uncertain as five Sand Snakes still live.
+              </p>
+              <p align="justify">
+              "'Unbowed, unbent, unbroken'. The words of House Martell. A promise to our enemies, and a challenge to our lovers."
+              ―Oberyn Martell
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+
       </main>
     )
   }
