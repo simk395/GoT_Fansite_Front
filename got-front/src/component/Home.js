@@ -10,6 +10,7 @@ import starkBanner from '../images/house_banners/house-stark.jpg'
 import greyjoyBanner from '../images/house_banners/house-greyjoy.jpg'
 import lannisterBanner from '../images/house_banners/house-lannister.jpg'
 import targaryenBanner from '../images/house_banners/house-targaryen.jpg'
+import tyrellBanner from '../images/house_banners/house-tyrell.jpg'
 
 export class Home extends Component {
 
@@ -76,9 +77,11 @@ export class Home extends Component {
             <div className="col-md-12 text-center">
               <h2>House Lannister</h2>
               <p align="justify">
-              House Lannister of Casterly Rock is one of the Great Houses of Westeros, one of its richest and most powerful families and oldest dynasties. It is also the current royal house of the Seven Kingdoms following the extinction of House Baratheon of King's Landing, which had been their puppet house during the War of the Five Kings.              </p>
+              House Lannister of Casterly Rock is one of the Great Houses of Westeros, one of its richest and most powerful families and oldest dynasties. It is also the current royal house of the Seven Kingdoms following the extinction of House Baratheon of King's Landing, which had been their puppet house during the War of the Five Kings.              
+              </p>
               <p align="justify">
-              The Lannisters rule over the Westerlands. Their seat is Casterly Rock, a massive rocky promontory overlooking the Sunset Sea which has had habitations and fortifications built into it over the millennia. They are the Lords Paramount of the Westerlands and Wardens of the West. As the new royal house, they also rule directly over the Crownlands from their seat of the Red Keep in King's Landing, the traditional seat of the royal family. House Lannister's Heraldry consists of a golden lion on a crimson background, and their House words are "Hear me roar!", which are rarely mentioned.[1] Their unofficial motto, which is as well known as the official one, is "A Lannister always pays his debts" - which is used much more often and mostly in negative context, though it can also be used in the original, literal sense.              </p>
+              The Lannisters rule over the Westerlands. Their seat is Casterly Rock, a massive rocky promontory overlooking the Sunset Sea which has had habitations and fortifications built into it over the millennia. They are the Lords Paramount of the Westerlands and Wardens of the West. As the new royal house, they also rule directly over the Crownlands from their seat of the Red Keep in King's Landing, the traditional seat of the royal family. House Lannister's Heraldry consists of a golden lion on a crimson background, and their House words are "Hear me roar!", which are rarely mentioned.[1] Their unofficial motto, which is as well known as the official one, is "A Lannister always pays his debts" - which is used much more often and mostly in negative context, though it can also be used in the original, literal sense.              
+              </p>
               <p align="justify">
               The incestuous relationship of Cersei and Jaime has been concealed in a conspiracy. Their son Joffrey Baratheon has claimed the Iron Throne on the premise that he was actually fathered by the late King Robert Baratheon. Lord Tywin was a key supporter of his reign in the War of the Five Kings.
               </p>
@@ -100,20 +103,39 @@ export class Home extends Component {
             <div className="col-md-12 text-center">
               <h2>House Lannister</h2>
               <p align="justify">
-              House Lannister of Casterly Rock is one of the Great Houses of Westeros, one of its richest and most powerful families and oldest dynasties. It is also the current royal house of the Seven Kingdoms following the extinction of House Baratheon of King's Landing, which had been their puppet house during the War of the Five Kings.              </p>
+              House Targaryen of Dragonstone is a Great House of Westeros and was the ruling royal House of the Seven Kingdoms for three centuries since it conquered and unified the realm, before it was deposed during Robert's Rebellion and House Baratheon replaced it as the new royal House. The two surviving Targaryens fled into exile to the Free Cities of Essos across the Narrow Sea. Currently based on Dragonstone off of the eastern coast of Westeros, House Targaryen seeks to retake the Seven Kingdoms from House Lannister, who formally replaced House Baratheon as the royal House following the destruction of the Great Sept of Baelor.              </p>
               <p align="justify">
-              The Lannisters rule over the Westerlands. Their seat is Casterly Rock, a massive rocky promontory overlooking the Sunset Sea which has had habitations and fortifications built into it over the millennia. They are the Lords Paramount of the Westerlands and Wardens of the West. As the new royal house, they also rule directly over the Crownlands from their seat of the Red Keep in King's Landing, the traditional seat of the royal family. House Lannister's Heraldry consists of a golden lion on a crimson background, and their House words are "Hear me roar!", which are rarely mentioned.[1] Their unofficial motto, which is as well known as the official one, is "A Lannister always pays his debts" - which is used much more often and mostly in negative context, though it can also be used in the original, literal sense.              </p>
-              <p align="justify">
-              The incestuous relationship of Cersei and Jaime has been concealed in a conspiracy. Their son Joffrey Baratheon has claimed the Iron Throne on the premise that he was actually fathered by the late King Robert Baratheon. Lord Tywin was a key supporter of his reign in the War of the Five Kings.
+              House Targaryen's sigil is a three-headed red dragon on a black background, and their house words are "Fire and Blood."              
               </p>
               <p align="justify">
-              "You have to give it to the Lannisters – they may be the most pompous, ponderous cunts the gods ever suffered to walk the world, but they do have outrageous amounts of money."
-              ―Renly Baratheon
+              "Half the Targaryens went mad, didn't they? What's the saying? 'Every time a Targaryen is born the gods flip a coin.'"
+              ―Cersei Lannister to Tyrion Lannister
               </p>
             </div>
           </div>
         </div>
 
+        {/* Tyrell */}
+        <div className="view jarallax">
+          <img className="jarallax-img" src={tyrellBanner} alt=""/>
+        </div>
+
+        <div className="container">
+          <div className="row mb-5 pb-4">
+            <div className="col-md-12 text-center">
+              <h2>House Lannister</h2>
+              <p align="justify">
+              House Targaryen of Dragonstone is a Great House of Westeros and was the ruling royal House of the Seven Kingdoms for three centuries since it conquered and unified the realm, before it was deposed during Robert's Rebellion and House Baratheon replaced it as the new royal House. The two surviving Targaryens fled into exile to the Free Cities of Essos across the Narrow Sea. Currently based on Dragonstone off of the eastern coast of Westeros, House Targaryen seeks to retake the Seven Kingdoms from House Lannister, who formally replaced House Baratheon as the royal House following the destruction of the Great Sept of Baelor.              </p>
+              <p align="justify">
+              House Targaryen's sigil is a three-headed red dragon on a black background, and their house words are "Fire and Blood."              
+              </p>
+              <p align="justify">
+              "Half the Targaryens went mad, didn't they? What's the saying? 'Every time a Targaryen is born the gods flip a coin.'"
+              ―Cersei Lannister to Tyrion Lannister
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* greyjoys */}
         <div className="view jarallax">
