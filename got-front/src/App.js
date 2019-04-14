@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Forum from './container/Forum'
 import Navigation from './container/Navigation'
 import Profile from './component/Profile'
-import Landing from './component/Landing'
+import Home from './component/Home'
 import EditProfile from './component/EditProfile'
 import Signout from './component/Signout'
 import { Adapter } from './Adapter'
@@ -67,16 +67,18 @@ handleLogout = (e) => {
   localStorage.removeItem('token');
 }
   render() {
+    const url = window.location.href
+    const showBanner = url.match(/forum/) ? <img className="banner" src={banner}></img> : <img hidden className="banner" src={banner}></img>;
     return (
       <main className="main">
-      <img className="banner" src={banner}></img>
+      {showBanner}
         <Navigation setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>
         <Forum user={this.state.user} setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>
         <Switch>
           <Route path="/signout" component={Signout}/>
           <Route path="/profile/:username/edit" render={() => <EditProfile user={this.state.user}/>}/>
           <Route path="/profile/:username" render={() => <Profile user={this.state.user}/>}/>
-          <Route exact path="/landing" component={Landing}/>
+          <Route exact path="/" component={Home}/>
         </Switch>
       </main>
     );

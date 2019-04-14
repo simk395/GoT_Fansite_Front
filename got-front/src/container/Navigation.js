@@ -44,7 +44,7 @@ export class Navigation extends Component {
         <Nav className="nav_list" as="ul">
           <Nav.Item  className="nav_item" as="li">
             <Nav.Link> 
-              <NavLink className="nav_link" to="/landing">
+              <NavLink className="nav_link" to="/">
                 Home
               </NavLink>
             </Nav.Link>
