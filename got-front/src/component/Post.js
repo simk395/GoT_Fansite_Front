@@ -32,9 +32,9 @@ export class Post extends Component{
     
   }
 
-  textHandler = (e) => {
-    e.preventDefault()
-    this.setState({newComment: e.target.value})
+  textHandler = (value) => {
+    // e.preventDefault()
+    this.setState({newComment: value})
     
   }
 
@@ -43,7 +43,7 @@ export class Post extends Component{
   }
 
   showEmoji = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     this.setState({emoji: !this.state.emoji})
   }
   
@@ -53,6 +53,9 @@ export class Post extends Component{
     const { user } = this.props.user // {}
     const { setLogin, handleSignUp} = this.props
     const { comments, newComment, profiles } = this.state
+
+    console.log(newComment);
+
     let size = window.location.href.split("/"),
         post = posts.find(post => post.id === parseInt(size[size.length-1])) || "",
         postComments = comments.filter(comment => comment.post_id === post.id),
@@ -77,9 +80,11 @@ export class Post extends Component{
           </div>
           <div className="fp_comment_date"> Posted: Month Day Year</div>
         </div>
+        <div className="fp_allComments">
         {postComments.map(comment => <Comments user={user} profiles={profiles} comment={comment} handleSignUp={handleSignUp} setLogin={setLogin}/>)}
+        </div>
         <form className="fp_create" onSubmit={e => this.formHandler(e, post.id, user.id)}>
-          <ReactQuill className="fp_create_textarea" onChange={this.textHandler} value={newComment}></ReactQuill>
+          <ReactQuill theme="snow" className="fp_create_textarea" onChange={this.textHandler} value={newComment}></ReactQuill>
           <button onClick={this.showEmoji}>Emoji</button>
           {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
           <input className="forum_submit_btn" type="submit"/>

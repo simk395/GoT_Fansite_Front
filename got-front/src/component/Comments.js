@@ -95,6 +95,7 @@ export class Comments extends Component {
       const creator = profiles.find(profile => user_id === profile.id)
       const username = (creator === undefined ? "" : creator.username)
       let modalClose = () => this.setState({ signin: false, signup:false });
+      console.log(comment)
     return (
       <div data-id={`${id}`}>
         <div className="fp_post">
@@ -103,7 +104,8 @@ export class Comments extends Component {
               <Link to={`/profile/${username}`}>{username}</Link>
             </div>
             <div className={`comment-${id} fp_comment`}>
-              <p className="fp_comment_detail">{comment}</p>
+              {/* needs to be able to display inner html */}
+              <div className="fp_comment_detail" dangerouslySetInnerHTML={{__html: comment}}></div> 
             </div>
             <div>
               <button onClick={this.likeHandler}>like</button>

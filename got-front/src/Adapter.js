@@ -30,13 +30,12 @@ export class Adapter{
                 Authorization: localStorage.token
             },
             body:JSON.stringify({comment:commentObj})
-        }).then(resp => {
-            const allComments = document.querySelector(".forum__post__comments")
+        }).then(resp => resp.json())
+        .then(comment => {
+            console.log(comment)
+            const allComments = document.querySelector(".fp_allComments")
             const newComment = document.createElement("div")
-            const newButton = document.createElement("button")
-            newComment.innerText = commentObj.message
-            newButton.innerText = "Delete"
-            newComment.append(newButton)
+            newComment.innerHTML = comment.message
             allComments.append(newComment)
         })
     }
