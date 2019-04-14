@@ -10,6 +10,7 @@ import tullyBanner from '../images/house_banners/house-tully.jpg'
 import arrynBanner from '../images/house_banners/house-arryn.jpg'
 import baratheonBanner from '../images/house_banners/house-baratheon.jpg'
 import martellBanner from '../images/house_banners/house-martell.jpg'
+import freyBanner from '../images/house_banners/house-frey.jpg'
 
 export class Home extends Component {
   componentDidMount(){
@@ -263,8 +264,32 @@ export class Home extends Component {
           </div>
         </div>
 
+         {/* frey */}
+         <div className="view jarallax">
+          <img className="jarallax-img" src={freyBanner} alt=""/>
+        </div>
 
-
+        <div className="container">
+          <div className="row mb-5 pb-4">
+            <div className="col-md-12 text-center">
+              <h2>House Frey</h2>
+              <p align="justify">
+              House Frey of the Twins is the Great House of the Riverlands, having gained their position for their treachery against their former liege lords, House Tully, who were stripped of all their lands and titles for their rebellion against the Iron Throne; House Tully had supported the independence movement for the Kingdom of the North. The current head of the house is unknown following the assassinations of Lord Walder Frey and two of his sons, Lothar Frey and Walder Rivers, by the vengeful Arya Stark. This is made more complex by the subsequent assassination of all the male Freys soon after.
+              </p>
+              <p align="justify">
+              Their ancestral seat is known as the Twins for its two identical keeps on both sides of a river linked by a bridge, sometimes called the Stone Bridge. The Twins is one of the primary crossings over the Green Fork of the Trident River, and tolls from bridge crossings have made the Freys quite wealthy fairly quickly, elevating them from obscurity six centuries ago to being one of the most powerful noble houses in the Riverlands - though they are looked down upon by older aristocratic families. The construction of the Twins took the Freys for three centuries, and ever since they have grown wealthy by charging the travelers crossing the Twins.
+              </p>
+              <p align="justify">
+              The heraldry of House Frey represents their castle-seat of the Twins: it consists of two grey towers linked by a bridge, on a darker grey background, over an escutcheon of blue water.[1] Their house words are "We Stand Together," ironic considering the Freys' frequent infighting between family members[2], but it could also refer to their seat, the Twins, standing together.
+              </p>
+              <p align="justify">
+              "The Freys have held the Crossing for 600 years, and for 600 years they have never failed to exact their toll."
+              ―Catelyn Stark
+              </p>
+            </div>
+          </div>
+        </div>
+        
       </main>
     )
   }
