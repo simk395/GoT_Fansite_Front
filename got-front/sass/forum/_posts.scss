@@ -1,3 +1,57 @@
-.forum_posts{
-    
+.fp{
+   margin: 0 7rem;
+   
+   
+
+    &_title{
+        color:white;
+    }
+
+    &_post{
+        display: flex;
+        flex-direction: column;
+        background-image: url('../images/card-background.jpg');
+    }
+    &_container{
+        display:flex;
+        flex-direction: row;
+    }
+
+   &_profile{
+       display: flex;
+       flex-direction: column;
+       margin-bottom: 1.5rem;
+       min-height: 40vh;
+       min-width: 15vw;
+       align-items: center;
+       color:black;
+       
+   }
+
+   &_comment{
+       display: flex;
+       flex-direction: column;
+       background:rgba(255,255,255, 0.4);
+       min-height: 40vh;
+       min-width: 65vw;
+       color: black;
+
+       &_detail{
+           padding: 5px;
+           margin: 20px;
+       }
+
+       &_date{
+           background: transparent;
+       }
+
+   }
+
 }
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }

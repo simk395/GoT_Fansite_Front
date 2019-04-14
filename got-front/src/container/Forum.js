@@ -27,12 +27,12 @@ export class Forum extends Component {
 
   render() {
     const { categories, posts } = this.state
-    const { user } = this.props
+    const { user, setLogin, handleSignUp } = this.props
     return (
       <div className="forum">
         <Switch>
           <Route exact path="/forum/post/edit" render={() => <EditPost/>}/>
-          <Route path="/forum/:categoryId/:id" render={() => <Post posts={posts} user={user}/>}/>
+          <Route path="/forum/:categoryId/:id" render={() => <Post posts={posts} user={user} setLogin={setLogin} handleSignUp={handleSignUp}/>}/>
           <Route path="/create/:id" render={(props) => <PostCreate {...props} user={user}/>}/>
           {categories.map(category => {
             const path = `/forum/${category.id}`

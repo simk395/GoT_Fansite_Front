@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { Adapter } from '../Adapter'
-import { invoke } from 'q';
+import Signin from './Signin'
+
 
 
 export class Comments extends Component {
   state = {
     comment: this.props.comment.message,
-    likes: []
+    likes: [],
+    signin: false,
+    signup: false
   }
 
   componentDidMount(){
@@ -47,6 +50,7 @@ export class Comments extends Component {
   }
 
   likeHandler = (e) => {
+    if(localStorage.token){
     const likeObj ={
       user_id: this.props.user.id,
       comment_id: this.props.comment.id
@@ -61,10 +65,14 @@ export class Comments extends Component {
       },
       body:JSON.stringify({like: likeObj})
     })
+  }else{
+    this.setState({ signin: true });
+  }
   }
 
   dislikeHandler = (e) => {
     e.preventDefault()
+    if(localStorage.token){
     const dislike = this.state.likes.find(like => like.comment_id === this.props.comment.id && like.user_id === this.props.user.id) 
     fetch(`http://localhost:3000/user_likes_comments/${dislike.id}`,{
       method: "DELETE",
@@ -74,6 +82,9 @@ export class Comments extends Component {
           Authorization: localStorage.token
       }
     })
+  }else{
+    this.setState({ signin: true });
+  }
   }
 
   render() {
@@ -83,15 +94,26 @@ export class Comments extends Component {
       const userId = (user === undefined ? "" : user.id)
       const creator = profiles.find(profile => user_id === profile.id)
       const username = (creator === undefined ? "" : creator.username)
+      let modalClose = () => this.setState({ signin: false, signup:false });
     return (
       <div data-id={`${id}`}>
-         <div className={`comment-${id}`}>
-          {comment}
-         </div>
-         <div><button onClick={this.likeHandler}>like</button><button onClick={this.dislikeHandler}>dislike</button></div>
-        <br/>
-        <Link to={`/profile/${username}`}>{username}</Link>
+        <div className="fp_post">
+          <div className="fp_container">
+            <div className="fp_profile"> 
+              <Link to={`/profile/${username}`}>{username}</Link>
+            </div>
+            <div className={`comment-${id} fp_comment`}>
+              <p className="fp_comment_detail">{comment}</p>
+            </div>
+            <div>
+              <button onClick={this.likeHandler}>like</button>
+              <button onClick={this.dislikeHandler}>dislike</button>
+            </div>
+          </div>
+            <div className="fp_comment_date">{created_at}</div>
+        </div>
         {user_id === userId ? <div><button className={`edit-${id}`} onClick={this.handleEdit2}>Edit</button> <button className={`delete-${id}`} onClick={() => Adapter.deleteComment(id)}>Delete</button></div> : null}
+        <Signin setLogin={this.props.setLogin} handleSignUp={this.props.handleSignUp} show={this.state.signin} onHide={modalClose}/>
       </div>
     )
   }

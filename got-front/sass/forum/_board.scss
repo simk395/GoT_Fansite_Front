@@ -6,10 +6,10 @@
     }
 
     &_list{
-        border-radius: 1rem;
+        border-radius: 5px;
         box-shadow: 0px 0px 12px 2px rgba(0,0,0,0.75);
-        background: rgb(170, 158,116);
-        width: 70rem;
+        background: rgb(226,214,177);
+        width: 60rem;
         
     }
 
@@ -39,13 +39,13 @@
     }
 
     &_subtitle{
-        color:rgb(80, 80, 80);
+        color: black;
         padding-top: 4px;
     }
 }
 
 .even{
-    background:rgb(190, 178, 116);
+    background: rgb(236,224,187);
     padding-top: 1rem;
     padding-bottom: 1rem;
 }

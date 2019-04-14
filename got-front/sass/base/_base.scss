@@ -5,12 +5,16 @@
     font-family: Helvetica, sans-serif;
 }
 
-.forum{
-
+.main{
+    background: rgb(216,204,167);
 }
 
-.main{
-    background-image: url('../../src/images/main.png')
+.banner{
+    width:100vw;
+}
+
+.invalid{
+    color:red;
 }
 
 #footer{

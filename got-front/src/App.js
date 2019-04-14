@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import Forum from './container/Forum'
-import Signup from './container/Signup'
-import Login from './container/Login'
-import Logout from './component/Logout'
-import NavBar from './container/Navbar'
+import Navigation from './container/Navigation'
 import Profile from './component/Profile'
 import Landing from './component/Landing'
 import EditProfile from './component/EditProfile'
 import { Adapter } from './Adapter'
 import { Route, Switch, withRouter} from 'react-router-dom'
-import bg from './images/main.png'
+import banner from './images/banner.png'
+import { Form } from 'react-bootstrap'
 
 import './css/style.css';
 
@@ -38,13 +36,17 @@ class App extends Component {
         })
       }) 
     }else {
-      this.props.history.push("/landing")
+      this.props.history.push("/forum")
     }
 }
 
 setLogin = (userObj) => {
   if (userObj.message) {
-    return this.props.history.push("/")
+    let user = document.querySelector(".username");
+    let invalid = document.createElement("p");
+    invalid.className = "invalid";
+    invalid.innerText = '\u2022 Invalid Username or Password';
+    return user.before(invalid);
   }
 
   const user = {
@@ -53,36 +55,28 @@ setLogin = (userObj) => {
 
   this.setState({user}, () => {
     localStorage.setItem("token", userObj.jwt);
-    this.props.history.push("/forum");
   });
 }
 
 handleSignUp = () => {
-  return this.props.history.push("/login")
+  return this.props.history.push("/forum")
 }
 handleLogout = () => {
   this.setState({user:{}}, () => {
     localStorage.removeItem('token');
-    this.props.history.push('/login');
   });
 }
   render() {
     return (
       <main className="main">
-      {/* <img className="bg_main" src={bg}></img> */}
-        <NavBar/>
-        <Forum user={this.state.user}/>
+      <img className="banner" src={banner}></img>
+        <Navigation setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>
+        <Forum user={this.state.user} setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>
         <Switch>
           <Route path="/profile/:username/edit" render ={() => <EditProfile user={this.state.user}/>}/>
           <Route path="/profile/:username" render={() => <Profile user={this.state.user}/>}/>
-          <Route path="/login" render={() => <Login setLogin={this.setLogin} /> }/>
-          <Route path="/signup" render={() => <Signup handleSignUp={this.handleSignUp} /> }/>
-          <Route path="/logout" render={() => <Logout handleLogout={this.handleLogout} /> }/>
           <Route exact path="/landing" component={Landing}/>
         </Switch>
-        <footer id="footer">
-          <p>well hello there</p>
-        </footer>
       </main>
     );
   }

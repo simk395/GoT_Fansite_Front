@@ -1,58 +1,34 @@
 .nav{
+
     
-    &_container{
-        background: black;
-    }
-
-    &_secondary{
-        
-        &_list{
-
-            @include listDeco;
-        }
-
+    &_btn{
+        @include userBtn
     }
 
     &_user{
-
-        &_list{
-            @include listDeco;
-            justify-content: flex-end;
-            list-style: none;
-
-        }
-
-        &_log{
-            @include userBtn;
-            border: 1px solid rgba(0, 195, 255, .75);
-            color: rgba(0, 195, 255, .75);
-
-            &:hover{
-                color:rgba(0, 195, 255, 1);
-            }
-        }
-
-        &_sign{
-            @include userBtn;
-            margin-right: 10px;
-            border: 1px solid rgba(20, 255, 20, .75);
-            color: rgba(20, 255, 20, .75);
-
-            &:hover{
-                color:rgba(20, 255, 20, 1);
-            }
-        }
-            
+        margin-left: auto;
     }
-    &_item{
-        font-size: 1.3rem;
-        font-weight: 600;
-        letter-spacing: 1px;
-        color:white;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        &:focus{
-            border-bottom: 2px solid blue;
+    
+}
+
+.login{
+    border: 1px solid rgba(0, 195, 255, .75);
+    color: rgba(0, 195, 255, .75);
+        &:hover{
+            color:rgba(0, 195, 255, 1);
         }
+}
+
+.logout{
+
+}
+
+.signup{
+    border: 1px solid rgba(20, 255, 20, .75);
+    color: rgba(20, 255, 20, .75);
+    overflow:hidden;
+    &:hover{
+        color:rgba(20, 255, 20, 1);
     }
+
 }

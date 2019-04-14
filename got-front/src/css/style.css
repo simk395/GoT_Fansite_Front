@@ -5,33 +5,20 @@
   font-family: Helvetica, sans-serif; }
 
 .main {
-  background-image: url("../../src/images/main.png"); }
+  background: #d8cca7; }
+
+.banner {
+  width: 100vw; }
+
+.invalid {
+  color: red; }
 
 #footer {
   display: block;
   background: #262934;
   height: 7rem; }
 
-.nav_container {
-  background: black; }
-
-.nav_secondary_list {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  background: rgba(38, 41, 52, 0.97);
-  align-items: center; }
-
-.nav_user_list {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  background: rgba(38, 41, 52, 0.97);
-  align-items: center;
-  justify-content: flex-end;
-  list-style: none; }
-
-.nav_user_log {
+.nav_btn {
   font-size: 1rem;
   border-radius: 3px;
   background: transparent;
@@ -40,37 +27,23 @@
   cursor: pointer;
   transition: color .2s;
   font-weight: 500;
-  outline: none;
+  outline: none; }
+
+.nav_user {
+  margin-left: auto; }
+
+.login {
   border: 1px solid rgba(0, 195, 255, 0.75);
   color: rgba(0, 195, 255, 0.75); }
-  .nav_user_log:hover {
+  .login:hover {
     color: #00c3ff; }
 
-.nav_user_sign {
-  font-size: 1rem;
-  border-radius: 3px;
-  background: transparent;
-  height: 1.5625rem;
-  width: 65px;
-  cursor: pointer;
-  transition: color .2s;
-  font-weight: 500;
-  outline: none;
-  margin-right: 10px;
+.signup {
   border: 1px solid rgba(20, 255, 20, 0.75);
-  color: rgba(20, 255, 20, 0.75); }
-  .nav_user_sign:hover {
+  color: rgba(20, 255, 20, 0.75);
+  overflow: hidden; }
+  .signup:hover {
     color: #14ff14; }
-
-.nav_item {
-  font-size: 1.3rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: white;
-  margin-left: 1rem;
-  margin-right: 1rem; }
-  .nav_item:focus {
-    border-bottom: 2px solid blue; }
 
 .bg_main {
   height: 100vh;
@@ -83,10 +56,10 @@
   margin: 2.5rem; }
 
 .fb_list {
-  border-radius: 1rem;
+  border-radius: 5px;
   box-shadow: 0px 0px 12px 2px rgba(0, 0, 0, 0.75);
-  background: #aa9e74;
-  width: 70rem; }
+  background: #e2d6b1;
+  width: 60rem; }
 
 .fb_body {
   display: flex;
@@ -107,10 +80,48 @@
     color: #23394a; }
 
 .fb_subtitle {
-  color: #505050;
+  color: black;
   padding-top: 4px; }
 
 .even {
-  background: #beb274;
+  background: #ece0bb;
   padding-top: 1rem;
   padding-bottom: 1rem; }
+
+.fp {
+  margin: 0 7rem; }
+  .fp_title {
+    color: white; }
+  .fp_post {
+    display: flex;
+    flex-direction: column;
+    background-image: url("../images/card-background.jpg"); }
+  .fp_container {
+    display: flex;
+    flex-direction: row; }
+  .fp_profile {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    min-height: 40vh;
+    min-width: 15vw;
+    align-items: center;
+    color: black; }
+  .fp_comment {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.4);
+    min-height: 40vh;
+    min-width: 65vw;
+    color: black; }
+    .fp_comment_detail {
+      padding: 5px;
+      margin: 20px; }
+    .fp_comment_date {
+      background: transparent; }
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1); }
