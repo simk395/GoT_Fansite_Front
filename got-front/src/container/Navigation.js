@@ -80,7 +80,7 @@ export class Navigation extends Component {
           <Nav.Item className="nav_item" as="li">
             <NavDropdown className="nav_account" title="My Account">
               <NavDropdown.Item onClick={handleLogout}>
-                  Sign Out
+                  <NavLink to="/signout">Sign Out</NavLink>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav.Item>
