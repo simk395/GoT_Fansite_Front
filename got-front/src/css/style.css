@@ -13,10 +13,15 @@
 .invalid {
   color: red; }
 
-#footer {
-  display: block;
-  background: #262934;
-  height: 7rem; }
+.breadcrumb {
+  background: #d8cca7; }
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: black;
+  content: ">> "; }
+
+footer {
+  height: 20rem; }
 
 .nav_btn {
   font-size: 1rem;
@@ -53,7 +58,9 @@
 
 .fb_main {
   display: flex;
-  margin: 2.5rem; }
+  flex-direction: column;
+  margin: 2.5rem;
+  background: #d8cca7; }
 
 .fb_list {
   border-radius: 5px;
@@ -119,6 +126,12 @@
       margin: 20px; }
     .fp_comment_date {
       background: transparent; }
+  .fp_create_textarea {
+    resize: none;
+    margin-left: 3rem;
+    margin-top: 3rem;
+    height: 10rem;
+    width: 90%; }
 
 hr {
   margin-top: 1rem;
@@ -126,13 +139,52 @@ hr {
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1); }
 
-.got_slideshow_img {
-  height: 100vh;
-  width: 100vw;
-  transform: scale(1.1); }
+.got_main {
+  background: #2d3943; }
 
-.blur_it {
-  filter: blur(5px); }
+.got_house_title {
+  font-family: 'MedievalSharp', cursive;
+  font-weight: 600;
+  font-size: 3.5rem; }
+
+.got_house_desc {
+  font-family: inherit;
+  font-size: 1rem;
+  color: white;
+  text-shadow: -1px -1px 0 #333, 1px -1px 0 #333, -1px 1px 0 #333, 1px 1px 0 #333; }
 
 .view {
   height: 100vh; }
+
+.quote {
+  font-weight: 500; }
+
+.stark {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF; }
+
+.lannister {
+  text-shadow: -1px -1px 0 #cb2b57, 1px -1px 0 #cb2b57, -1px 1px 0 #cb2b57, 1px 1px 0 #cb2b57; }
+
+.targaryen {
+  text-shadow: -1px -1px 0 #ae1823, 1px -1px 0 #ae1823, -1px 1px 0 #ae1823, 1px 1px 0 #ae1823; }
+
+.tyrell {
+  text-shadow: -1px -1px 0 #edd149, 1px -1px 0 #edd149, -1px 1px 0 #edd149, 1px 1px 0 #edd149; }
+
+.greyjoy {
+  text-shadow: -1px -1px 0 #f5e58f, 1px -1px 0 #f5e58f, -1px 1px 0 #f5e58f, 1px 1px 0 #f5e58f; }
+
+.tully {
+  text-shadow: -1px -1px 0 #ce3e55, 1px -1px 0 #ce3e55, -1px 1px 0 #ce3e55, 1px 1px 0 #ce3e55; }
+
+.arryn {
+  text-shadow: -1px -1px 0 #8abfd0, 1px -1px 0 #8abfd0, -1px 1px 0 #8abfd0, 1px 1px 0 #8abfd0; }
+
+.baratheon {
+  text-shadow: -1px -1px 0 #dcc4a4, 1px -1px 0 #dcc4a4, -1px 1px 0 #dcc4a4, 1px 1px 0 #dcc4a4; }
+
+.martell {
+  text-shadow: -1px -1px 0 #e3570c, 1px -1px 0 #e3570c, -1px 1px 0 #e3570c, 1px 1px 0 #e3570c; }
+
+.frey {
+  text-shadow: -1px -1px 0 #1f233f, 1px -1px 0 #1f233f, -1px 1px 0 #1f233f, 1px 1px 0 #1f233f; }

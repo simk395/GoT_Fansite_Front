@@ -1,23 +1,116 @@
 .got{
-    &_slideshow{
-        
-        &_img{
-            height:100vh;
-            width:100vw;
-            transform: scale(1.1)
-            
-        }
-    }
-}
-
-.move_back{
     
-}
+    &_main{
+        background: rgb(45,57,67)
+    }
+    &_house{
 
-.blur_it{
-    filter: blur(5px);
+        &_title{
+            font-family: 'MedievalSharp', cursive;
+            font-weight: 600;
+            font-size: 3.5rem;
+        }
+        &_desc{
+            font-family: inherit;
+            font-size: 1rem;
+            color:white;
+            text-shadow:
+                -1px -1px 0 #333,
+                1px -1px 0 #333,
+                -1px 1px 0 #333,
+                1px 1px 0 #333;
+            }
+    }
 }
 
 .view{
     height: 100vh;
+}
+
+.quote{
+    font-weight:500;
+}
+
+.stark{
+    text-shadow:
+                -1px -1px 0 #fff,
+                1px -1px 0 #FFF,
+                -1px 1px 0 #FFF,
+                1px 1px 0 #FFF;
+
+}
+
+.lannister{
+    text-shadow:
+                -1px -1px 0 rgb(203,43,87),
+                1px -1px 0 rgb(203,43,87),
+                -1px 1px 0 rgb(203,43,87),
+                1px 1px 0 rgb(203,43,87);
+    
+}
+
+.targaryen{
+    text-shadow:
+                -1px -1px 0 rgb(174,24,35),
+                1px -1px 0 rgb(174,24,35),
+                -1px 1px 0 rgb(174,24,35),
+                1px 1px 0 rgb(174,24,35);
+}
+
+.tyrell{
+    text-shadow:
+                -1px -1px 0 rgb(237,209,73),
+                1px -1px 0 rgb(237,209,73),
+                -1px 1px 0 rgb(237,209,73),
+                1px 1px 0 rgb(237,209,73);
+
+}
+
+.greyjoy{
+    text-shadow:
+    -1px -1px 0 rgb(245,229,143),
+    1px -1px 0 rgb(245,229,143),
+    -1px 1px 0 rgb(245,229,143),
+    1px 1px 0 rgb(245,229,143);
+}
+
+.tully{
+    text-shadow:
+    -1px -1px 0 rgb(206,62,85),
+    1px -1px 0 rgb(206,62,85),
+    -1px 1px 0 rgb(206,62,85),
+    1px 1px 0 rgb(206,62,85);
+}
+
+.arryn{
+    text-shadow:
+    -1px -1px 0 rgb(138,191,208),
+    1px -1px 0 rgb(138,191,208),
+    -1px 1px 0 rgb(138,191,208),
+    1px 1px 0 rgb(138,191,208);
+}
+
+.baratheon{
+    text-shadow:
+    -1px -1px 0 rgb(220, 196, 164),
+    1px -1px 0 rgb(220, 196, 164),
+    -1px 1px 0 rgb(220, 196, 164),
+    1px 1px 0 rgb(220, 196, 164);
+
+}
+
+.martell{
+    text-shadow:
+    -1px -1px 0 rgb(227,87,12),
+    1px -1px 0 rgb(227,87,12),
+    -1px 1px 0 rgb(227,87,12),
+    1px 1px 0 rgb(227,87,12);
+}
+
+.frey{
+    text-shadow:
+    -1px -1px 0 rgb(31,35,63),
+    1px -1px 0 rgb(31,35,63),
+    -1px 1px 0 rgb(31,35,63),
+    1px 1px 0 rgb(31,35,63);
 }

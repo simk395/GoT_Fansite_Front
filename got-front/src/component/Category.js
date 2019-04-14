@@ -20,6 +20,7 @@ export const Category = (props) => {
                           "Anything not related to GoT"]
     return (
       <div className="fb_main">
+      <h1>Forums</h1>
       <ul className="fb_list">
           {categories.map(category => 
           category.id % 2 === 0 ?

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import Comments from './Comments'
 import { Adapter } from '../Adapter'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import 'emoji-mart/css/emoji-mart.css'
-import { Link } from 'react-router-dom'
 import { Picker } from 'emoji-mart'
-import { Container, Row, Col } from 'react-bootstrap'
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 export class Post extends Component{
   state = {
@@ -78,12 +78,13 @@ export class Post extends Component{
           <div className="fp_comment_date"> Posted: Month Day Year</div>
         </div>
         {postComments.map(comment => <Comments user={user} profiles={profiles} comment={comment} handleSignUp={handleSignUp} setLogin={setLogin}/>)}
-        {/* <form id="fp_create_comment" onSubmit={e => this.formHandler(e, post.id, user.id)}>
-          <textarea onChange={this.textHandler} value={newComment}></textarea>
+        <form className="fp_create" onSubmit={e => this.formHandler(e, post.id, user.id)}>
+          <ReactQuill className="fp_create_textarea" onChange={this.textHandler} value={newComment}></ReactQuill>
           <button onClick={this.showEmoji}>Emoji</button>
           {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
           <input className="forum_submit_btn" type="submit"/>
-        </form> */}
+        </form>
+        <footer></footer> 
       </div>
     )
   }

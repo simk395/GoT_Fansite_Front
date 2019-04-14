@@ -17,8 +17,16 @@
     color:red;
 }
 
-#footer{
-    display:block;
-    background: rgb(38,41,52);
-    height:7rem;
+.breadcrumb{
+    background: rgb(216,204,167);
+    
 }
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: black;
+    content:">> "
+ }
+
+ footer{
+     height: 20rem;
+ }

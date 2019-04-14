@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Forum from './container/Forum'
 import Navigation from './container/Navigation'
 import Profile from './component/Profile'
-import Home from './component/Home'
+import Home from './container/Home'
 import EditProfile from './component/EditProfile'
 import Signout from './component/Signout'
 import { Adapter } from './Adapter'
@@ -73,11 +73,11 @@ handleLogout = (e) => {
       <main className="main">
       {showBanner}
         <Navigation setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>
-        <Forum user={this.state.user} setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>
         <Switch>
           <Route path="/signout" component={Signout}/>
           <Route path="/profile/:username/edit" render={() => <EditProfile user={this.state.user}/>}/>
           <Route path="/profile/:username" render={() => <Profile user={this.state.user}/>}/>
+          <Route path="/forum" render={() => <Forum user={this.state.user} setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>}/>
           <Route exact path="/" component={Home}/>
         </Switch>
       </main>

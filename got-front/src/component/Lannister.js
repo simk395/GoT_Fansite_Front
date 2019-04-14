@@ -18,6 +18,7 @@ export class Lannister extends Component {
       }
     return (
       <div className="fb_main">
+      <h1> Lannister</h1>
         <ul className="fb_list">
         {arr.map(post => post)}
           <Link to={`/create/${id}`}>Create a Post</Link> 

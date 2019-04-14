@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route, withRouter} from 'react-router-dom'
+import { Switch, Route, withRouter, Link} from 'react-router-dom'
 import { Adapter } from '../Adapter'
 import Category from '../component/Category'
 import Lannister from '../component/Lannister'
@@ -12,7 +12,8 @@ import General from '../component/General'
 import Post from '../component/Post'
 import PostCreate from '../component/PostCreate'
 import EditPost from '../component/EditPost'
-import bg from '../images/main.png'
+import { Breadcrumb } from 'react-bootstrap'
+
 
 export class Forum extends Component {
   state = {
@@ -30,6 +31,15 @@ export class Forum extends Component {
     const { user, setLogin, handleSignUp } = this.props
     return (
       <div className="forum">
+      <Breadcrumb>
+      <Breadcrumb.Item>
+          <Link to="/forum"> Forum </Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active="false">
+          Library
+        </Breadcrumb.Item>
+      </Breadcrumb>
+      <hr/>
         <Switch>
           <Route exact path="/forum/post/edit" render={() => <EditPost/>}/>
           <Route path="/forum/:categoryId/:id" render={() => <Post posts={posts} user={user} setLogin={setLogin} handleSignUp={handleSignUp}/>}/>

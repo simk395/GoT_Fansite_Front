@@ -47,6 +47,18 @@
 
    }
 
+   &_create{
+
+        &_textarea{
+            resize: none;
+            margin-left: 3rem;
+            margin-top: 3rem;
+            height:10rem;
+            width: 90%;
+        }
+           
+}
+
 }
 
 hr {
