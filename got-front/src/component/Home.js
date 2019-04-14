@@ -8,6 +8,8 @@ import objectFitImages from 'object-fit-images'
 import { jarallax } from 'jarallax'
 import starkBanner from '../images/house_banners/house-stark.jpg'
 import greyjoyBanner from '../images/house_banners/house-greyjoy.jpg'
+import lannisterBanner from '../images/house_banners/house-lannister.jpg'
+import targaryenBanner from '../images/house_banners/house-targaryen.jpg'
 
 export class Home extends Component {
 
@@ -59,6 +61,54 @@ export class Home extends Component {
               <p align="justify">
               "You were born in the long summer, you've never known anything else. But now winter is truly coming. In the winter, we must protect ourselves, look after one another."
               — Lord Eddard Stark and his daughter Arya
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* lannisters */}
+        <div className="view jarallax">
+          <img className="jarallax-img" src={lannisterBanner} alt=""/>
+        </div>
+
+        <div className="container">
+          <div className="row mb-5 pb-4">
+            <div className="col-md-12 text-center">
+              <h2>House Lannister</h2>
+              <p align="justify">
+              House Lannister of Casterly Rock is one of the Great Houses of Westeros, one of its richest and most powerful families and oldest dynasties. It is also the current royal house of the Seven Kingdoms following the extinction of House Baratheon of King's Landing, which had been their puppet house during the War of the Five Kings.              </p>
+              <p align="justify">
+              The Lannisters rule over the Westerlands. Their seat is Casterly Rock, a massive rocky promontory overlooking the Sunset Sea which has had habitations and fortifications built into it over the millennia. They are the Lords Paramount of the Westerlands and Wardens of the West. As the new royal house, they also rule directly over the Crownlands from their seat of the Red Keep in King's Landing, the traditional seat of the royal family. House Lannister's Heraldry consists of a golden lion on a crimson background, and their House words are "Hear me roar!", which are rarely mentioned.[1] Their unofficial motto, which is as well known as the official one, is "A Lannister always pays his debts" - which is used much more often and mostly in negative context, though it can also be used in the original, literal sense.              </p>
+              <p align="justify">
+              The incestuous relationship of Cersei and Jaime has been concealed in a conspiracy. Their son Joffrey Baratheon has claimed the Iron Throne on the premise that he was actually fathered by the late King Robert Baratheon. Lord Tywin was a key supporter of his reign in the War of the Five Kings.
+              </p>
+              <p align="justify">
+              "You have to give it to the Lannisters – they may be the most pompous, ponderous cunts the gods ever suffered to walk the world, but they do have outrageous amounts of money."
+              ―Renly Baratheon
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Targaryen */}
+        <div className="view jarallax">
+          <img className="jarallax-img" src={targaryenBanner} alt=""/>
+        </div>
+
+        <div className="container">
+          <div className="row mb-5 pb-4">
+            <div className="col-md-12 text-center">
+              <h2>House Lannister</h2>
+              <p align="justify">
+              House Lannister of Casterly Rock is one of the Great Houses of Westeros, one of its richest and most powerful families and oldest dynasties. It is also the current royal house of the Seven Kingdoms following the extinction of House Baratheon of King's Landing, which had been their puppet house during the War of the Five Kings.              </p>
+              <p align="justify">
+              The Lannisters rule over the Westerlands. Their seat is Casterly Rock, a massive rocky promontory overlooking the Sunset Sea which has had habitations and fortifications built into it over the millennia. They are the Lords Paramount of the Westerlands and Wardens of the West. As the new royal house, they also rule directly over the Crownlands from their seat of the Red Keep in King's Landing, the traditional seat of the royal family. House Lannister's Heraldry consists of a golden lion on a crimson background, and their House words are "Hear me roar!", which are rarely mentioned.[1] Their unofficial motto, which is as well known as the official one, is "A Lannister always pays his debts" - which is used much more often and mostly in negative context, though it can also be used in the original, literal sense.              </p>
+              <p align="justify">
+              The incestuous relationship of Cersei and Jaime has been concealed in a conspiracy. Their son Joffrey Baratheon has claimed the Iron Throne on the premise that he was actually fathered by the late King Robert Baratheon. Lord Tywin was a key supporter of his reign in the War of the Five Kings.
+              </p>
+              <p align="justify">
+              "You have to give it to the Lannisters – they may be the most pompous, ponderous cunts the gods ever suffered to walk the world, but they do have outrageous amounts of money."
+              ―Renly Baratheon
               </p>
             </div>
           </div>
