@@ -57,12 +57,14 @@
 
         display:flex;
         flex-direction: row;
+        position:relative;
+        padding-bottom:1rem;
         &_textarea{
             background:white;
             margin-left: 3rem;
             margin-top: 3rem;
-            height:10rem;
             width: 90%;
+            
         }
 
         &_btn{
@@ -71,7 +73,15 @@
             justify-content: flex-end;
             align-content: flex-end;
         }
-        
+        &_emote{
+            height:3rem;
+            width:3rem;
+        }
+
+        &_submit{
+            height:3rem;
+            width:3rem;
+        }
         & p{
             display:flex;
             flex-direction: row;
@@ -87,6 +97,6 @@ hr {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
 
-  .edit_submitBtn{
-
+  .ql-container{
+      height: 6rem;
   }

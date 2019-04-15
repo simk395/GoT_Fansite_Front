@@ -1,5 +1,4 @@
 .nav{
-
     
     &_btn{
         @include userBtn
@@ -17,10 +16,6 @@
         &:hover{
             color:rgba(0, 195, 255, 1);
         }
-}
-
-.logout{
-
 }
 
 .signup{

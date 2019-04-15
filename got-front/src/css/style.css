@@ -2,7 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Helvetica, sans-serif; }
+  font-family: Helvetica, sans-serif;
+  outline: none !important; }
 
 .nav_btn {
   font-size: 1rem;
@@ -121,18 +122,25 @@
       width: 20%; }
   .fp_create {
     display: flex;
-    flex-direction: row; }
+    flex-direction: row;
+    position: relative;
+    padding-bottom: 1rem; }
     .fp_create_textarea {
       background: white;
       margin-left: 3rem;
       margin-top: 3rem;
-      height: 10rem;
       width: 90%; }
     .fp_create_btn {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       align-content: flex-end; }
+    .fp_create_emote {
+      height: 3rem;
+      width: 3rem; }
+    .fp_create_submit {
+      height: 3rem;
+      width: 3rem; }
     .fp_create p {
       display: flex;
       flex-direction: row; }
@@ -142,6 +150,9 @@ hr {
   margin-bottom: 1rem;
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1); }
+
+.ql-container {
+  height: 6rem; }
 
 .got_main {
   background: #2d3943; }
@@ -228,3 +239,9 @@ footer {
 .forum {
   min-height: 100vh;
   background: #d8cca7; }
+
+.emoji-mart {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(-4.5625rem, -0.9375rem); }

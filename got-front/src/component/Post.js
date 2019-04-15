@@ -6,7 +6,8 @@ import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import 'quill-emoji';
+import smile from '../images/smile.png'
+import enter from '../images/enter.png'
 
 export class Post extends Component{
   state = {
@@ -38,13 +39,13 @@ export class Post extends Component{
   }
 
   logEmoji = (emoji) => {
-    console.log(emoji.native) //string
-    console.log(this.state.newComment) //string
-    this.setState({newComment: `${this.state.newComment}${emoji.native}`}) //already tried (this.state.newComment + emoji.native)
+    this.setState({newComment: `${this.state.newComment}${emoji.native}`})
   }
 
   showEmoji = (e) => {
-    this.setState({emoji: !this.state.emoji})
+    e.preventDefault();
+    e.stopPropagation();
+    this.setState({emoji: !this.state.emoji});
   }
   
   modules = {
@@ -91,13 +92,13 @@ export class Post extends Component{
         </div>
         <form className="fp_create" onSubmit={e => this.formHandler(e, post.id, user.id)}>
           <ReactQuill theme="snow" className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={newComment}></ReactQuill>
+          {this.state.emoji === false ? null : <Picker className="emote_box" onSelect={this.logEmoji} set='emojione'/>}
           <div className="fp_create_btn">
-            <button className="fp_create_btn fp_create_emote" onClick={this.showEmoji}>Emoji</button>
-            {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
-            <input className="fp_create_btn fp_create_submit" type="submit"/>
+            <input type="image" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji}></input>
+            <input className="fp_create_btn fp_create_submit" type="image" src={enter}/>
           </div>
         </form>
-        <footer></footer> 
+
       </div>
     )
   }

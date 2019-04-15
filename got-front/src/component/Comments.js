@@ -76,7 +76,9 @@ export class Comments extends Component {
       body:JSON.stringify({vote: voteObj})
     })
     .then(resp => resp.json())
-    .then(likes => this.setState({likes :likes}))
+    .then(likes => {
+      this.getUserDislikes(likes)
+    })
   }else{
     this.setState({ signin: true });
   }
@@ -99,12 +101,25 @@ export class Comments extends Component {
       body:JSON.stringify({vote: voteObj})
     })
     .then(resp => resp.json())
-    .then(dislikes => this.setState({dislikes : dislikes}))
+    .then(dislikes => {
+      this.getUserLikes(dislikes)
+  })
   }else{
     this.setState({ signin: true });
   }
   }
 
+  getUserDislikes = (dislikes) => {
+    fetch(`http://localhost:3000/user_dislikes_comments`)
+      .then(resp => resp.json())
+      .then(likes => this.setState({likes:likes, dislikes: dislikes}))
+  }
+
+  getUserLikes = (likes) => {
+    fetch(`http://localhost:3000/user_likes_comments`)
+      .then(resp => resp.json())
+      .then(dislikes => this.setState({likes:likes, dislikes: dislikes}))
+  }
   render() {
       const {id, post_id, user_id, message, created_at} = this.props.comment
       const {comment, likes, dislikes} = this.state
