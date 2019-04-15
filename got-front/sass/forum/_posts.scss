@@ -4,7 +4,6 @@
    
 
     &_title{
-        color:white;
     }
 
     &_post{
@@ -36,6 +35,11 @@
        min-width: 65vw;
        color: black;
 
+       & p{
+        display:flex;
+        flex-direction: row;
+       }
+
        &_detail{
            padding: 5px;
            margin: 20px;
@@ -43,12 +47,16 @@
 
        &_date{
            background: transparent;
+           transform: translateX(13.5rem);
+           width:20%;
        }
 
    }
 
    &_create{
 
+        display:flex;
+        flex-direction: row;
         &_textarea{
             background:white;
             margin-left: 3rem;
@@ -56,8 +64,19 @@
             height:10rem;
             width: 90%;
         }
-           
-    }
+
+        &_btn{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-content: flex-end;
+        }
+        
+        & p{
+            display:flex;
+            flex-direction: row;
+            }
+        }
 
 }
 
@@ -66,4 +85,8 @@ hr {
     margin-bottom: 1rem;
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .edit_submitBtn{
+
   }

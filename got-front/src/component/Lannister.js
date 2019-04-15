@@ -6,7 +6,7 @@ import Post from './Post'
 export class Lannister extends Component {
 
   render() {
-      let arr = []
+      let postArr = []
       const {match, posts, id, user} = this.props
       const lanPosts = posts.filter(post => post.category_id === id);
       for(let i = 0; i < lanPosts.length; i++){
@@ -14,14 +14,16 @@ export class Lannister extends Component {
                       <Link className="fb_title" to={`${match.url}/${lanPosts[i].id}`}>{lanPosts[i].title}</Link>
                       <p className="fb_subtitle">By</p>
                     </div>;
-        i % 2 === 0 ? arr.push( <li className="fb_body odd">{ body }</li>) : arr.push(<li className="fb_body even">{ body } </li>)
+        i % 2 === 0 ? postArr.push( <li className="fb_body odd">{ body }</li>) : postArr.push(<li className="fb_body even">{ body } </li>)
       }
     return (
       <div className="fb_main">
-      <h1> Lannister</h1>
+      <div className="fb_heading">
+        <h1> Lannister</h1>
+        <Link className="fb_create" to={`/create/${id}`}>Create Topic</Link> 
+      </div>
         <ul className="fb_list">
-        {arr.map(post => post)}
-          <Link to={`/create/${id}`}>Create a Post</Link> 
+        {postArr.map(post => post)}
         </ul>
       </div>
     )

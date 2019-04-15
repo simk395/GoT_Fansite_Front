@@ -25,7 +25,7 @@ export class Comments extends Component {
     .then(dislikes => this.setState({dislikes :dislikes}))
   }
 
-
+  
 
   handleEdit2 = () => {
     document.querySelector(`.edit-${this.props.comment.id}`).remove()
@@ -33,7 +33,9 @@ export class Comments extends Component {
     const div = document.querySelector(`.comment-${this.props.comment.id}`)
     div.contentEditable = "true"
     const button = document.createElement("button")
-    div.after(button)
+    button.className="edit-submitBtn"
+    button.innerText="Submit"
+    div.append(button)
     button.addEventListener("click", this.handleSubmit)
   }
 
@@ -113,8 +115,6 @@ export class Comments extends Component {
       let likesInt = likes.filter(like => like.comment_id === id).length
       let dislikesInt = dislikes.filter(dislike => dislike.comment_id === id).length
       let voteInt = likesInt - dislikesInt
-      console.log(likes)
-      console.log(dislikes)
       let modalClose = () => this.setState({ signin: false, signup:false });
     return (
       <div data-id={`${id}`}>
@@ -125,6 +125,7 @@ export class Comments extends Component {
             </div>
             <div className={`comment-${id} fp_comment`}>
               <div className="fp_comment_detail" dangerouslySetInnerHTML={{__html: comment}}></div> 
+              {user_id === userId ? <div><button className={`edit-${id}`} onClick={this.handleEdit2}>Edit</button> <button className={`delete-${id}`} onClick={() => Adapter.deleteComment(id)}>Delete</button></div> : null}
             </div>
             {user_id !== userId ? 
             <div className="vote_container">
@@ -137,7 +138,6 @@ export class Comments extends Component {
           </div>
             <div className="fp_comment_date">{created_at}</div>
         </div>
-        {user_id === userId ? <div><button className={`edit-${id}`} onClick={this.handleEdit2}>Edit</button> <button className={`delete-${id}`} onClick={() => Adapter.deleteComment(id)}>Delete</button></div> : null}
         <Signin setLogin={this.props.setLogin} handleSignUp={this.props.handleSignUp} show={this.state.signin} onHide={modalClose}/>
       </div>
     )

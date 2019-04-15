@@ -91,9 +91,11 @@ export class Post extends Component{
         </div>
         <form className="fp_create" onSubmit={e => this.formHandler(e, post.id, user.id)}>
           <ReactQuill theme="snow" className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={newComment}></ReactQuill>
-          <button onClick={this.showEmoji}>Emoji</button>
-          {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
-          <input className="forum_submit_btn" type="submit"/>
+          <div className="fp_create_btn">
+            <button className="fp_create_btn fp_create_emote" onClick={this.showEmoji}>Emoji</button>
+            {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
+            <input className="fp_create_btn fp_create_submit" type="submit"/>
+          </div>
         </form>
         <footer></footer> 
       </div>

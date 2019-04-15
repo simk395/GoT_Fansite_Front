@@ -3,7 +3,7 @@
     &_main{
         display:flex;
         flex-direction:column;
-        margin:2.5rem;
+        margin:2.5rem 2.5rem 0 2.5rem;
         background: rgb(216,204,167);
     }
 
@@ -43,6 +43,18 @@
     &_subtitle{
         color: black;
         padding-top: 4px;
+    }
+
+    &_heading{
+        display:flex;
+        align-items: center;
+        width: 60rem;
+
+    }
+
+    &_create{
+        margin-left:auto;
+        margin-right: 1rem;
     }
 
 }
