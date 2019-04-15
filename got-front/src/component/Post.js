@@ -6,6 +6,7 @@ import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import 'quill-emoji';
 
 export class Post extends Component{
   state = {
@@ -33,29 +34,34 @@ export class Post extends Component{
   }
 
   textHandler = (value) => {
-    // e.preventDefault()
     this.setState({newComment: value})
-    
   }
 
   logEmoji = (emoji) => {
-    this.setState({newComment: this.state.newComment + emoji.native})
+    console.log(emoji.native) //string
+    console.log(this.state.newComment) //string
+    this.setState({newComment: `${this.state.newComment}${emoji.native}`}) //already tried (this.state.newComment + emoji.native)
   }
 
   showEmoji = (e) => {
-    // e.preventDefault()
     this.setState({emoji: !this.state.emoji})
   }
   
+  modules = {
+    toolbar: [
+      [{ 'header': [1, 2, false] }],
+      ['bold', 'italic', 'underline','strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image'],
+      ['clean']],
+  }
+
   render(){
-    const { posts } = this.props // all posts
-    // console.log(posts)
-    const { user } = this.props.user // {}
+    const { posts } = this.props
+    const { user } = this.props.user
     const { setLogin, handleSignUp} = this.props
     const { comments, newComment, profiles } = this.state
-
-    console.log(newComment);
-
+    console.log(newComment)
     let size = window.location.href.split("/"),
         post = posts.find(post => post.id === parseInt(size[size.length-1])) || "",
         postComments = comments.filter(comment => comment.post_id === post.id),
@@ -84,7 +90,7 @@ export class Post extends Component{
         {postComments.map(comment => <Comments user={user} profiles={profiles} comment={comment} handleSignUp={handleSignUp} setLogin={setLogin}/>)}
         </div>
         <form className="fp_create" onSubmit={e => this.formHandler(e, post.id, user.id)}>
-          <ReactQuill theme="snow" className="fp_create_textarea" onChange={this.textHandler} value={newComment}></ReactQuill>
+          <ReactQuill theme="snow" className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={newComment}></ReactQuill>
           <button onClick={this.showEmoji}>Emoji</button>
           {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
           <input className="forum_submit_btn" type="submit"/>

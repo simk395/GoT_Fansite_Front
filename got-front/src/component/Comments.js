@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { Adapter } from '../Adapter'
 import Signin from './Signin'
+import upvote from '../images/upvote.png'
+import downvote from '../images/downvote.png'
 
 
 
@@ -9,6 +11,7 @@ export class Comments extends Component {
   state = {
     comment: this.props.comment.message,
     likes: [],
+    dislikes:[],
     signin: false,
     signup: false
   }
@@ -17,7 +20,12 @@ export class Comments extends Component {
     fetch("http://localhost:3000/user_likes_comments")
     .then(resp => resp.json())
     .then(likes => this.setState({likes :likes}))
+    fetch("http://localhost:3000/user_dislikes_comments")
+    .then(resp => resp.json())
+    .then(dislikes => this.setState({dislikes :dislikes}))
   }
+
+
 
   handleEdit2 = () => {
     document.querySelector(`.edit-${this.props.comment.id}`).remove()
@@ -49,39 +57,47 @@ export class Comments extends Component {
     })
   }
 
-  likeHandler = (e) => {
+  likeHandler = (e, vote) => {
+    e.preventDefault()
     if(localStorage.token){
-    const likeObj ={
+    const voteObj = {
       user_id: this.props.user.id,
       comment_id: this.props.comment.id
     }
-    e.preventDefault()
-    fetch("http://localhost:3000/user_likes_comments",{
+    fetch(`http://localhost:3000/user_${vote}_comments`,{
       method: "POST",
       headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
           Authorization: localStorage.token
       },
-      body:JSON.stringify({like: likeObj})
+      body:JSON.stringify({vote: voteObj})
     })
+    .then(resp => resp.json())
+    .then(likes => this.setState({likes :likes}))
   }else{
     this.setState({ signin: true });
   }
   }
 
-  dislikeHandler = (e) => {
+  dislikeHandler = (e, vote) => {
     e.preventDefault()
     if(localStorage.token){
-    const dislike = this.state.likes.find(like => like.comment_id === this.props.comment.id && like.user_id === this.props.user.id) 
-    fetch(`http://localhost:3000/user_likes_comments/${dislike.id}`,{
-      method: "DELETE",
+    const voteObj = {
+      user_id: this.props.user.id,
+      comment_id: this.props.comment.id
+    }
+    fetch(`http://localhost:3000/user_${vote}_comments`,{
+      method: "POST",
       headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
           Authorization: localStorage.token
-      }
+      },
+      body:JSON.stringify({vote: voteObj})
     })
+    .then(resp => resp.json())
+    .then(dislikes => this.setState({dislikes : dislikes}))
   }else{
     this.setState({ signin: true });
   }
@@ -89,13 +105,17 @@ export class Comments extends Component {
 
   render() {
       const {id, post_id, user_id, message, created_at} = this.props.comment
-      const {comment} = this.state
+      const {comment, likes, dislikes} = this.state
       const { user, profiles } = this.props
       const userId = (user === undefined ? "" : user.id)
       const creator = profiles.find(profile => user_id === profile.id)
       const username = (creator === undefined ? "" : creator.username)
+      let likesInt = likes.filter(like => like.comment_id === id).length
+      let dislikesInt = dislikes.filter(dislike => dislike.comment_id === id).length
+      let voteInt = likesInt - dislikesInt
+      console.log(likes)
+      console.log(dislikes)
       let modalClose = () => this.setState({ signin: false, signup:false });
-      console.log(comment)
     return (
       <div data-id={`${id}`}>
         <div className="fp_post">
@@ -104,13 +124,16 @@ export class Comments extends Component {
               <Link to={`/profile/${username}`}>{username}</Link>
             </div>
             <div className={`comment-${id} fp_comment`}>
-              {/* needs to be able to display inner html */}
               <div className="fp_comment_detail" dangerouslySetInnerHTML={{__html: comment}}></div> 
             </div>
-            <div>
-              <button onClick={this.likeHandler}>like</button>
-              <button onClick={this.dislikeHandler}>dislike</button>
+            {user_id !== userId ? 
+            <div className="vote_container">
+              <input className="upvote" type="image" src={upvote} onClick={(e) => this.likeHandler(e,"likes")}></input>
+              <p>{voteInt}</p>
+              <input className="downvote" type="image" src={downvote} onClick={(e) => this.dislikeHandler(e, "dislikes")}></input>
             </div>
+            : null
+            }
           </div>
             <div className="fp_comment_date">{created_at}</div>
         </div>

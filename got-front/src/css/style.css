@@ -20,6 +20,19 @@
   color: black;
   content: ">> "; }
 
+.vote_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 12vh; }
+
+.upvote {
+  height: 3rem; }
+
+.downvote {
+  height: 3rem; }
+
 footer {
   height: 20rem; }
 
@@ -188,3 +201,38 @@ hr {
 
 .frey {
   text-shadow: -1px -1px 0 #1f233f, 1px -1px 0 #1f233f, -1px 1px 0 #1f233f, 1px 1px 0 #1f233f; }
+
+.main {
+  background: #d8cca7; }
+
+.banner {
+  width: 100vw; }
+
+.invalid {
+  color: red; }
+
+.breadcrumb {
+  background: #d8cca7; }
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: black;
+  content: ">> "; }
+
+.vote_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 12vh; }
+
+.upvote {
+  height: 3rem; }
+
+.downvote {
+  height: 3rem; }
+
+footer {
+  height: 20rem; }
+
+.forum {
+  min-height: 100vh; }
