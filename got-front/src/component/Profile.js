@@ -40,7 +40,8 @@ export class Profile extends Component {
         {userProfile !== undefined ? 
         <div className="profile_detail">
           <h1>{userProfile.username}</h1> 
-          <div>Bio: {userProfile.bio}</div>
+          <p>Bio:</p>
+          <div dangerouslySetInnerHTML={{__html: userProfile.bio}}></div>
           {this.createBtn()}
           <Edit user={user} show={this.state.edit} onHide={modalClose}/>
         </div>

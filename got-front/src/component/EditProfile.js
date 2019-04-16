@@ -9,6 +9,7 @@ import { Picker } from 'emoji-mart'
 
 export class EditProfile extends Component {
     state = {
+        id: this.props.user.id,
         bio: this.props.user.bio,
         emoji: false
     }

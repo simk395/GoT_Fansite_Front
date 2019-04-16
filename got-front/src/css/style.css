@@ -21,6 +21,9 @@ footer {
   min-height: 100vh;
   background: #d8cca7; }
 
+a:hover {
+  text-decoration: none; }
+
 .nav_btn {
   font-size: 1rem;
   border-radius: 3px;
@@ -243,7 +246,8 @@ hr {
   height: 6rem; }
 
 .profile_main {
-  min-height: 100vh; }
+  min-height: 100vh;
+  margin: 0 20%; }
 
 .profile_detail {
   display: flex;
