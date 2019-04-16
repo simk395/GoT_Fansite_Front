@@ -5,6 +5,22 @@
   font-family: Helvetica, sans-serif;
   outline: none !important; }
 
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1); }
+
+footer {
+  height: 20rem; }
+
+.main {
+  background: #d8cca7; }
+
+.forum {
+  min-height: 100vh;
+  background: #d8cca7; }
+
 .nav_btn {
   font-size: 1rem;
   border-radius: 3px;
@@ -31,12 +47,6 @@
   overflow: hidden; }
   .signup:hover {
     color: #14ff14; }
-
-.bg_main {
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  z-index: -1; }
 
 .fb_main {
   display: flex;
@@ -204,21 +214,11 @@ hr {
 .frey {
   text-shadow: -1px -1px 0 #1f233f, 1px -1px 0 #1f233f, -1px 1px 0 #1f233f, 1px 1px 0 #1f233f; }
 
-.main {
-  background: #d8cca7; }
-
 .banner {
   width: 100vw; }
 
 .invalid {
   color: red; }
-
-.breadcrumb {
-  background: #d8cca7; }
-
-.breadcrumb-item + .breadcrumb-item::before {
-  color: black;
-  content: ">> "; }
 
 .vote_container {
   display: flex;
@@ -233,15 +233,48 @@ hr {
 .downvote {
   height: 3rem; }
 
-footer {
-  height: 20rem; }
-
-.forum {
-  min-height: 100vh;
-  background: #d8cca7; }
-
-.emoji-mart {
+.fp_create .emoji-mart {
   position: absolute;
   bottom: 0;
   right: 0;
   transform: translate(-4.5625rem, -0.9375rem); }
+
+.ql-container {
+  height: 6rem; }
+
+.profile_main {
+  min-height: 100vh; }
+
+.profile_detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.profile_edit {
+  transform: translateY(20vh); }
+  .profile_edit_btn {
+    background: #00bfff;
+    border: #00bfff; }
+  .profile_edit_header {
+    display: flex;
+    flex-direction: row; }
+  .profile_edit_form {
+    display: flex;
+    flex-direction: column; }
+  .profile_edit_submit {
+    display: flex;
+    flex-direction: column;
+    height: 12rem;
+    margin-left: 5px;
+    justify-content: flex-end; }
+
+.profile_delete {
+  background: #f9152f;
+  border: #f9152f; }
+
+.breadcrumb {
+  background: #d8cca7; }
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: black;
+  content: ">> "; }

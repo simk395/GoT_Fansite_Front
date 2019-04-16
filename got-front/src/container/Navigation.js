@@ -35,10 +35,10 @@ export class Navigation extends Component {
   render() {
     let modalClose = () => this.setState({ signin: false, signup:false });
     const activeUser = localStorage.token
-    const { setLogin, handleSignUp, handleLogout } = this.props
+    const { setLogin, handleSignUp, handleLogout} = this.props
+    const { user } = this.props.user
     const { time } = this.state
     const countdown = <Nav.Item className="nav_countdown" as="li"><Nav.Link>{time.d}D {time.h}H {time.m}M {time.s}S</Nav.Link></Nav.Item>
-    
     return (
       <Navbar className="nav" bg="dark" variant="dark" sticky="top">
         <Nav className="nav_list" as="ul">
@@ -79,6 +79,9 @@ export class Navigation extends Component {
         {countdown}
           <Nav.Item className="nav_item" as="li">
             <NavDropdown className="nav_account" title="My Account">
+              <NavDropdown.Item>
+                  <NavLink to={user ? `/profile/${user.username}` : "#"}>My Profile</NavLink>
+              </NavDropdown.Item>
               <NavDropdown.Item onClick={handleLogout}>
                   <NavLink to="/signout">Sign Out</NavLink>
               </NavDropdown.Item>

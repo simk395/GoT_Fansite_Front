@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { Modal, Form, Button } from 'react-bootstrap'
+import ReactQuill from 'react-quill';
+import smile from '../images/smile.png'
+import enter from '../images/enter.png'
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
 
 export class EditProfile extends Component {
     state = {
-        id: this.props.user.user.id,
-        username: this.props.user.user.username,
-        bio: this.props.user.user.bio
+        bio: this.props.user.bio,
+        emoji: false
     }
 
-    handleEdit = (e, bio) => {
+    handleEdit = (e) => {
         e.preventDefault()
         fetch(`http://localhost:3000/api/v1/users/${this.state.id}`, {
             method: "PATCH",
@@ -17,28 +22,46 @@ export class EditProfile extends Component {
                 Accept: "application/json",
                 Authorization: localStorage.token
             },
-            body:JSON.stringify({user: {username: this.state.username, bio:bio}})
+            body:JSON.stringify({user: {bio: this.state.bio}})
         })
     }
 
-    handleInput = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
+    textHandler = (value) => {
+        this.setState({bio: value})
+      }
+
+      modules = {
+        toolbar: [
+          [{ 'header': [1, 2, false] }],
+          ['bold', 'italic', 'underline','strike', 'blockquote'],
+          [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+          ['link', 'image'],
+          ['clean']],
+      }
+
+      showEmoji = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.setState({emoji: !this.state.emoji});
+      }
+
   render() {
-      console.log(this.props)
-      const { id, username, bio } = this.state
+      const { bio } = this.state
+      console.log(bio)
     return (
-      <div>
-          <p>User ID: {id}</p>
-          <p>Username: {username}</p>
-        <form onSubmit={(e) => this.handleEdit(e, bio)}>
-            <label>Bio: </label>
-            <input type="text" name="bio" onChange={this.handleInput} value={bio}></input>
-            <button type="submit">Change</button>
-        </form>
-      </div>
+        <Modal {...this.props} size="lg" aria-labelledby="contained-modal-title-vcenter" className="profile_edit" centered>
+            <Modal.Header className="profile_edit_header" closeButton>
+                <div className="profile_edit_form">
+                    <h2>Edit Bio</h2>
+                    <ReactQuill theme="snow" placeholder="Tell us about yourself..." className="profile_edit_textarea" modules={this.modules} onChange={this.textHandler} value={bio}></ReactQuill>
+                </div>
+                {this.state.emoji === false ? null : <Picker className="profile_emote_box" onSelect={this.logEmoji} set='emojione'/>}
+                <div className="profile_edit_submit">
+                    <input type="image" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji}></input>
+                    <input className="fp_create_btn fp_create_submit" onClick={this.handleEdit} type="image" src={enter}/>
+                </div>
+            </Modal.Header>
+        </Modal>
     )
   }
 }

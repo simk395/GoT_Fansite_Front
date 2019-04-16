@@ -6,3 +6,22 @@
     outline: none !important;
 }
 
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+footer{
+    height: 20rem;
+}
+
+.main{
+    background: rgb(216,204,167);
+}
+
+.forum{
+    min-height: 100vh;
+    background: rgb(216,204,167);
+}

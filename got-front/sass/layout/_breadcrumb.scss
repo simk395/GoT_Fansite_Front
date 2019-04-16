@@ -1,0 +1,8 @@
+.breadcrumb{
+    background: rgb(216,204,167);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: black;
+    content:">> "
+ }

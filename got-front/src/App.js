@@ -67,17 +67,17 @@ handleLogout = (e) => {
   localStorage.removeItem('token');
 }
   render() {
+    const { user } = this.state
     const url = window.location.href
     const showBanner = url.match(/forum/) ? <img className="banner" src={banner}></img> : <img hidden className="banner" src={banner}></img>;
     return (
       <main className="main">
       {showBanner}
-        <Navigation setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>
+        <Navigation  user={user} setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>
         <Switch>
           <Route path="/signout" component={Signout}/>
-          <Route path="/profile/:username/edit" render={() => <EditProfile user={this.state.user}/>}/>
-          <Route path="/profile/:username" render={() => <Profile user={this.state.user}/>}/>
-          <Route path="/forum" render={() => <Forum user={this.state.user} setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>}/>
+          <Route path="/profile/:username" render={() => <Profile user={user}/>}/>
+          <Route path="/forum" render={() => <Forum user={user} setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>}/>
           <Route exact path="/" component={Home}/>
         </Switch>
       </main>

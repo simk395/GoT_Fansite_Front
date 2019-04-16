@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { Adapter } from '../Adapter'
 import { Link, withRouter } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+import Edit from './EditProfile'
 
 export class Profile extends Component {
     state = {
-        profiles: []
+        profiles: [],
+        edit:false
     }
-    componentWillMount(){
+    componentDidMount(){
         Adapter.getUser().then(profiles => this.setState({profiles:profiles}))
     }
     
@@ -17,20 +20,29 @@ export class Profile extends Component {
         Authorization: localStorage.token
       })
     }
-
-    render() {
-    const { user } = this.props
+    createBtn = () => {
     const name = window.location.href.split("/")[window.location.href.split("/").length-1]
     const userProfile = this.state.profiles.find(profile => profile.username === name)
-    const userId = (user === undefined ? null : user.user.id)
+    if(this.props.user.user){
+      if(this.props.user.user.id === userProfile.id){
+        return <div><Button onClick={() => this.setState({ edit: true })} className="profile_edit_btn"> Edit Bio </Button> <Button className="profile_delete" onClick={this.handleDelete}>Delete Account</Button></div>
+      }
+    }
+    }
+    render() {
+    let modalClose = () => this.setState({ edit: false });
+    const { profiles } = this.state
+    const { user } = this.props.user
+    const name = window.location.href.split("/")[window.location.href.split("/").length-1]
+    const userProfile = profiles.find(profile => profile.username === name)
     return (
-      <div>
+      <div className="profile_main">
         {userProfile !== undefined ? 
-        <div>
-          <p>User ID: {userProfile.id}</p>
-          <p>Name: {userProfile.username}</p> 
-          <p>Bio: {userProfile.bio}</p>
-          {userId !== undefined && userId === userProfile.id ? <div><Link to={`/profile/${userProfile.username}/edit`}>Edit Profile</Link> <a onClick={this.handleDelete}>Delete Account</a></div> : null}
+        <div className="profile_detail">
+          <h1>{userProfile.username}</h1> 
+          <div>Bio: {userProfile.bio}</div>
+          {this.createBtn()}
+          <Edit user={user} show={this.state.edit} onHide={modalClose}/>
         </div>
       : null}
       </div>

@@ -1,0 +1,44 @@
+.profile{
+
+    &_main{
+        min-height: 100vh;
+    }
+
+    &_detail{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &_edit{
+        transform: translateY(20vh);
+        &_btn{
+            background: #00bfff;
+            border: #00bfff;
+        }
+
+        &_header{
+            display: flex;
+            flex-direction: row;
+        }
+
+        &_form{
+            display:flex;
+            flex-direction: column;
+        }
+        &_submit{
+            display: flex;
+            flex-direction:column;
+            height:12rem;
+            margin-left: 5px;
+            justify-content: flex-end;
+            
+        }
+
+    }
+
+    &_delete{
+        background: #f9152f;
+        border: #f9152f;
+    }
+}
