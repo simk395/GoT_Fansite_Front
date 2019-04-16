@@ -12,25 +12,26 @@ export class Signin extends Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
-      handleLogin = event => {
-        event.preventDefault();
-        const userObj = {
-          username: this.state.username,
-          password: this.state.password
-        };
-        this.getUserObj(userObj);
-      }
-      getUserObj = userObj => {
-        fetch('http://localhost:3000/api/v1/login', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-          body: JSON.stringify(userObj)
-        })
-          .then(resp => resp.json())
-          .then(userObj => this.props.setLogin(userObj));
-      }
+  handleLogin = event => {
+    event.preventDefault();
+    const userObj = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    this.getUserObj(userObj);
+  }
+
+  getUserObj = userObj => {
+    fetch('http://localhost:3000/api/v1/login', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(userObj)
+    })
+      .then(resp => resp.json())
+      .then(userObj => this.props.setLogin(userObj));
+  }
       
   render() {
     return (
@@ -41,8 +42,8 @@ export class Signin extends Component {
         centered
       >
         <Modal.Header closeButton>
-          <Form>
-            <Form.Group controlId="formBasicEmail">
+          <Form >
+            <Form.Group controlId="formBasicUser">
               <Form.Control 
                 className="username"
                 type="text" 

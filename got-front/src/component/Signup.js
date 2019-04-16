@@ -8,8 +8,11 @@ export class Signup extends Component {
   }
   
   handleInput = (event) => {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
+
   handleSubmit = (event) => {
     event.preventDefault();
     const userObj = {
@@ -18,6 +21,7 @@ export class Signup extends Component {
     }
     this.postUserObj(userObj);
   }
+
   postUserObj = (userObj) => {
     fetch('http://localhost:3000/api/v1/users', {
       method: 'POST',
@@ -28,13 +32,7 @@ export class Signup extends Component {
       body: JSON.stringify({user:userObj})
     })
       .then(resp => resp.json())
-      .then(json => {
-        if (json.error) {
-          alert(json.error);
-        } else {
-          this.props.handleSignUp();
-        }
-      })
+      .then(json => json.error ? alert(json.error) : this.props.handleSignUp())
   }
 
   render() {
@@ -46,8 +44,8 @@ export class Signup extends Component {
         centered
       >
         <Modal.Header closeButton>
-          <Form>
-            <Form.Group controlId="formBasicEmail">
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId="formBasicUser">
               <Form.Control 
                 type="text" 
                 placeholder="Username" 
@@ -64,7 +62,7 @@ export class Signup extends Component {
                 value={this.state.password}
                 onChange={this.handleInput}/>
             </Form.Group>
-            <Button onClick={this.handleSubmit} variant="primary" type="submit">
+            <Button onClick={this.props.onHide} variant="primary" type="submit">
               Submit
             </Button>
           </Form>

@@ -6,44 +6,62 @@ import Edit from './EditProfile'
 
 export class Profile extends Component {
     state = {
-        profiles: [],
+        profile: {},
         edit:false
     }
     componentDidMount(){
-        Adapter.getUser().then(profiles => this.setState({profiles:profiles}))
+        Adapter.getUser().then(profiles => {
+          const name = window.location.href.split("/")[window.location.href.split("/").length-1]
+          const userProfile =  profiles ? profiles.find(profile => profile.username === name) : {}
+          this.setState({profile: userProfile}) 
+        })
     }
     
-    handleDelete = () => {
+    editBio = (e, bio, id) => {
+      e.preventDefault()
+      fetch(`http://localhost:3000/api/v1/users/${id}`, {
+          method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              Authorization: localStorage.token
+          },
+          body:JSON.stringify({user: {bio: bio}})
+      })
+      .then(resp => resp.json())
+      .then(profile => this.setState({profile:profile, edit:false}))
+    }
+
+    deleteAccount = () => {
       fetch(`http://localhost:3000/api/v1/users/${this.props.user.user.id}`, {
         method: "DELETE",
         headers: {'Content-Type': 'application/json'},
         Authorization: localStorage.token
       })
     }
+
     createBtn = () => {
-    const name = window.location.href.split("/")[window.location.href.split("/").length-1]
-    const userProfile = this.state.profiles.find(profile => profile.username === name)
-    if(this.props.user.user){
-      if(this.props.user.user.id === userProfile.id){
-        return <div><Button onClick={() => this.setState({ edit: true })} className="profile_edit_btn"> Edit Bio </Button> <Button className="profile_delete" onClick={this.handleDelete}>Delete Account</Button></div>
+      if(this.props.user.user){
+        if(this.props.user.user.id === this.state.profile.id){
+          return <div><Button onClick={() => this.setState({ edit: true })} className="profile_edit_btn"> Edit Bio </Button> <Button className="profile_delete" onClick={this.deleteAccount}>Delete Account</Button></div>
+        }
       }
     }
+    modalClose = () => {
+      this.setState({ edit: false });
     }
     render() {
-    let modalClose = () => this.setState({ edit: false });
-    const { profiles } = this.state
+    const { profile } = this.state
     const { user } = this.props.user
-    const name = window.location.href.split("/")[window.location.href.split("/").length-1]
-    const userProfile = profiles.find(profile => profile.username === name)
     return (
       <div className="profile_main">
-        {userProfile !== undefined ? 
+        {profile ? 
         <div className="profile_detail">
-          <h1>{userProfile.username}</h1> 
+          <h1>{profile.username}</h1> 
           <p>Bio:</p>
-          <div dangerouslySetInnerHTML={{__html: userProfile.bio}}></div>
+          <div dangerouslySetInnerHTML={{__html: profile.bio}}></div>
           {this.createBtn()}
-          <Edit user={user} show={this.state.edit} onHide={modalClose}/>
+          <Edit user={user} editBio={this.editBio} show={this.state.edit} onHide={this.modalClose}/>
         </div>
       : null}
       </div>

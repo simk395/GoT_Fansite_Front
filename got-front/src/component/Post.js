@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import Comments from './Comments'
 import { Adapter } from '../Adapter'
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter, Link, Route} from 'react-router-dom'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import smile from '../images/smile.png'
 import enter from '../images/enter.png'
+import EditPost from '../component/EditPost'
 
 export class Post extends Component{
   state = {
@@ -62,13 +63,13 @@ export class Post extends Component{
     const { user } = this.props.user
     const { setLogin, handleSignUp} = this.props
     const { comments, newComment, profiles } = this.state
-    console.log(newComment)
+    
     let size = window.location.href.split("/"),
         post = posts.find(post => post.id === parseInt(size[size.length-1])) || "",
         postComments = comments.filter(comment => comment.post_id === post.id),
         checkUser;
-     if(user !== undefined){
-      checkUser = (post.user_id === user.id ? <Link to="/forum/post/edit">Edit</Link> : null)
+    if(user !== undefined){
+      checkUser = (post.user_id === user.id ? <Link to={`/forum/edit/${post.id}`}>Edit</Link> : null)
     }else{
       checkUser = null;
     }
@@ -81,7 +82,7 @@ export class Post extends Component{
             <p className="fp_profile_detail">1 of 2</p>
           </div>
           <div className="fp_comment">
-            <p className="fp_comment_detail">{post.message}</p>
+            <p className="fp_comment_detail" dangerouslySetInnerHTML={{__html: post.message}}></p>
             {checkUser}
           </div>
           </div>
@@ -98,7 +99,6 @@ export class Post extends Component{
             <input className="fp_create_btn fp_create_submit" type="image" src={enter}/>
           </div>
         </form>
-
       </div>
     )
   }

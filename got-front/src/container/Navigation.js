@@ -32,8 +32,11 @@ export class Navigation extends Component {
     this.setState({time: time})
   }
 
+  modalClose = () => {
+    this.setState({ signin: false, signup:false });
+  }
+
   render() {
-    let modalClose = () => this.setState({ signin: false, signup:false });
     const activeUser = localStorage.token
     const { setLogin, handleSignUp, handleLogout} = this.props
     const { user } = this.props.user
@@ -64,13 +67,13 @@ export class Navigation extends Component {
           <Nav.Item className="nav_item" as="li">
             <Nav.Link>
                 <button onClick={() => this.setState({ signin: true })} className="nav_btn login">LOG IN</button>
-                <Signin setLogin={setLogin} show={this.state.signin} onHide={modalClose}/>
+                <Signin setLogin={setLogin} show={this.state.signin} onHide={this.modalClose}/>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item className="nav_item" as="li">
             <Nav.Link>
                 <button onClick={() => this.setState({ signup: true })} className="nav_btn signup">SIGN UP</button>
-                <Signup handleSignUp={handleSignUp} show={this.state.signup} onHide={modalClose}/>
+                <Signup handleSignUp={handleSignUp} show={this.state.signup} onHide={this.modalClose}/>
             </Nav.Link>
           </Nav.Item>
         </Nav>

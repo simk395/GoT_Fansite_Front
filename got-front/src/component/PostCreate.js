@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Picker } from 'emoji-mart'
+import { Form, Button } from 'react-bootstrap'
+import ReactQuill from 'react-quill';
+import smile from '../images/smile.png'
 
 export class PostCreate extends Component {
     state = {
@@ -9,59 +12,51 @@ export class PostCreate extends Component {
         emoji: false
     }
 
-    postCreate = (e, title, comment, id) => {
-        e.preventDefault()
-        const postObj = {
-            title: title,
-            message:comment,
-            category_id: id,
-            user_id: this.props.user.user.id
-        }
-        this.postPost(postObj)
+    textHandler = (value) => {
+        this.setState({comment: value})
     }
 
-    postPost = (postObj) => {
-        fetch('http://localhost:3000/posts', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                Authorization: localStorage.token
-            },
-            body: JSON.stringify({post:postObj})
-        })
-        this.props.history.replace(`/forum/${postObj.category_id}`)
-    }
-
-    inputHandler = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-
+    handleInput = event => {
+        this.setState({[event.target.name]: event.target.value});
+      }
     logEmoji = (emoji) => {
         this.setState({comment: this.state.comment + emoji.native})
       }
-      showEmoji = (e) => {
+    showEmoji = (e) => {
         e.preventDefault()
         this.setState({emoji: !this.state.emoji})
-      }
+    }
   render() {
     const forumId = parseInt(window.location.href.split("/")[window.location.href.split("/").length-1])
-    // console.log(this.props.user)
+    const { title, comment} = this.state
+    const { postCreate } = this.props
     return (
-      <div>
-        <form onSubmit={(e) => this.postCreate(e,this.state.title,this.state.comment, forumId)}>
-            <label>Title</label>
-            <input name="title" placeholder="enter text" onChange={this.inputHandler} value={this.state.title}></input>
-            <textarea name="comment" onChange={this.inputHandler} value={this.state.comment}></textarea>
-            <button onClick={this.showEmoji}>Emoji</button>
-            {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
-            <button type="submit">AHHHHHHHHH</button>
-        </form>
-      </div>
-    )
-  }
+        <Form>
+            <Form.Group controlId="formBasicTitle">
+                <Form.Control name="title" type="text" placeholder="Enter a title" onChange={this.handleInput}></Form.Control>
+            </Form.Group>
+            <Form.Group>
+                <ReactQuill theme="snow" placeholder="Enter a message..." className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={comment}></ReactQuill>
+                    <input type="image" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji}></input>
+                    {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
+            </Form.Group>
+            <Button onClick={(e) => postCreate(e, title, comment, forumId)}>
+                Submit
+            </Button>
+        </Form>    
+        )
+    }
 }
 
 export default withRouter(PostCreate)
+
+//   <div className="create_post">
+//     <form onSubmit={(e) => this.postCreate(e,this.state.title,this.state.comment, forumId)}>
+//         <label>Title</label>
+//         <input name="title" placeholder="enter text" onChange={this.inputHandler} value={this.state.title}></input>
+//         <ReactQuill theme="snow" placeholder="Tell us about yourself..." className="profile_edit_textarea" modules={this.modules} onChange={this.textHandler} value={bio}></ReactQuill>
+//         <button onClick={this.showEmoji}>Emoji</button>
+//         {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
+//         <button type="submit">AHHHHHHHHH</button>
+//     </form>
+//   </div>
