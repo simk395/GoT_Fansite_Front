@@ -31,16 +31,17 @@ export class PostCreate extends Component {
     const { title, comment} = this.state
     const { postCreate } = this.props
     return (
-        <Form>
+        <Form className="post_create">
+            <h1 className="post_create_heading">Create Topic</h1>
             <Form.Group controlId="formBasicTitle">
-                <Form.Control name="title" type="text" placeholder="Enter a title" onChange={this.handleInput}></Form.Control>
+                <Form.Control className="post_create_title" name="title" type="text" placeholder="Enter a title" onChange={this.handleInput}></Form.Control>
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="post_create_comment">
                 <ReactQuill theme="snow" placeholder="Enter a message..." className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={comment}></ReactQuill>
-                    <input type="image" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji}></input>
+                    <input type="image" src={smile} className="post_create_emote" onClick={this.showEmoji}></input>
                     {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
             </Form.Group>
-            <Button onClick={(e) => postCreate(e, title, comment, forumId)}>
+            <Button className="post_create_submit" variant="dark" onClick={(e) => postCreate(e, title, comment, forumId)}>
                 Submit
             </Button>
         </Form>    

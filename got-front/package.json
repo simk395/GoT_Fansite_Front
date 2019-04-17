@@ -21,6 +21,7 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "react-snowstorm": "0.0.3",
     "react-sticky": "^6.0.3",
     "semantic": "0.0.1",
     "semantic-ui-css": "^2.4.1",

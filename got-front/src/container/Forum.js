@@ -54,7 +54,6 @@ export class Forum extends Component {
       .then(profile => this.setState({newProfiles: [...this.state.profiles, profile]}))
       this.props.history.replace(`/forum/${postObj.category_id}`)
   }
-
   render() {
     const { categories, posts, profiles, newProfiles } = this.state
     const { user, setLogin, handleSignUp } = this.props

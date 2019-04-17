@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import objectFitImages from 'object-fit-images'
 import { jarallax } from 'jarallax'
+import SnowStorm from 'react-snowstorm';
 import starkBanner from '../images/house_banners/house-stark.jpg'
 import greyjoyBanner from '../images/house_banners/house-greyjoy.jpg'
 import lannisterBanner from '../images/house_banners/house-lannister.jpg'
@@ -24,7 +25,7 @@ export class Home extends Component {
   render() {
     return (
       <main className="got_main">
-        
+        <SnowStorm animationInterval="40"/>
         {/* starks */}
         <div className="view jarallax">
           <img className="jarallax-img" src={starkBanner} alt=""/>

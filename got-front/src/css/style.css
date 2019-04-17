@@ -54,8 +54,7 @@ a:hover {
 .fb_main {
   display: flex;
   flex-direction: column;
-  margin: 2.5rem 2.5rem 0 2.5rem;
-  background: #d8cca7; }
+  margin: 2.5rem 2.5rem 0 2.5rem; }
 
 .fb_list {
   border-radius: 5px;
@@ -245,6 +244,26 @@ hr {
 .ql-container {
   height: 6rem; }
 
+#dracarys {
+  height: 25vh;
+  width: 100vw;
+  position: fixed;
+  animation: flamefade 2s ease-in-out;
+  bottom: -2%;
+  background-image: url("../images/200.gif"); }
+
+.dracarys_icon {
+  height: 3rem;
+  width: 3rem; }
+
+@keyframes flamefade {
+  0% {
+    height: 0;
+    opacity: 0; }
+  100% {
+    height: 25vh;
+    opacity: 100%; } }
+
 .profile_main {
   min-height: 100vh;
   margin: 0 20%; }
@@ -282,3 +301,29 @@ hr {
 .breadcrumb-item + .breadcrumb-item::before {
   color: black;
   content: ">> "; }
+
+.post_create {
+  margin: 0 10%; }
+  .post_create_comment {
+    position: relative; }
+  .post_create_emote {
+    height: 3rem;
+    width: 3rem;
+    position: absolute;
+    right: 0;
+    bottom: 0; }
+  .post_create_heading {
+    margin-left: 3rem; }
+  .post_create_submit {
+    float: right;
+    transform: translateX(-5rem); }
+  .post_create .emoji-mart {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(-4rem, 5rem);
+    z-index: 1; }
+
+#formBasicTitle {
+  transform: translateX(3rem);
+  width: 90%; }

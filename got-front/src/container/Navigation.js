@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import Signin from '../component/Signin'
 import Signup from '../component/Signup'
+import dracarys from "../images/dracarys.png"
 
 export class Navigation extends Component {
   state = {
@@ -34,6 +35,15 @@ export class Navigation extends Component {
 
   modalClose = () => {
     this.setState({ signin: false, signup:false });
+  }
+
+  dracarys = () => {
+    let audio = new Audio("dracarys_daenerys_.mp3");
+    audio.play();
+    let line = document.querySelector("hr");
+    let div = document.createElement("div");
+    div.id = "dracarys";
+    line.after(div) 
   }
 
   render() {
@@ -79,6 +89,7 @@ export class Navigation extends Component {
         </Nav>
         :
         <Nav className="nav_user" as="ul">
+        <input className="dracarys_icon" type="image" onClick={this.dracarys} src={dracarys}/>
         {countdown}
           <Nav.Item className="nav_item" as="li">
             <NavDropdown className="nav_account" title="My Account">
