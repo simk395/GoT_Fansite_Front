@@ -44,7 +44,7 @@ export class Signup extends Component {
         centered
       >
         <Modal.Header closeButton>
-          <Form onSubmit={this.handleSubmit}>
+          <Form >
             <Form.Group controlId="formBasicUser">
               <Form.Control 
                 type="text" 
@@ -62,7 +62,7 @@ export class Signup extends Component {
                 value={this.state.password}
                 onChange={this.handleInput}/>
             </Form.Group>
-            <Button onClick={this.props.onHide} variant="primary" type="submit">
+            <Button onClick={this.handleSubmit} variant="primary" type="submit">
               Submit
             </Button>
           </Form>

@@ -114,7 +114,7 @@ export class Navigation extends Component {
                   <NavLink to={user ? `/profile/${user.username}` : "#"}>My Profile</NavLink>
               </NavDropdown.Item>
               <NavDropdown.Item onClick={handleLogout}>
-                  <NavLink to="/signout">Sign Out</NavLink>
+                  Sign Out
               </NavDropdown.Item>
             </NavDropdown>
           </Nav.Item>

@@ -121,7 +121,7 @@ export class Comments extends Component {
       .then(dislikes => this.setState({likes:likes, dislikes: dislikes}))
   }
   render() {
-      const {id, post_id, user_id, message, created_at} = this.props.comment
+      const {id, post_id, user_id, message, created_at, updated_at} = this.props.comment
       const {comment, likes, dislikes} = this.state
       const { user, profiles } = this.props
       const userId = (user === undefined ? "" : user.id)
@@ -152,7 +152,7 @@ export class Comments extends Component {
             : null
             }
           </div>
-            <div className="fp_comment_date">{created_at}</div>
+            <div className="fp_comment_date">{created_at} {updated_at && (updated_at !== created_at) ? `Last Editted: ${updated_at}`: null}</div>
         </div>
         <Signin setLogin={this.props.setLogin} handleSignUp={this.props.handleSignUp} show={this.state.signin} onHide={modalClose}/>
       </div>

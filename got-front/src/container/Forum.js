@@ -2,13 +2,7 @@ import React, { Component } from 'react'
 import { Switch, Route, withRouter, Link} from 'react-router-dom'
 import { Adapter } from '../Adapter'
 import Category from '../component/Category'
-import Lannister from '../component/Lannister'
-import Baratheon from '../component/Baratheon'
-import Stark from '../component/Stark'
-import Targaryen from '../component/Targaryen'
-import Other from '../component/Other'
-import Off_Topic from '../component/Off_Topic'
-import General from '../component/General'
+import Discussion from '../component/Discussion'
 import Post from '../component/Post'
 import PostCreate from '../component/PostCreate'
 import EditPost from '../component/EditPost'
@@ -19,13 +13,14 @@ export class Forum extends Component {
   state = {
     categories:[],
     posts: [],
+    newPosts: [],
     profiles: [],
     newProfiles: []
   }
   
   componentWillMount(){
     Adapter.getCategory().then(categories => this.setState({categories:categories}));
-    Adapter.getPosts().then(posts => this.setState({posts: posts}))
+    Adapter.getPosts().then(posts => this.setState({posts: posts, newPosts: posts}))
     Adapter.getUser().then(profiles => this.setState({profiles:profiles, newProfiles: profiles}))
   }
 
@@ -51,11 +46,11 @@ export class Forum extends Component {
           body: JSON.stringify({post:postObj})
       })
       .then(resp => resp.json())
-      .then(profile => this.setState({newProfiles: [...this.state.profiles, profile]}))
+      .then(post => this.setState({newPosts: [...this.state.newPosts, post]}))
       this.props.history.replace(`/forum/${postObj.category_id}`)
   }
   render() {
-    const { categories, posts, profiles, newProfiles } = this.state
+    const { categories, posts, newPosts, profiles, newProfiles } = this.state
     const { user, setLogin, handleSignUp } = this.props
     return (
       <div className="forum">
@@ -71,18 +66,10 @@ export class Forum extends Component {
         <Switch>
           <Route exact path="/forum/edit/:id" render={() => <EditPost posts={posts}/>}/>
           <Route path="/forum/create/:id" render={(props) => <PostCreate {...props} postCreate={this.postCreate} user={user}/>}/>
-          <Route path="/forum/:categoryId/:id" render={() => <Post posts={posts} user={user} profiles={newProfiles} setLogin={setLogin} handleSignUp={handleSignUp}/>}/>
-          {categories.map(category => {
-            const path = `/forum/${category.id}`
-            switch(category.id){
-              case 1: return <Route path={path} render={(props) => <General {...props} user={user} profiles={newProfiles} id={category.id} posts={posts}/>}/>
-              case 2: return <Route path={path} render={(props) => <Stark {...props} user={user} profiles={newProfiles} id={category.id} posts={posts}/>}/>
-              case 3: return <Route path={path} render={(props) => <Baratheon {...props} user={user} profiles={newProfiles} id={category.id} posts={posts}/>}/>
-              case 4: return <Route path={path} render={(props) => <Targaryen {...props} user={user} profiles={newProfiles} id={category.id} posts={posts}/>}/>
-              case 5: return <Route path={path} render={(props) => <Lannister {...props} user={user} profiles={newProfiles} id={category.id} posts={posts}/>}/>;
-              case 6: return <Route path={path} render={(props) => <Other {...props} user={user} profiles={newProfiles} id={category.id} posts={posts}/>}/>
-              case 7: return <Route path={path} render={(props) => <Off_Topic {...props} user={user} profiles={newProfiles} id={category.id} posts={posts}/>}/>
-            }
+          <Route path="/forum/:categoryId/:id" render={() => <Post posts={posts} user={user} profiles={newProfiles} setLogin={setLogin} handleSignUp={handleSignUp}/> }/>
+          {categories.map( category => {
+            const path = `/forum/${category.id}`;
+            return <Route path={path} render={(props) => <Discussion {...props} user={user} profiles={newProfiles} category={category} posts={newPosts}/>}/>
           })}
           <Route path='/forum' render={() => <Category categories={categories} />}/>
         </Switch>
@@ -91,4 +78,10 @@ export class Forum extends Component {
   }
 }
 
+// {categories.map(category => {
+//   const path = `/forum/${category.id}`
+//   <Route path={path} render={(props) => <Discussion {...props} user={user} profiles={newProfiles} id={category.id} posts={posts} categories={categories}/> }/>
+//   )}
+// }
+// <Route path='/forum' render={() => <Category categories={categories} />}/>
 export default withRouter(Forum)

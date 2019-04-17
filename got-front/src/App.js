@@ -4,7 +4,6 @@ import Navigation from './container/Navigation'
 import Profile from './component/Profile'
 import Home from './container/Home'
 import EditProfile from './component/EditProfile'
-import Signout from './component/Signout'
 import { Adapter } from './Adapter'
 import { Route, Switch, withRouter} from 'react-router-dom'
 import banner from './images/banner.png'
@@ -44,10 +43,13 @@ class App extends Component {
 setLogin = (userObj) => {
   if (userObj.message) {
     let user = document.querySelector(".username");
-    let invalid = document.createElement("p");
-    invalid.className = "invalid";
-    invalid.innerText = '\u2022 Invalid Username or Password';
-    return user.before(invalid);
+    if(!document.querySelector(".invalid")){
+      let invalid = document.createElement("p");
+      invalid.className = "invalid";
+      invalid.innerText = '\u2022 Invalid Username or Password';
+      return user.before(invalid);
+    }
+    return null;
   }
 
   const user = {
@@ -75,7 +77,6 @@ handleLogout = (e) => {
       {showBanner}
         <Navigation  user={user} setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>
         <Switch>
-          <Route path="/signout" component={Signout}/>
           <Route path="/profile/:username" render={() => <Profile user={user}/>}/>
           <Route path="/forum" render={() => <Forum user={user} setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>}/>
           <Route exact path="/" component={Home}/>
