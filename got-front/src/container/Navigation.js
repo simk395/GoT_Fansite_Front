@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown, DropdownButton, Dropdown } from 'react-bootstrap'
 import Signin from '../component/Signin'
 import Signup from '../component/Signup'
 import dracarys from "../images/dracarys.png"
@@ -42,7 +42,7 @@ export class Navigation extends Component {
     if(!document.querySelector("#dracarys")){
     audio.play();
     this.startFire();
-    let line = document.querySelector("hr");
+    let line = document.querySelector("main");
     let div = document.createElement("div");
     div.id = "dracarys";
     line.after(div) 
@@ -66,16 +66,32 @@ export class Navigation extends Component {
     const { setLogin, handleSignUp, handleLogout} = this.props
     const { user } = this.props.user
     const { time } = this.state
-    const countdown = <Nav.Item className="nav_countdown" as="li"><Nav.Link>{time.d}D {time.h}H {time.m}M {time.s}S</Nav.Link></Nav.Item>
+    const countdown = <Nav.Item className="nav_countdown" as="li"><Nav.Link>Season 8 Premiere: {time.d}D {time.h}H {time.m}M {time.s}S</Nav.Link></Nav.Item>
     return (
       <Navbar className="nav" bg="dark" variant="dark" sticky="top">
         <Nav className="nav_list" as="ul">
+        <Nav.Item  className="nav_item" as="li">
+            <Nav.Link> 
+              <NavLink className="nav_link" to="/">Story</NavLink>
+            </Nav.Link>
+          </Nav.Item>
           <Nav.Item  className="nav_item" as="li">
             <Nav.Link> 
-              <NavLink className="nav_link" to="/">
-                Home
-              </NavLink>
+              <NavLink className="nav_link" to="/houses">Great Houses</NavLink>
             </Nav.Link>
+          </Nav.Item>
+          <Nav.Item className="nav_item" as="li">
+            <NavDropdown className="nav_account" title="Characters">
+              <NavDropdown.Item>
+                  Starks
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                  Lannisters
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                  Targaryens
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav.Item>
           <Nav.Item className="nav_item" as="li">
             <NavDropdown className="nav_community" title="Community">

@@ -6,6 +6,7 @@ import upvote from '../images/upvote.png'
 import downvote from '../images/downvote.png'
 import avatar from '../images/avatar.jpg'
 import edit from '../images/edit.png'
+import trash from '../images/delete.png'
 
 
 
@@ -50,7 +51,7 @@ export class Comments extends Component {
     })
   }
 
-  likeHandler = (e, vote) => {
+  dilikeHandler = (e, vote) => {
     e.preventDefault()
     if(localStorage.token){
     const voteObj = {
@@ -75,7 +76,7 @@ export class Comments extends Component {
   }
   }
 
-  dislikeHandler = (e, vote) => {
+  likeHandler = (e, vote) => {
     e.preventDefault()
     if(localStorage.token){
     const voteObj = {
@@ -132,7 +133,11 @@ export class Comments extends Component {
             </div>
             <div className={`comment-${id} fp_comment`}>
               <div className="fp_comment_detail" dangerouslySetInnerHTML={{__html: message}}></div> 
-              {user_id === userId ? <div><input alt="" className="edit_btn" onClick={this.handleEdit} type="image" src={edit}/> <button className={`delete-${id}`} onClick={() => Adapter.deleteComment(id)}>Delete</button></div> : null}
+              {user_id === userId ? 
+              <div className="editorial">
+                <input alt="" className="comment_edit_btn" onClick={this.handleEdit} type="image" src={edit}/> 
+                <input type="image" alt="" src={trash} className={`delete-${id} comment_delete_btn`} onClick={() => Adapter.deleteComment(id)}/>
+              </div> : null}
             </div>
             {user_id !== userId ? 
             <div className="vote_container">

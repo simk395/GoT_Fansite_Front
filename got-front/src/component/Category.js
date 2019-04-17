@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import General from '../images/house_icons/Tyrell-icon.png' 
+import General from '../images/got-icon.png' 
 import Stark from '../images/house_icons/Stark-icon.png' 
 import Baratheon from '../images/house_icons/Baratheon-icon.png' 
 import Targaryen from '../images/house_icons/Targaryen-icon.png' 
