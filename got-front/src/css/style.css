@@ -14,9 +14,6 @@ hr {
 footer {
   height: 20rem; }
 
-.main {
-  background: #d8cca7; }
-
 .forum {
   min-height: 100vh;
   background: #d8cca7;
@@ -406,3 +403,12 @@ hr {
   width: 100vw;
   position: fixed;
   opacity: 0.6; }
+
+.story_season {
+  color: white;
+  margin: 0 20rem 5rem 20rem; }
+  .story_season h2 {
+    margin-bottom: 1.5rem; }
+
+.story_first {
+  padding-top: 2rem; }
