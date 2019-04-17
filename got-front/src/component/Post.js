@@ -8,19 +8,17 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import smile from '../images/smile.png'
 import enter from '../images/enter.png'
-import EditPost from '../component/EditPost'
+import avatar from '../images/avatar.jpg'
 
 export class Post extends Component{
   state = {
     comments: [],
     newComment: "",
-    profiles: [],
     emoji: false
   }
 
   componentDidMount(){
     Adapter.getComments().then(comments => this.setState({comments:comments}));
-    Adapter.getUser().then(profiles => this.setState({profiles:profiles}));
   }
 
   formHandler = (e, post_id, user_id) => {
@@ -59,14 +57,15 @@ export class Post extends Component{
   }
 
   render(){
-    const { posts } = this.props
+    const { posts, profiles } = this.props
     const { user } = this.props.user
     const { setLogin, handleSignUp} = this.props
-    const { comments, newComment, profiles } = this.state
+    const { comments, newComment} = this.state
     
     let size = window.location.href.split("/"),
         post = posts.find(post => post.id === parseInt(size[size.length-1])) || "",
         postComments = comments.filter(comment => comment.post_id === post.id),
+        postDetails = profiles.find(profile => profile.id === post.user_id),
         checkUser;
     if(user !== undefined){
       checkUser = (post.user_id === user.id ? <Link to={`/forum/edit/${post.id}`}>Edit</Link> : null)
@@ -79,7 +78,8 @@ export class Post extends Component{
         <div className="fp_post">
           <div className="fp_container">
           <div className="fp_profile">
-            <p className="fp_profile_detail">1 of 2</p>
+            <Link className="username" to={`/profile/${postDetails.username}`}>{postDetails.username}</Link>
+            <img className="avatar" src={avatar}></img> 
           </div>
           <div className="fp_comment">
             <p className="fp_comment_detail" dangerouslySetInnerHTML={{__html: post.message}}></p>

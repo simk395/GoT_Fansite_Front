@@ -4,7 +4,7 @@ import { Adapter } from '../Adapter'
 import Signin from './Signin'
 import upvote from '../images/upvote.png'
 import downvote from '../images/downvote.png'
-
+import avatar from '../images/avatar.jpg'
 
 
 export class Comments extends Component {
@@ -135,8 +135,9 @@ export class Comments extends Component {
       <div data-id={`${id}`}>
         <div className="fp_post">
           <div className="fp_container">
-            <div className="fp_profile"> 
-              <Link to={`/profile/${username}`}>{username}</Link>
+            <div className="fp_profile">
+              <Link className="username" to={`/profile/${username}`}>{username}</Link>
+              <img className="avatar" src={avatar}></img> 
             </div>
             <div className={`comment-${id} fp_comment`}>
               <div className="fp_comment_detail" dangerouslySetInnerHTML={{__html: comment}}></div> 

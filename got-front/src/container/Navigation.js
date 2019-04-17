@@ -39,11 +39,28 @@ export class Navigation extends Component {
 
   dracarys = () => {
     let audio = new Audio("dracarys_daenerys_.mp3");
+    let fire1 = new Audio("fire1.mp3")
+    let fire2 = new Audio("fire2.mp3")
+    if(!document.querySelector("#dracarys")){
     audio.play();
+    this.startFire();
     let line = document.querySelector("hr");
     let div = document.createElement("div");
     div.id = "dracarys";
     line.after(div) 
+    }
+  }
+
+  startFire = () => {
+    setTimeout(function(){
+      let fire2 = new Audio("fire2.mp3");
+      fire2.play();
+    },500)
+    setTimeout(function(){
+      let fire1 = new Audio("fire1.mp3");
+      fire1.loop = "true";
+      fire1.play();
+    },1000)
   }
 
   render() {
