@@ -10,7 +10,6 @@ import EditComment from '../component/EditComment'
 import { Breadcrumb } from 'react-bootstrap'
 
 
-
 export class Forum extends Component {
   state = {
     categories:[],
@@ -22,7 +21,7 @@ export class Forum extends Component {
     newComments: []
   }
   
-  componentWillMount(){
+  componentDidMount(){
     Adapter.getCategory().then(categories => this.setState({categories:categories}));
     Adapter.getPosts().then(posts => this.setState({posts: posts, newPosts: posts}))
     Adapter.getUser().then(profiles => this.setState({profiles:profiles, newProfiles: profiles}))
@@ -57,6 +56,7 @@ export class Forum extends Component {
   render() {
     const { categories, newPosts, newProfiles, newComments } = this.state
     const { user, setLogin, handleSignUp } = this.props
+    console.log(this.state)
     return (
       <div className="forum">
       <Breadcrumb>
@@ -77,7 +77,7 @@ export class Forum extends Component {
             const path = `/forum/${category.id}`;
             return <Route key={category.id} path={path} render={(props) => <Discussion {...props} user={user} profiles={newProfiles} category={category} posts={newPosts}/>}/>
           })}
-          <Route path='/forum' render={() => <Category categories={categories} />}/>
+          <Route path='/forum' render={() => <Category posts={newPosts} profiles={newProfiles} categories={categories} />}/>
         </Switch>
       </div>
     )

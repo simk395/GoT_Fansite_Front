@@ -7,9 +7,10 @@ import Targaryen from '../images/house_icons/Targaryen-icon.png'
 import Lannister from '../images/house_icons/Lannister-icon.png'
 import Other from '../images/house_icons/Martell-icon.png' 
 import Off_Topic from '../images/house_icons/Arryn-icon.png' 
+import Feed from '../component/Feed'
 
 export const Category = (props) => {
-    const { categories } = props
+    const { categories, profiles, posts } = props
     const families = [General, Stark, Baratheon, Targaryen, Lannister, Other, Off_Topic]
     const descriptions = ["Have fun discussing about all of Westeros!",
                           "Winter is Coming!",
@@ -20,6 +21,7 @@ export const Category = (props) => {
                           "Anything not related to GoT"]
     return (
       <div className="fb_main">
+      <Feed posts={posts} profiles={profiles}/>
       <h1>Forums</h1>
       <ul className="fb_list">
           {categories.map(category => 

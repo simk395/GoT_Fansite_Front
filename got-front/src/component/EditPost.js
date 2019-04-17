@@ -46,9 +46,10 @@ export class EditPost extends Component {
   logEmoji = (emoji) => {
       this.setState({comment: this.state.comment + emoji.native})
     }
-  showEmoji = (e) => {
-      e.preventDefault()
-      this.setState({emoji: !this.state.emoji})
+    showEmoji = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.setState({emoji: !this.state.emoji});
   }
 
   render() {
@@ -57,7 +58,7 @@ export class EditPost extends Component {
           <Form className="post_create">
             <h2 className="post_create_heading">{title}</h2>
             <Form.Group className="post_create_comment">
-                <ReactQuill theme="snow" placeholder="Enter a message..." className="profile_edit_textarea" modules={this.modules} onChange={this.textHandler} value={comment}></ReactQuill>
+                <ReactQuill theme="snow" placeholder="Enter a message..." className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={comment}></ReactQuill>
                     <input type="image" alt="" src={smile} className="post_create_emote" onClick={this.showEmoji}/>
                     {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
             </Form.Group>

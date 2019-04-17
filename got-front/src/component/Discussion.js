@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import Feed from '../component/Feed'
 
 
 export class Discussion extends Component {
@@ -16,7 +17,7 @@ export class Discussion extends Component {
       let postArr = []
       const {match, posts, category, profiles} = this.props
       const { user } = this.props.user
-      const topicPosts = posts.filter(post => post.category_id === category.id);
+      const topicPosts = posts.filter(post => post.category_id === category.id).reverse();
       for(let i = 0; i < topicPosts.length; i++){
         let profile = profiles.find(profile => topicPosts[i].user_id === profile.id)
         const body = <div className="fb_desc">
@@ -27,6 +28,7 @@ export class Discussion extends Component {
       }
     return (
       <div className="fb_main">
+      <Feed posts={posts} profiles={profiles}/>
         <div className="fb_heading">
           <h1> {category.title} </h1>
           {user ? <Link className="fb_create" to={`/forum/create/${category.id}`}>Create Topic</Link> : null}

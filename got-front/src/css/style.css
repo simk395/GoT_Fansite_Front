@@ -19,7 +19,8 @@ footer {
 
 .forum {
   min-height: 100vh;
-  background: #d8cca7; }
+  background: #d8cca7;
+  position: relative; }
 
 a:hover {
   text-decoration: none; }
@@ -350,3 +351,10 @@ hr {
 #formBasicTitle {
   transform: translateX(3rem);
   width: 90%; }
+
+.feed_main {
+  border: 3px solid black;
+  width: 25vw;
+  position: absolute;
+  top: 7rem;
+  left: 65rem; }
