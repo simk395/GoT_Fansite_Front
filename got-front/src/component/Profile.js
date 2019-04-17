@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Adapter } from '../Adapter'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import Edit from './EditProfile'
 

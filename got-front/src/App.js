@@ -3,15 +3,9 @@ import Forum from './container/Forum'
 import Navigation from './container/Navigation'
 import Profile from './component/Profile'
 import Home from './container/Home'
-import EditProfile from './component/EditProfile'
-import { Adapter } from './Adapter'
 import { Route, Switch, withRouter} from 'react-router-dom'
 import banner from './images/banner.png'
-import { Form } from 'react-bootstrap'
-
 import './css/style.css';
-
-
 
 class App extends Component {
   state = {
@@ -71,7 +65,7 @@ handleLogout = (e) => {
   render() {
     const { user } = this.state
     const url = window.location.href
-    const showBanner = url.match(/forum/) ? <img className="banner" src={banner}></img> : <img hidden className="banner" src={banner}></img>;
+    const showBanner = url.match(/forum/) ? <img alt="" className="banner" src={banner}/> : <img hidden className="banner" src={banner} alt=""/>;
     return (
       <main className="main">
       {showBanner}

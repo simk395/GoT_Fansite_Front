@@ -6,6 +6,7 @@ import Discussion from '../component/Discussion'
 import Post from '../component/Post'
 import PostCreate from '../component/PostCreate'
 import EditPost from '../component/EditPost'
+import EditComment from '../component/EditComment'
 import { Breadcrumb } from 'react-bootstrap'
 
 
@@ -15,13 +16,16 @@ export class Forum extends Component {
     posts: [],
     newPosts: [],
     profiles: [],
-    newProfiles: []
+    newProfiles: [],
+    comments: [],
+    newComments: []
   }
   
   componentWillMount(){
     Adapter.getCategory().then(categories => this.setState({categories:categories}));
     Adapter.getPosts().then(posts => this.setState({posts: posts, newPosts: posts}))
     Adapter.getUser().then(profiles => this.setState({profiles:profiles, newProfiles: profiles}))
+    Adapter.getComments().then(comments => this.setState({comments:comments, newComments: comments}));
   }
 
     postCreate = (e, title, comment, id) => {
@@ -50,7 +54,7 @@ export class Forum extends Component {
       this.props.history.replace(`/forum/${postObj.category_id}`)
   }
   render() {
-    const { categories, posts, newPosts, profiles, newProfiles } = this.state
+    const { categories, newPosts, newProfiles, newComments } = this.state
     const { user, setLogin, handleSignUp } = this.props
     return (
       <div className="forum">
@@ -64,12 +68,13 @@ export class Forum extends Component {
       </Breadcrumb>
       <hr/>
         <Switch>
-          <Route exact path="/forum/edit/:id" render={() => <EditPost posts={posts}/>}/>
+          <Route exact path="/forum/comment/edit/:id" render={() => <EditComment comments={newComments}/>}/>
+          <Route exact path="/forum/post/edit/:id" render={() => <EditPost posts={newPosts}/>}/>
           <Route path="/forum/create/:id" render={(props) => <PostCreate {...props} postCreate={this.postCreate} user={user}/>}/>
-          <Route path="/forum/:categoryId/:id" render={() => <Post posts={posts} user={user} profiles={newProfiles} setLogin={setLogin} handleSignUp={handleSignUp}/> }/>
+          <Route path="/forum/:categoryId/:id" render={() => <Post posts={newPosts} user={user} profiles={newProfiles} setLogin={setLogin} handleSignUp={handleSignUp}/> }/>
           {categories.map( category => {
             const path = `/forum/${category.id}`;
-            return <Route path={path} render={(props) => <Discussion {...props} user={user} profiles={newProfiles} category={category} posts={newPosts}/>}/>
+            return <Route key={category.id} path={path} render={(props) => <Discussion {...props} user={user} profiles={newProfiles} category={category} posts={newPosts}/>}/>
           })}
           <Route path='/forum' render={() => <Category categories={categories} />}/>
         </Switch>

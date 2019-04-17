@@ -39,8 +39,6 @@ export class Navigation extends Component {
 
   dracarys = () => {
     let audio = new Audio("dracarys_daenerys_.mp3");
-    let fire1 = new Audio("fire1.mp3")
-    let fire2 = new Audio("fire2.mp3")
     if(!document.querySelector("#dracarys")){
     audio.play();
     this.startFire();
@@ -106,7 +104,7 @@ export class Navigation extends Component {
         </Nav>
         :
         <Nav className="nav_user" as="ul">
-        <input className="dracarys_icon" type="image" onClick={this.dracarys} src={dracarys}/>
+        <input alt="" className="dracarys_icon" type="image" onClick={this.dracarys} src={dracarys}/>
         {countdown}
           <Nav.Item className="nav_item" as="li">
             <NavDropdown className="nav_account" title="My Account">

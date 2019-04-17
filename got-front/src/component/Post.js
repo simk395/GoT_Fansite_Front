@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Comments from './Comments'
 import { Adapter } from '../Adapter'
-import {withRouter, Link, Redirect} from 'react-router-dom'
+import {withRouter, Link } from 'react-router-dom'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 import ReactQuill from 'react-quill';
@@ -75,26 +75,25 @@ export class Post extends Component{
   handleEdit = () => {
     let size = window.location.href.split("/"),
         post = this.props.posts.find(post => post.id === parseInt(size[size.length-1])) || ""
-    return this.props.history.push(`/forum/edit/${post.id}`)
+    return this.props.history.push(`/forum/comment/edit/${post.id}`)
   }
 
   render(){
     const { posts, profiles } = this.props
     const { user } = this.props.user
     const { setLogin, handleSignUp} = this.props
-    const { commentsArr, newCommentsArr, message} = this.state
+    const { newCommentsArr, message} = this.state
     
     let size = window.location.href.split("/"),
         post = posts.find(post => post.id === parseInt(size[size.length-1])) || "",
         postComments = newCommentsArr.filter(comment => comment.post_id === post.id),
-        postDetails = profiles.find(profile => profile.id === post.user_id),
+        postDetails = profiles.find(profile => profile.id === post.user_id) || {},
         checkUser;
     if(user !== undefined){
-      checkUser = (post.user_id === user.id ? <input className="edit_btn" onClick={this.handleEdit} type="image" src={edit}/> : null)
+      checkUser = (post.user_id === user.id ? <input alt="" className="edit_btn" onClick={this.handleEdit} type="image" src={edit}/> : null)
     }else{
       checkUser = null;
     }
-    console.log(post);
     return (
       <div className="fp">
         <h3 className="fp_title">{post.title}</h3>
@@ -102,7 +101,7 @@ export class Post extends Component{
           <div className="fp_container">
           <div className="fp_profile">
             <Link className="username" to={`/profile/${postDetails.username}`}>{postDetails.username}</Link>
-            <img className="avatar" src={avatar}></img> 
+            <img alt="" className="avatar" src={avatar}></img> 
           </div>
           <div className="fp_comment">
             <p className="fp_comment_detail" dangerouslySetInnerHTML={{__html: post.message}}></p>
@@ -118,8 +117,8 @@ export class Post extends Component{
           <ReactQuill theme="snow" className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={message}></ReactQuill>
           {this.state.emoji === false ? null : <Picker className="emote_box" onSelect={this.logEmoji} set='emojione'/>}
           <div className="fp_create_btn">
-            <input type="image" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji}></input>
-            <input className="fp_create_btn fp_create_submit" type="image" src={enter}/>
+            <input alt="" type="image" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji}></input>
+            <input alt="" className="fp_create_btn fp_create_submit" type="image" src={enter}/>
           </div>
         </form>
       </div>
@@ -128,5 +127,3 @@ export class Post extends Component{
 }
 
 export default withRouter(Post)
-
-{/* <Link to={`/forum/edit/${post.id}`}>Edit</Link> */}

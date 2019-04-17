@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Modal, Form, Button } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import ReactQuill from 'react-quill';
 import smile from '../images/smile.png'
 import enter from '../images/enter.png'
@@ -34,7 +34,7 @@ export class EditProfile extends Component {
         ['bold', 'italic', 'underline','strike', 'blockquote'],
         [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
         ['link', 'image'],
-        ['clean']],
+        ['clean']]
     }
 
   render() {
@@ -49,8 +49,8 @@ export class EditProfile extends Component {
                 </div>
                 {emoji ? <Picker className="profile_emote_box" onSelect={this.logEmoji} set='emojione'/> : null }
                 <div className="profile_edit_submit">
-                    <input type="image" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji}></input>
-                    <input className="fp_create_btn fp_create_submit" onClick={(e) => editBio(e,bio,id)} type="image" src={enter}/>
+                    <input type="image" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji} alt=""/>
+                    <input className="fp_create_btn fp_create_submit" onClick={(e) => editBio(e,bio,id)} type="image" src={enter} alt=""/>
                 </div>
             </Modal.Header>
         </Modal>

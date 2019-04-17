@@ -129,7 +129,7 @@ export class Home extends Component {
 
         {/* greyjoys */}
         <div className="view jarallax">
-          <img className="jarallax-img" src={greyjoyBanner}/>
+          <img className="jarallax-img" src={greyjoyBanner} alt=""/>
         </div>
 
         <div className="container">

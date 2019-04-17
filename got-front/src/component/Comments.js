@@ -5,11 +5,12 @@ import Signin from './Signin'
 import upvote from '../images/upvote.png'
 import downvote from '../images/downvote.png'
 import avatar from '../images/avatar.jpg'
+import edit from '../images/edit.png'
+
 
 
 export class Comments extends Component {
   state = {
-    comment: this.props.comment.message,
     likes: [],
     dislikes:[],
     signin: false,
@@ -25,18 +26,8 @@ export class Comments extends Component {
     .then(dislikes => this.setState({dislikes :dislikes}))
   }
 
-  
-
-  handleEdit2 = () => {
-    document.querySelector(`.edit-${this.props.comment.id}`).remove()
-    document.querySelector(`.delete-${this.props.comment.id}`).remove()
-    const div = document.querySelector(`.comment-${this.props.comment.id}`)
-    div.contentEditable = "true"
-    const button = document.createElement("button")
-    button.className="edit-submitBtn"
-    button.innerText="Submit"
-    div.append(button)
-    button.addEventListener("click", this.handleSubmit)
+  handleEdit = () => {
+    return this.props.history.push(`/forum/comment/edit/${this.props.comment.id}`)
   }
 
   handleSubmit = (e) => {
@@ -121,8 +112,8 @@ export class Comments extends Component {
       .then(dislikes => this.setState({likes:likes, dislikes: dislikes}))
   }
   render() {
-      const {id, post_id, user_id, message, created_at, updated_at} = this.props.comment
-      const {comment, likes, dislikes} = this.state
+      const {id, user_id, message, created_at, updated_at} = this.props.comment
+      const { likes, dislikes } = this.state
       const { user, profiles } = this.props
       const userId = (user === undefined ? "" : user.id)
       const creator = profiles.find(profile => user_id === profile.id)
@@ -133,21 +124,21 @@ export class Comments extends Component {
       let modalClose = () => this.setState({ signin: false, signup:false });
     return (
       <div data-id={`${id}`}>
-        <div className="fp_post">
+        <div className="fp_post" data-id={id}>
           <div className="fp_container">
             <div className="fp_profile">
               <Link className="username" to={`/profile/${username}`}>{username}</Link>
-              <img className="avatar" src={avatar}></img> 
+              <img alt="" className="avatar" src={avatar}></img> 
             </div>
             <div className={`comment-${id} fp_comment`}>
-              <div className="fp_comment_detail" dangerouslySetInnerHTML={{__html: comment}}></div> 
-              {user_id === userId ? <div><button className={`edit-${id}`} onClick={this.handleEdit2}>Edit</button> <button className={`delete-${id}`} onClick={() => Adapter.deleteComment(id)}>Delete</button></div> : null}
+              <div className="fp_comment_detail" dangerouslySetInnerHTML={{__html: message}}></div> 
+              {user_id === userId ? <div><input alt="" className="edit_btn" onClick={this.handleEdit} type="image" src={edit}/> <button className={`delete-${id}`} onClick={() => Adapter.deleteComment(id)}>Delete</button></div> : null}
             </div>
             {user_id !== userId ? 
             <div className="vote_container">
-              <input className="upvote" type="image" src={upvote} onClick={(e) => this.likeHandler(e,"likes")}></input>
+              <input alt="" className="upvote" type="image" src={upvote} onClick={(e) => this.likeHandler(e,"likes")}></input>
               <p>{voteInt}</p>
-              <input className="downvote" type="image" src={downvote} onClick={(e) => this.dislikeHandler(e, "dislikes")}></input>
+              <input alt="" className="downvote" type="image" src={downvote} onClick={(e) => this.dislikeHandler(e, "dislikes")}></input>
             </div>
             : null
             }

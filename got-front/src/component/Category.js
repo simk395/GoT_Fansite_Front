@@ -24,8 +24,8 @@ export const Category = (props) => {
       <ul className="fb_list">
           {categories.map(category => 
           category.id % 2 === 0 ?
-            <li className="fb_body even">
-                <img className="fb_icon" src={families[category.id-1]}></img>
+            <li key={category.id} className="fb_body even">
+                <img className="fb_icon" src={families[category.id-1]} alt=""></img>
                 <div className="fb_desc">
                   <Link className="fb_title" to={`/forum/${category.id}`}>
                     {category.title}
@@ -34,8 +34,8 @@ export const Category = (props) => {
                 </div>
             </li>
             :
-            <li className="fb_body ">
-            <img className="fb_icon" src={families[category.id-1]}></img>
+            <li key={category.id} className="fb_body ">
+            <img className="fb_icon" src={families[category.id-1]} alt=""></img>
             <div className="fb_desc">
               <Link className="fb_title" to={`/forum/${category.id}`}>
                 {category.title}

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Link, Route, withRouter } from 'react-router-dom'
-import { Adapter } from '../Adapter'
-import PostCreate from './PostCreate'
-import Post from './Post'
+import { Link, withRouter } from 'react-router-dom'
+
 
 export class Discussion extends Component {
 

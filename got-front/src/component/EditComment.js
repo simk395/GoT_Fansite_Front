@@ -5,33 +5,27 @@ import smile from '../images/smile.png'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 
-export class EditPost extends Component {
-  state={
+export class EditComment extends Component {
+  state = {
     id: "",
-    title: "",
     comment: ""
   }
 
   componentDidMount(){
-    const forumId = parseInt(window.location.href.split("/")[window.location.href.split("/").length-1])
-    const post = this.props.posts.find(post => post.id === forumId) || ""
-    this.setState({id: post.id, title: post.title, comment:post.message})
+    const commentId = parseInt(window.location.href.split("/")[window.location.href.split("/").length-1])
+    const comment = this.props.comments.find(comment => comment.id === commentId) || ""
+    this.setState({ id: comment.id, comment:comment.message })
   }
 
-  updatePost = (e,id,title, comment) => {
-    const postObj = {
-      title: title,
-      message: comment
-    }
-
-    fetch(`http://localhost:3000/posts/${id}`,{
+  updateComment = (e,id,comment) => {
+    fetch(`http://localhost:3000/comments/${id}`,{
     method: "PATCH",
     headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
         Authorization: localStorage.token
     },
-    body:JSON.stringify({post: postObj})
+    body: JSON.stringify({comment:{message: comment}})
   })
 }
 
@@ -51,25 +45,23 @@ export class EditPost extends Component {
   }
 
   render() {
-    const { title, comment, id} = this.state
+    const { comment, id } = this.state
     return (
-      <Form>
           <Form>
             <Form.Group controlId="formBasicTitle">
-                <h2>{title}</h2>
+                <h2>Edit Comment</h2>
             </Form.Group>
             <Form.Group>
                 <ReactQuill theme="snow" placeholder="Enter a message..." className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={comment}></ReactQuill>
-                    <input type="image" alt="" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji}/>
+                    <input alt="" type="image" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji}/>
                     {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
             </Form.Group>
-            <Button onClick={(e) => this.updatePost(e,id,title,comment)}>
+            <Button onClick={(e) => this.updateComment(e,id,comment)}>
                 Submit
             </Button>
         </Form>    
-      </Form>
     )
   }
 }
 
-export default EditPost
+export default EditComment

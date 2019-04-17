@@ -38,7 +38,7 @@ export class PostCreate extends Component {
             </Form.Group>
             <Form.Group className="post_create_comment">
                 <ReactQuill theme="snow" placeholder="Enter a message..." className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={comment}></ReactQuill>
-                    <input type="image" src={smile} className="post_create_emote" onClick={this.showEmoji}></input>
+                    <input type="image" src={smile} alt="" className="post_create_emote" onClick={this.showEmoji}></input>
                     {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
             </Form.Group>
             <Button className="post_create_submit" variant="dark" onClick={(e) => postCreate(e, title, comment, forumId)}>
