@@ -353,8 +353,26 @@ hr {
   width: 90%; }
 
 .feed_main {
-  border: 3px solid black;
   width: 25vw;
   position: absolute;
   top: 7rem;
-  left: 65rem; }
+  left: 65rem;
+  background: #ece0bb; }
+
+.feed_heading {
+  height: 3rem;
+  color: #2d3943;
+  margin-left: 1rem;
+  margin-bottom: 0; }
+
+.feed_author {
+  margin: 0; }
+
+.feed_body {
+  margin-left: 1rem; }
+  .feed_body_list {
+    list-style: none;
+    text-decoration: none; }
+
+.feed_title {
+  color: black; }

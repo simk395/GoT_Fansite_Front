@@ -1,9 +1,32 @@
 .feed{
     &_main{
-        border: 3px solid black;
         width:25vw;
         position:absolute;
         top:7rem;
         left:65rem;
+        background: $even;
+    }
+
+    &_heading{
+        height: 3rem;
+        color: $wolf-grey;
+        margin-left: 1rem;
+        margin-bottom:0;
+    }
+
+    &_author{
+        margin:0;
+    }
+
+    &_body{
+        margin-left: 1rem;
+        &_list{
+            list-style: none;
+            text-decoration: none;
+        }
+    }
+
+    &_title{
+        color:black;
     }
 }
