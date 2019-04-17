@@ -62,7 +62,7 @@ export class Navigation extends Component {
   }
 
   render() {
-    const chars = ["Starks", "Lannisters", "Targaryens", "White Walkers", "Work in Progess"]
+    const chars = ["Starks", "Lannisters", "Targaryens", "White Walkers"]
     const activeUser = localStorage.token
     const { setLogin, handleSignUp, handleLogout} = this.props
     const { user } = this.props.user
@@ -87,6 +87,10 @@ export class Navigation extends Component {
               <NavDropdown.Item>
                 {char}
               </NavDropdown.Item>)}
+              <NavDropdown.Divider />
+              <NavDropdown.Item>
+                Work in Progress
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav.Item>
           <Nav.Item className="nav_item" as="li">

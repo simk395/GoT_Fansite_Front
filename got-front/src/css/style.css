@@ -295,6 +295,12 @@ hr {
   width: 3rem;
   height: 3rem; }
 
+.back_to_top {
+  height: 4rem;
+  bottom: 1rem;
+  right: 2rem;
+  position: fixed; }
+
 .profile_main {
   min-height: 100vh;
   margin: 0 20%; }
