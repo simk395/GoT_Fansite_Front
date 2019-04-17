@@ -56,7 +56,6 @@ export class Forum extends Component {
   render() {
     const { categories, newPosts, newProfiles, newComments } = this.state
     const { user, setLogin, handleSignUp } = this.props
-    console.log(this.state)
     return (
       <div className="forum">
       <Breadcrumb>

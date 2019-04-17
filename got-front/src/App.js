@@ -3,6 +3,7 @@ import Forum from './container/Forum'
 import Navigation from './container/Navigation'
 import Profile from './component/Profile'
 import House from './container/House'
+import Story from './container/Story'
 import { Route, Switch, withRouter} from 'react-router-dom'
 import banner from './images/banner.png'
 import './css/style.css';
@@ -73,7 +74,8 @@ handleLogout = (e) => {
         <Switch>
           <Route path="/profile/:username" render={() => <Profile user={user}/>}/>
           <Route path="/forum" render={() => <Forum user={user} setLogin={this.setLogin} handleSignUp={this.handleSignUp} handleLogout={this.handleLogout}/>}/>
-          <Route exact path="/houses" component={House}/>
+          <Route path="/houses" component={House}/>
+          <Route path="/story" component={Story}/>
         </Switch>
       </main>
     );

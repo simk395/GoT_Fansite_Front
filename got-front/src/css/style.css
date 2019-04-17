@@ -373,7 +373,8 @@ hr {
   position: absolute;
   top: 7rem;
   left: 65rem;
-  background: #ece0bb; }
+  background: #ece0bb;
+  box-shadow: 0px 1px 33px -15px rgba(0, 0, 0, 0.75); }
 
 .feed_heading {
   height: 3rem;
@@ -392,3 +393,16 @@ hr {
 
 .feed_title {
   color: black; }
+
+.story_bg {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: -2; }
+
+.story_black {
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  opacity: 0.6; }

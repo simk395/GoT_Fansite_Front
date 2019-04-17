@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Navbar, Nav, NavDropdown, DropdownButton, Dropdown } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import Signin from '../component/Signin'
 import Signup from '../component/Signup'
 import dracarys from "../images/dracarys.png"
@@ -62,6 +62,7 @@ export class Navigation extends Component {
   }
 
   render() {
+    const chars = ["Starks", "Lannisters", "Targaryens", "White Walkers", "Work in Progess"]
     const activeUser = localStorage.token
     const { setLogin, handleSignUp, handleLogout} = this.props
     const { user } = this.props.user
@@ -72,7 +73,7 @@ export class Navigation extends Component {
         <Nav className="nav_list" as="ul">
         <Nav.Item  className="nav_item" as="li">
             <Nav.Link> 
-              <NavLink className="nav_link" to="/">Story</NavLink>
+              <NavLink className="nav_link" to="/story">Story</NavLink>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item  className="nav_item" as="li">
@@ -82,15 +83,10 @@ export class Navigation extends Component {
           </Nav.Item>
           <Nav.Item className="nav_item" as="li">
             <NavDropdown className="nav_account" title="Characters">
+              {chars.map(char => 
               <NavDropdown.Item>
-                  Starks
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                  Lannisters
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                  Targaryens
-              </NavDropdown.Item>
+                {char}
+              </NavDropdown.Item>)}
             </NavDropdown>
           </Nav.Item>
           <Nav.Item className="nav_item" as="li">
