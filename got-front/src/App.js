@@ -37,12 +37,12 @@ class App extends Component {
 
 setLogin = (userObj) => {
   if (userObj.message) {
-    let user = document.querySelector(".username");
+    let user = document.querySelector(".account_username");
     if(!document.querySelector(".invalid")){
       let invalid = document.createElement("p");
       invalid.className = "invalid";
       invalid.innerText = '\u2022 Invalid Username or Password';
-      return user.before(invalid);
+      return user.after(invalid);
     }
     return null;
   }

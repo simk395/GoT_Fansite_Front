@@ -1,0 +1,26 @@
+.account{
+    &_main{
+        & .modal-content{
+            width: 30rem;
+            transform: translateX(10rem);
+            height: 20rem;
+            display:flex;
+            align-items: flex-end;
+        }
+    }
+    &_form{
+        margin-top:1rem;
+        width: 25rem ;
+    }
+    &_header{
+        height: 60vh;
+        position:relative;
+    }
+
+    &_group{
+        
+    }
+
+    
+
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route, withRouter, Link} from 'react-router-dom'
+import { Switch, Route, withRouter} from 'react-router-dom'
 import { Adapter } from '../Adapter'
 import Category from '../component/Category'
 import Discussion from '../component/Discussion'
@@ -7,7 +7,7 @@ import Post from '../component/Post'
 import PostCreate from '../component/PostCreate'
 import EditPost from '../component/EditPost'
 import EditComment from '../component/EditComment'
-import { Breadcrumb } from 'react-bootstrap'
+import Breadcrumb from '../component/Breadcrumb'
 
 
 export class Forum extends Component {
@@ -56,16 +56,10 @@ export class Forum extends Component {
   render() {
     const { categories, newPosts, newProfiles, newComments } = this.state
     const { user, setLogin, handleSignUp } = this.props
+    const location = window.location.href.split("/")
     return (
       <div className="forum">
-      <Breadcrumb>
-      <Breadcrumb.Item>
-          <Link to="/forum"> Forum </Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item active="false">
-          Library
-        </Breadcrumb.Item>
-      </Breadcrumb>
+      {!location.includes("create") ? <Breadcrumb posts={newPosts} categories={categories}/> : null}
       <hr/>
         <Switch>
           <Route exact path="/forum/comment/edit/:id" render={() => <EditComment comments={newComments}/>}/>

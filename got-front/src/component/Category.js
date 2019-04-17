@@ -9,6 +9,7 @@ import Other from '../images/house_icons/Martell-icon.png'
 import Off_Topic from '../images/house_icons/Arryn-icon.png' 
 import Feed from '../component/Feed'
 
+
 export const Category = (props) => {
     const { categories, profiles, posts } = props
     const families = [General, Stark, Baratheon, Targaryen, Lannister, Other, Off_Topic]

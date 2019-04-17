@@ -418,3 +418,18 @@ hr {
 
 .story_first {
   padding-top: 2rem; }
+
+.account_main .modal-content {
+  width: 30rem;
+  transform: translateX(10rem);
+  height: 20rem;
+  display: flex;
+  align-items: flex-end; }
+
+.account_form {
+  margin-top: 1rem;
+  width: 25rem; }
+
+.account_header {
+  height: 60vh;
+  position: relative; }

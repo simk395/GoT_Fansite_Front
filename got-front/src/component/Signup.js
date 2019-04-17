@@ -38,14 +38,16 @@ export class Signup extends Component {
   render() {
     return (
       <Modal
+      className="account_main"
         {...this.props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
-          <Form >
-            <Form.Group controlId="formBasicUser">
+        <Modal.Header className="account_header" closeButton>
+          <Form className="account_form">
+          <h4>Sign Up</h4>
+            <Form.Group className="account_group" controlId="formBasicUser">
               <Form.Control 
                 type="text" 
                 placeholder="Username" 

@@ -37,15 +37,17 @@ export class Signin extends Component {
     return (
         <Modal
         {...this.props}
+        className="account_main"
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
-          <Form >
-            <Form.Group controlId="formBasicUser">
+        <Modal.Header className="account_header" closeButton>
+          <Form className="account_form">
+          <h4>Log In</h4>
+            <Form.Group className="account_group" controlId="formBasicUser">
               <Form.Control 
-                className="username"
+                className="account_username"
                 type="text" 
                 placeholder="Username" 
                 autoComplete="off" 
@@ -53,16 +55,16 @@ export class Signin extends Component {
                 value={this.state.username} 
                 onChange={this.handleInput}/>
             </Form.Group>
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group className="account_group" controlId="formBasicPassword">
               <Form.Control 
-                className="password"
+                className="account_password"
                 type="password" 
                 placeholder="Password"
                 name="password" 
                 value={this.state.password}
                 onChange={this.handleInput}/>
             </Form.Group>
-            <Button onClick={this.handleLogin} variant="primary" type="submit">
+            <Button onClick={this.handleLogin} className="account_submit" variant="primary" type="submit">
               Submit
             </Button>
           </Form>

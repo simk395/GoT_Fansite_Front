@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import Feed from '../component/Feed'
 
-
 export class Discussion extends Component {
 
   state = {
