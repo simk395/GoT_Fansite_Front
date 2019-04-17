@@ -75,7 +75,7 @@ export class Post extends Component{
   handleEdit = () => {
     let size = window.location.href.split("/"),
         post = this.props.posts.find(post => post.id === parseInt(size[size.length-1])) || ""
-    return this.props.history.push(`/forum/comment/edit/${post.id}`)
+    return this.props.history.push(`/forum/post/edit/${post.id}`)
   }
 
   render(){

@@ -29,6 +29,11 @@
         transform: translate(-4rem, 5rem);
         z-index: 1;
     }
+    
+    & p{
+        display:flex;
+        flex-direction: row;
+        }
 }
 
 #formBasicTitle{

@@ -50,7 +50,7 @@ export class EditProfile extends Component {
                 {emoji ? <Picker className="profile_emote_box" onSelect={this.logEmoji} set='emojione'/> : null }
                 <div className="profile_edit_submit">
                     <input type="image" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji} alt=""/>
-                    <input className="fp_create_btn fp_create_submit" onClick={(e) => editBio(e,bio,id)} type="image" src={enter} alt=""/>
+                    <input className="fp_create_btn fp_create_submit" onClick={(e) => editBio(e,bio,id)} type="image" src={enter}/>
                 </div>
             </Modal.Header>
         </Modal>

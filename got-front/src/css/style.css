@@ -307,6 +307,9 @@ hr {
     height: 12rem;
     margin-left: 5px;
     justify-content: flex-end; }
+  .profile_edit p {
+    display: flex;
+    flex-direction: row; }
 
 .profile_delete {
   background: #f9152f;
@@ -340,6 +343,9 @@ hr {
     right: 0;
     transform: translate(-4rem, 5rem);
     z-index: 1; }
+  .post_create p {
+    display: flex;
+    flex-direction: row; }
 
 #formBasicTitle {
   transform: translateX(3rem);

@@ -8,7 +8,8 @@ import { Picker } from 'emoji-mart'
 export class EditComment extends Component {
   state = {
     id: "",
-    comment: ""
+    comment: "",
+    emoji: false
   }
 
   componentDidMount(){
@@ -47,16 +48,14 @@ export class EditComment extends Component {
   render() {
     const { comment, id } = this.state
     return (
-          <Form>
-            <Form.Group controlId="formBasicTitle">
-                <h2>Edit Comment</h2>
-            </Form.Group>
-            <Form.Group>
+          <Form className="post_create">
+                <h2 className="post_create_heading">Edit Comment</h2>
+            <Form.Group className="post_create_comment">
                 <ReactQuill theme="snow" placeholder="Enter a message..." className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={comment}></ReactQuill>
-                    <input alt="" type="image" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji}/>
+                    <input alt="" type="image" src={smile} className="post_create_emote" onClick={this.showEmoji}/>
                     {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
             </Form.Group>
-            <Button onClick={(e) => this.updateComment(e,id,comment)}>
+            <Button className="post_create_submit" variant="dark" onClick={(e) => this.updateComment(e,id,comment)}>
                 Submit
             </Button>
         </Form>    

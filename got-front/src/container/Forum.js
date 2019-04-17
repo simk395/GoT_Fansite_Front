@@ -10,6 +10,7 @@ import EditComment from '../component/EditComment'
 import { Breadcrumb } from 'react-bootstrap'
 
 
+
 export class Forum extends Component {
   state = {
     categories:[],

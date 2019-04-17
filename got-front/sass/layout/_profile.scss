@@ -36,6 +36,11 @@
             
         }
 
+        & p{
+            display:flex;
+            flex-direction: row;
+        }
+
     }
 
     &_delete{

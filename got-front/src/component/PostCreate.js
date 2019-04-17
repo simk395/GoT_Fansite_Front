@@ -22,9 +22,10 @@ export class PostCreate extends Component {
     logEmoji = (emoji) => {
         this.setState({comment: this.state.comment + emoji.native})
       }
-    showEmoji = (e) => {
-        e.preventDefault()
-        this.setState({emoji: !this.state.emoji})
+      showEmoji = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.setState({emoji: !this.state.emoji});
     }
   render() {
     const forumId = parseInt(window.location.href.split("/")[window.location.href.split("/").length-1])

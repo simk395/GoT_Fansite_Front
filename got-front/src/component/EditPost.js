@@ -9,7 +9,8 @@ export class EditPost extends Component {
   state={
     id: "",
     title: "",
-    comment: ""
+    comment: "",
+    emoji: false
   }
 
   componentDidMount(){
@@ -53,21 +54,17 @@ export class EditPost extends Component {
   render() {
     const { title, comment, id} = this.state
     return (
-      <Form>
-          <Form>
-            <Form.Group controlId="formBasicTitle">
-                <h2>{title}</h2>
-            </Form.Group>
-            <Form.Group>
-                <ReactQuill theme="snow" placeholder="Enter a message..." className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={comment}></ReactQuill>
-                    <input type="image" alt="" src={smile} className="fp_create_btn fp_create_emote" onClick={this.showEmoji}/>
+          <Form className="post_create">
+            <h2 className="post_create_heading">{title}</h2>
+            <Form.Group className="post_create_comment">
+                <ReactQuill theme="snow" placeholder="Enter a message..." className="profile_edit_textarea" modules={this.modules} onChange={this.textHandler} value={comment}></ReactQuill>
+                    <input type="image" alt="" src={smile} className="post_create_emote" onClick={this.showEmoji}/>
                     {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
             </Form.Group>
-            <Button onClick={(e) => this.updatePost(e,id,title,comment)}>
+            <Button className="post_create_submit" variant="dark" onClick={(e) => this.updatePost(e,id,title,comment)}>
                 Submit
             </Button>
         </Form>    
-      </Form>
     )
   }
 }
