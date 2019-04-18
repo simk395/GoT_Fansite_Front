@@ -11,6 +11,7 @@ import enter from '../images/enter.png'
 import avatar from '../images/avatar.jpg'
 import edit from '../images/edit.png'
 
+
 export class Post extends Component{
   state = {
     commentsArr: [],

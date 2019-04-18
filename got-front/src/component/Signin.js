@@ -14,11 +14,13 @@ export class Signin extends Component {
 
   handleLogin = event => {
     event.preventDefault();
+    if(event.target === document.querySelector(".account_submit")){
     const userObj = {
       username: this.state.username,
       password: this.state.password
     };
     this.getUserObj(userObj);
+    }
   }
 
   getUserObj = userObj => {
@@ -43,7 +45,7 @@ export class Signin extends Component {
         centered
       >
         <Modal.Header className="account_header" closeButton>
-          <Form className="account_form">
+          <Form onClick={this.handleLogin} className="account_form">
           <h4>Log In</h4>
             <Form.Group className="account_group" controlId="formBasicUser">
               <Form.Control 
@@ -64,7 +66,7 @@ export class Signin extends Component {
                 value={this.state.password}
                 onChange={this.handleInput}/>
             </Form.Group>
-            <Button onClick={this.handleLogin} className="account_submit" variant="primary" type="submit">
+            <Button onClick={this.props.onHide} className="account_submit" variant="primary" type="submit">
               Submit
             </Button>
           </Form>

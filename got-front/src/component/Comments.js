@@ -51,9 +51,11 @@ export class Comments extends Component {
     })
   }
 
-  dilikeHandler = (e, vote) => {
+  dislikeHandler = (e, vote) => {
     e.preventDefault()
     if(localStorage.token){
+    let shame = new Audio("shame.mp3")
+    shame.play()
     const voteObj = {
       user_id: this.props.user.id,
       comment_id: this.props.comment.id
