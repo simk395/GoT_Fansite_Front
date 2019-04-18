@@ -126,6 +126,7 @@ export class Comments extends Component {
       let dislikesInt = newDislikes.filter(dislike => dislike.comment_id === id).length
       let voteInt = likesInt - dislikesInt
       let modalClose = () => this.setState({ signin: false, signup:false });
+      let audio = new Audio("full_shame.mp3");
     return (
       <div data-id={`${id}`}>
         <div className="fp_post" data-id={id}>
