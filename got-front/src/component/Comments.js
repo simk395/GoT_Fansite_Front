@@ -13,7 +13,9 @@ import trash from '../images/delete.png'
 export class Comments extends Component {
   state = {
     likes: [],
+    newLikes: [],
     dislikes:[],
+    newDislikes:[],
     signin: false,
     signup: false
   }
@@ -21,10 +23,10 @@ export class Comments extends Component {
   componentDidMount(){
     fetch("http://localhost:3000/user_likes_comments")
     .then(resp => resp.json())
-    .then(likes => this.setState({likes :likes}))
+    .then(likes => this.setState({likes:likes, newLikes: likes}))
     fetch("http://localhost:3000/user_dislikes_comments")
     .then(resp => resp.json())
-    .then(dislikes => this.setState({dislikes :dislikes}))
+    .then(dislikes => this.setState({dislikes :dislikes, newDislikes: dislikes}))
   }
 
   handleEdit = () => {
@@ -51,16 +53,14 @@ export class Comments extends Component {
     })
   }
 
-  dislikeHandler = (e, vote) => {
+  likeHandler = (e) => {
     e.preventDefault()
     if(localStorage.token){
-    let shame = new Audio("shame.mp3")
-    shame.play()
     const voteObj = {
       user_id: this.props.user.id,
       comment_id: this.props.comment.id
     }
-    fetch(`http://localhost:3000/user_${vote}_comments`,{
+    fetch(`http://localhost:3000/user_likes_comments`,{
       method: "POST",
       headers: {
           "Content-Type": "application/json",
@@ -71,21 +71,21 @@ export class Comments extends Component {
     })
     .then(resp => resp.json())
     .then(likes => {
-      this.getUserDislikes(likes)
+      this.setState({newLikes: [...this.state.newLikes, likes]})
     })
   }else{
     this.setState({ signin: true });
-  }
+    }
   }
 
-  likeHandler = (e, vote) => {
+  dislikeHandler = (e) => {
     e.preventDefault()
     if(localStorage.token){
     const voteObj = {
       user_id: this.props.user.id,
       comment_id: this.props.comment.id
     }
-    fetch(`http://localhost:3000/user_${vote}_comments`,{
+    fetch(`http://localhost:3000/user_dislikes_comments`,{
       method: "POST",
       headers: {
           "Content-Type": "application/json",
@@ -96,17 +96,18 @@ export class Comments extends Component {
     })
     .then(resp => resp.json())
     .then(dislikes => {
-      this.getUserLikes(dislikes)
+      this.setState({newDislikes: [...this.state.newDislikes, dislikes]})
   })
+  
   }else{
     this.setState({ signin: true });
-  }
+    }
   }
 
   getUserDislikes = (dislikes) => {
     fetch(`http://localhost:3000/user_dislikes_comments`)
       .then(resp => resp.json())
-      .then(likes => this.setState({likes:likes, dislikes: dislikes}))
+      .then(likes => this.setState({newLikes: [], newDislikes: dislikes}))
   }
 
   getUserLikes = (likes) => {
@@ -116,15 +117,16 @@ export class Comments extends Component {
   }
   render() {
       const {id, user_id, message, created_at, updated_at} = this.props.comment
-      const { likes, dislikes } = this.state
+      const { newLikes, newDislikes } = this.state
       const { user, profiles } = this.props
       const userId = (user === undefined ? "" : user.id)
       const creator = profiles.find(profile => user_id === profile.id)
       const username = (creator === undefined ? "" : creator.username)
-      let likesInt = likes.filter(like => like.comment_id === id).length
-      let dislikesInt = dislikes.filter(dislike => dislike.comment_id === id).length
+      let likesInt = newLikes.filter(like => like.comment_id === id).length
+      let dislikesInt = newDislikes.filter(dislike => dislike.comment_id === id).length
       let voteInt = likesInt - dislikesInt
       let modalClose = () => this.setState({ signin: false, signup:false });
+      console.log("dislikes:", this.state.newDislikes , "likes:", this.state.newLikes, "Votes:", voteInt)
     return (
       <div data-id={`${id}`}>
         <div className="fp_post" data-id={id}>
@@ -143,9 +145,9 @@ export class Comments extends Component {
             </div>
             {user_id !== userId ? 
             <div className="vote_container">
-              <input alt="" className="upvote" type="image" src={upvote} onClick={(e) => this.likeHandler(e,"likes")}></input>
+              <input alt="" className="upvote" type="image" src={upvote} onClick={(e) => this.likeHandler(e)}></input>
               <p>{voteInt}</p>
-              <input alt="" className="downvote" type="image" src={downvote} onClick={(e) => this.dislikeHandler(e, "dislikes")}></input>
+              <input alt="" className="downvote" type="image" src={downvote} onClick={(e) => this.dislikeHandler(e)}></input>
             </div>
             : null
             }
