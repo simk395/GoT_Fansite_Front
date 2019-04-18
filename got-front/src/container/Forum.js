@@ -76,11 +76,4 @@ export class Forum extends Component {
     )
   }
 }
-
-// {categories.map(category => {
-//   const path = `/forum/${category.id}`
-//   <Route path={path} render={(props) => <Discussion {...props} user={user} profiles={newProfiles} id={category.id} posts={posts} categories={categories}/> }/>
-//   )}
-// }
-// <Route path='/forum' render={() => <Category categories={categories} />}/>
 export default withRouter(Forum)
