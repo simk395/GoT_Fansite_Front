@@ -28,6 +28,7 @@ export class EditComment extends Component {
     },
     body: JSON.stringify({comment:{message: comment}})
   })
+  this.props.history.push("/forum")
 }
 
   textHandler = (value) => {

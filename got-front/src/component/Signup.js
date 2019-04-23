@@ -44,8 +44,7 @@ export class Signup extends Component {
         {...this.props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
+        centered>
         <Modal.Header className="account_header" closeButton>
           <Form onClick={this.handleSubmit} className="account_form">
           <h4>Sign Up</h4>

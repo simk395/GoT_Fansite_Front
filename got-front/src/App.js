@@ -57,6 +57,7 @@ setLogin = (userObj) => {
 }
 
 handleSignUp = () => {
+  alert("Account successfully created!");
   return this.props.history.push("/forum")
 }
 handleLogout = (e) => {

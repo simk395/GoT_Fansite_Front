@@ -21,6 +21,18 @@ export class Adapter{
         .then(resp => resp.json())
     }
 
+    static postComment = (commentObj) => {
+        return fetch("http://localhost:3000/comments", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                Authorization: localStorage.token
+            },
+            body:JSON.stringify({comment:commentObj})
+        }).then(resp => resp.json())
+      }
+
     static deleteComment = (commentId) => {
       fetch(`http://localhost:3000/comments/${commentId}`,{
       method: "DELETE",

@@ -38,6 +38,8 @@ export class Profile extends Component {
         headers: {'Content-Type': 'application/json'},
         Authorization: localStorage.token
       })
+      localStorage.removeItem('token');
+      this.props.history.push("/forum");
     }
 
     createBtn = () => {

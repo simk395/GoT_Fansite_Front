@@ -22,34 +22,29 @@ export const Category = (props) => {
                           "Anything not related to GoT"]
     return (
       <div className="fb_main">
-      <Feed posts={posts} profiles={profiles}/>
-      <h1>Forums</h1>
-      <ul className="fb_list">
-          {categories.map(category => 
-          category.id % 2 === 0 ?
+        <Feed posts={posts} profiles={profiles}/>
+        <h1>Forums</h1>
+        <ul className="fb_list">
+          {categories.map(category => category.id % 2 === 0 ?
             <li key={category.id} className="fb_body even">
-                <img className="fb_icon" src={families[category.id-1]} alt=""></img>
-                <div className="fb_desc">
-                  <Link className="fb_title" to={`/forum/${category.id}`}>
-                    {category.title}
-                  </Link>
-                  <p className="fb_subtitle">{descriptions[category.id-1]}</p>
-                </div>
+              <img className="fb_icon" src={families[category.id-1]} alt=""></img>
+              <div className="fb_desc">
+                <Link className="fb_title" to={`/forum/${category.id}`}>{ category.title }</Link>
+                <p className="fb_subtitle">{descriptions[category.id-1]}</p>
+              </div>
             </li>
             :
             <li key={category.id} className="fb_body ">
-            <img className="fb_icon" src={families[category.id-1]} alt=""></img>
-            <div className="fb_desc">
-              <Link className="fb_title" to={`/forum/${category.id}`}>
-                {category.title}
-              </Link>
-              <p className="fb_subtitle">{descriptions[category.id-1]}</p>
-            </div>
-        </li>
+              <img className="fb_icon" src={families[category.id-1]} alt=""></img>
+              <div className="fb_desc">
+                <Link className="fb_title" to={`/forum/${category.id}`}>{ category.title }</Link>
+                <p className="fb_subtitle">{descriptions[category.id-1]}</p>
+              </div>
+            </li>
           )}
       </ul>
-      </div>       
-    )
+    </div>       
+  )
 }
               
 

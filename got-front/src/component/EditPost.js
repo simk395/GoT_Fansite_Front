@@ -34,6 +34,7 @@ export class EditPost extends Component {
     },
     body:JSON.stringify({post: postObj})
   })
+  this.props.history.push("/forum")
 }
 
   textHandler = (value) => {

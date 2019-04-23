@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Comments from './Comments'
-import { Adapter } from '../Adapter'
-import {withRouter, Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 import ReactQuill from 'react-quill';
@@ -10,18 +9,14 @@ import smile from '../images/smile.png'
 import enter from '../images/enter.png'
 import avatar from '../images/avatar.jpg'
 import edit from '../images/edit.png'
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 
 export class Post extends Component{
   state = {
-    commentsArr: [],
-    newCommentsArr: [],
     message: "",
     emoji: false
-  }
-
-  componentDidMount(){
-    Adapter.getComments().then(comments => this.setState({commentsArr:comments, newCommentsArr: comments}));
   }
 
   textHandler = (value) => {
@@ -45,23 +40,8 @@ export class Post extends Component{
       message: this.state.message,
       user_id: user_id
     }
-    this.postComment(commentObj)
+    this.props.postComment(commentObj)
     this.setState({message: ""})
-  }
-
-   postComment = (commentObj) => {
-    fetch("http://localhost:3000/comments", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: localStorage.token
-        },
-        body:JSON.stringify({comment:commentObj})
-    }).then(resp => resp.json())
-    .then(comment => {
-        this.setState({newCommentsArr: [...this.state.newCommentsArr, comment]})
-    })
   }
 
   modules = {
@@ -80,39 +60,40 @@ export class Post extends Component{
   }
 
   render(){
-    const { posts, profiles } = this.props
+    const { posts, profiles, setLogin, handleSignUp, comments } = this.props
     const { user } = this.props.user
-    const { setLogin, handleSignUp} = this.props
-    const { newCommentsArr, message} = this.state
+    const { message } = this.state
     
     let size = window.location.href.split("/"),
         post = posts.find(post => post.id === parseInt(size[size.length-1])) || "",
-        postComments = newCommentsArr.filter(comment => comment.post_id === post.id),
+        postComments = comments.filter(comment => comment.post_id === post.id),
         postDetails = profiles.find(profile => profile.id === post.user_id) || {},
         checkUser;
+
     if(user !== undefined){
       checkUser = (post.user_id === user.id ? <input alt="" className="edit_btn" onClick={this.handleEdit} type="image" src={edit}/> : null)
     }else{
       checkUser = null;
     }
+
     return (
       <div className="fp">
         <h3 className="fp_title">{post.title}</h3>
         <div className="fp_post">
           <div className="fp_container">
-          <div className="fp_profile">
-            <Link className="username" to={`/profile/${postDetails.username}`}>{postDetails.username}</Link>
-            <img alt="" className="avatar" src={avatar}></img> 
+            <div className="fp_profile">
+              <Link className="username" to={`/profile/${postDetails.username}`}>{postDetails.username}</Link>
+              <img alt="" className="avatar" src={avatar}></img> 
+            </div>
+            <div className="fp_comment">
+               <p className="fp_comment_detail" dangerouslySetInnerHTML={{__html: post.message}}></p>
+              {checkUser}
+            </div>
           </div>
-          <div className="fp_comment">
-            <p className="fp_comment_detail" dangerouslySetInnerHTML={{__html: post.message}}></p>
-            {checkUser}
-          </div>
-          </div>
-          <p className="fp_comment_date"> {post.created_at} {post.updated_at && (post.updated_at !== post.created_at) ? `Last Editted: ${post.updated_at}`: null}</p>
+          <p className="fp_comment_date"> <Moment format="LLLL">{post.created_at}</Moment> {post.updated_at && (post.updated_at !== post.created_at) ? <span> Editted: <Moment format="LLLL">{post.updated_at}</Moment></span>: null}</p>
         </div>
         <div className="fp_allComments">
-        {postComments.map(comment => <Comments user={user} profiles={profiles} comment={comment} handleSignUp={handleSignUp} setLogin={setLogin}/>)}
+          {postComments.map(comment => <Comments user={user} profiles={profiles} comment={comment} handleSignUp={handleSignUp} setLogin={setLogin}/>)}
         </div>
         <form className="fp_create" onSubmit={e => this.formHandler(e, post.id, user.id)}>
           <ReactQuill theme="snow" className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={message}></ReactQuill>
