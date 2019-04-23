@@ -17,20 +17,38 @@ export class Navigation extends Component {
   }
 
   countdown = () => {
-    const countDownDate = new Date("Apr 14, 2019 21:00:00").getTime();
-    const now = new Date().getTime();
-    const distance = countDownDate - now;
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    const time = {
-      d: days,
-      h: hours,
-      m: minutes,
-      s: seconds
-    };
+    const airDates = ["Apr 14, 2019 21:00:00", 
+                      "Apr 21, 2019 21:00:00", 
+                      "Apr 29, 2019 21:00:00", 
+                      "May 6, 2019 21:00:00", 
+                      "May 13, 2019 21:00:00",
+                      "May 20, 2019 21:00:00"]
+    
+    const nextEp = airDates.find(dates => (new Date(dates).getTime()) > (new Date().getTime()))
+    if(nextEp){
+      const countDownDate = new Date(nextEp).getTime();
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const time = {
+        d: days,
+        h: hours,
+        m: minutes,
+        s: seconds
+      };
+      this.setState({time: time})
+    }else{
+      const time = {
+        d: 0,
+        h: 0,
+        m: 0,
+        s: 0
+      };
     this.setState({time: time})
+    }
   }
 
   modalClose = () => {
