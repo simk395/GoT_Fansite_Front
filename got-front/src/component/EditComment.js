@@ -18,19 +18,6 @@ export class EditComment extends Component {
     this.setState({ id: comment.id, comment:comment.message })
   }
 
-  updateComment = (e,id,comment) => {
-    fetch(`http://localhost:3000/comments/${id}`,{
-    method: "PATCH",
-    headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: localStorage.token
-    },
-    body: JSON.stringify({comment:{message: comment}})
-  })
-  this.props.history.push("/forum")
-}
-
   textHandler = (value) => {
     this.setState({comment: value})
   }
@@ -47,16 +34,23 @@ export class EditComment extends Component {
   }
 
   render() {
+    const { updateComment } = this.props
     const { comment, id } = this.state
     return (
           <Form className="post_create">
                 <h2 className="post_create_heading">Edit Comment</h2>
             <Form.Group className="post_create_comment">
-                <ReactQuill theme="snow" placeholder="Enter a message..." className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={comment || ''}></ReactQuill>
+                <ReactQuill theme="snow" 
+                            placeholder="Enter a message..." 
+                            className="fp_create_textarea" 
+                            modules={this.modules} 
+                            onChange={this.textHandler} 
+                            value={comment || ''}>
+                </ReactQuill>
                     <input alt="" type="image" src={smile} className="post_create_emote" onClick={this.showEmoji}/>
                     {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
             </Form.Group>
-            <Button className="post_create_submit" variant="dark" onClick={(e) => this.updateComment(e,id,comment)}>
+            <Button className="post_create_submit" variant="dark" onClick={(e) => updateComment(e,id,comment)}>
                 Submit
             </Button>
         </Form>    

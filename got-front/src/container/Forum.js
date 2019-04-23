@@ -69,18 +69,53 @@ export class Forum extends Component {
     })
   }
 
+  updatePost = (e,id,title, comment) => {
+    const postObj = {
+      title: title,
+      message: comment
+    }
+
+   fetch(`http://localhost:3000/posts/${id}`,{
+    method: "PATCH",
+    headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.token
+    },
+    body:JSON.stringify({post: postObj})
+  })
+  .then(resp => resp.json())
+  .then(posts => this.setState({newPosts: posts}))
+  this.props.history.goBack()
+}
+
+  updateComment = (e,id,comment) => {
+    fetch(`http://localhost:3000/comments/${id}`,{
+    method: "PATCH",
+    headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.token
+    },
+    body: JSON.stringify({comment:{message: comment}})
+  })
+  .then(resp => resp.json())
+  .then(comments => this.setState({ newComments: comments.sort(function(a, b){return a.id-b.id}) }) )
+  this.props.history.goBack();
+  }
+
   render() {
     const { categories, newPosts, newProfiles, newComments } = this.state
     const { user, setLogin, handleSignUp } = this.props
     const location = window.location.href.split("/")
-    console.log(newComments)
+    const updateComment = Adapter.updateComment
     return (
       <div className="forum">
       {!location.includes("create") ? <Breadcrumb posts={newPosts} categories={categories}/> : null}
       <hr/>
         <Switch>
-          <Route exact path="/forum/comment/edit/:id" render={(props) => <EditComment {...props} comments={newComments}/>}/>
-          <Route exact path="/forum/post/edit/:id" render={(props) => <EditPost {...props} posts={newPosts}/>}/>
+          <Route exact path="/forum/comment/edit/:id" render={(props) => <EditComment {...props} updateComment={updateComment} comments={newComments}/>}/>
+          <Route exact path="/forum/post/edit/:id" render={(props) => <EditPost {...props} updatePost={this.updatePost} posts={newPosts}/>}/>
           <Route path="/forum/create/:id" render={(props) => <PostCreate {...props} postCreate={this.postCreate} user={user}/>}/>
           <Route path="/forum/:categoryId/:id" render={(props) => <Post {...props} postComment={this.postComment} comments={newComments} posts={newPosts} user={user} profiles={newProfiles} setLogin={setLogin} handleSignUp={handleSignUp}/> }/>
           {categories.map( category => {

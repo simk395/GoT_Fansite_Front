@@ -4,7 +4,7 @@ import ReactQuill from 'react-quill';
 import smile from '../images/smile.png'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
-
+ 
 export class EditPost extends Component {
   state={
     id: "",
@@ -18,24 +18,6 @@ export class EditPost extends Component {
     const post = this.props.posts.find(post => post.id === forumId) || ""
     this.setState({id: post.id, title: post.title, comment:post.message})
   }
-
-  updatePost = (e,id,title, comment) => {
-    const postObj = {
-      title: title,
-      message: comment
-    }
-
-    fetch(`http://localhost:3000/posts/${id}`,{
-    method: "PATCH",
-    headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: localStorage.token
-    },
-    body:JSON.stringify({post: postObj})
-  })
-  this.props.history.push("/forum")
-}
 
   textHandler = (value) => {
     this.setState({comment: value})
@@ -55,6 +37,7 @@ export class EditPost extends Component {
 
   render() {
     const { title, comment, id} = this.state
+    const { updatePost } = this.props
     return (
           <Form className="post_create">
             <h2 className="post_create_heading">{title}</h2>
@@ -63,7 +46,7 @@ export class EditPost extends Component {
                     <input type="image" alt="" src={smile} className="post_create_emote" onClick={this.showEmoji}/>
                     {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
             </Form.Group>
-            <Button className="post_create_submit" variant="dark" onClick={(e) => this.updatePost(e,id,title,comment)}>
+            <Button className="post_create_submit" variant="dark" onClick={(e) => updatePost(e,id,title,comment)}>
                 Submit
             </Button>
         </Form>    
