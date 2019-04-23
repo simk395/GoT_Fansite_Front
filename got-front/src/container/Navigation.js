@@ -90,19 +90,19 @@ export class Navigation extends Component {
       <Navbar className="nav" bg="dark" variant="dark" sticky="top">
         <Nav className="nav_list" as="ul">
         <Nav.Item  className="nav_item" as="li">
-            <Nav.Link> 
+            <Nav.Link as="div"> 
               <NavLink className="nav_link" to="/story">Story</NavLink>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item  className="nav_item" as="li">
-            <Nav.Link> 
+            <Nav.Link as="div"> 
               <NavLink className="nav_link" to="/houses">Great Houses</NavLink>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item className="nav_item" as="li">
             <NavDropdown className="nav_account" title="Characters">
               {chars.map(char => 
-              <NavDropdown.Item>
+              <NavDropdown.Item key={char}>
                 {char}
               </NavDropdown.Item>)}
               <NavDropdown.Divider />
@@ -113,7 +113,7 @@ export class Navigation extends Component {
           </Nav.Item>
           <Nav.Item className="nav_item" as="li">
             <NavDropdown className="nav_community" title="Community">
-              <NavDropdown.Item>
+              <NavDropdown.Item as="div">
                 <NavLink className="nav_link" to="/forum">Forum</NavLink>
               </NavDropdown.Item>
             </NavDropdown>
@@ -142,7 +142,7 @@ export class Navigation extends Component {
         {countdown}
           <Nav.Item className="nav_item" as="li">
             <NavDropdown className="nav_account" title="My Account">
-              <NavDropdown.Item>
+              <NavDropdown.Item as="div">
                   <NavLink to={user ? `/profile/${user.username}` : "#"}>My Profile</NavLink>
               </NavDropdown.Item>
               <NavDropdown.Item onClick={handleLogout}>

@@ -23,30 +23,12 @@ export class Comments extends Component {
   }
 
   componentDidMount(){
-    fetch("http://localhost:3000/user_likes_comments")
-    .then(resp => resp.json())
-    .then(likes => this.setState({likes:likes, newLikes: likes}))
-    fetch("http://localhost:3000/user_dislikes_comments")
-    .then(resp => resp.json())
-    .then(dislikes => this.setState({dislikes :dislikes, newDislikes: dislikes}))
+    Adapter.getLikes().then(likes => this.setState({likes:likes, newLikes: likes}));
+    Adapter.getDislikes().then(dislikes => this.setState({dislikes :dislikes, newDislikes: dislikes}));
   }
 
   handleEdit = () => {
     return this.props.history.push(`/forum/comment/edit/${this.props.comment.id}`)
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-    const div = document.querySelector(`.comment-${this.props.comment.id}`)
-    fetch(`http://localhost:3000/comments/${this.props.comment.id}`, {
-      method: "PATCH",
-      headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: localStorage.token
-      },
-      body:JSON.stringify({comment: {message: div.innerText}})
-    })
   }
 
   commentHandler = (e) => {
@@ -62,19 +44,10 @@ export class Comments extends Component {
       user_id: this.props.user.id,
       comment_id: this.props.comment.id
     }
-    fetch(`http://localhost:3000/user_likes_comments`,{
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: localStorage.token
-      },
-      body:JSON.stringify({vote: voteObj})
+    this.postLike(voteObj).then(likes => {
+      this.setState({newLikes: likes})
     })
-    .then(resp => resp.json())
-    .then(likes => {
-      this.setState({newLikes: [...this.state.newLikes, likes]})
-    })
+    .then(Adapter.getDislikes().then(dislikes => this.setState({newDislikes: dislikes})))
   }else{
     this.setState({ signin: true });
     }
@@ -87,7 +60,19 @@ export class Comments extends Component {
       user_id: this.props.user.id,
       comment_id: this.props.comment.id
     }
-    fetch(`http://localhost:3000/user_dislikes_comments`,{
+    this.postDislike(voteObj)
+    .then(dislikes => {
+      this.setState({newDislikes: dislikes})
+   })
+   .then(Adapter.getLikes().then(likes => this.setState({newLikes:likes})))
+  
+  }else{
+    this.setState({ signin: true });
+    }
+  }
+
+  postLike = (voteObj) => {
+    return fetch(`http://localhost:3000/user_likes_comments`,{
       method: "POST",
       headers: {
           "Content-Type": "application/json",
@@ -97,26 +82,21 @@ export class Comments extends Component {
       body:JSON.stringify({vote: voteObj})
     })
     .then(resp => resp.json())
-    .then(dislikes => {
-      this.setState({newDislikes: [...this.state.newDislikes, dislikes]})
-  })
+  }
+
+  postDislike = (voteObj) => {
+    return fetch(`http://localhost:3000/user_dislikes_comments`,{
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: localStorage.token
+      },
+      body:JSON.stringify({vote: voteObj})
+    })
+    .then(resp => resp.json())
+  }
   
-  }else{
-    this.setState({ signin: true });
-    }
-  }
-
-  getUserDislikes = (dislikes) => {
-    fetch(`http://localhost:3000/user_dislikes_comments`)
-      .then(resp => resp.json())
-      .then(likes => this.setState({newLikes: [], newDislikes: dislikes}))
-  }
-
-  getUserLikes = (likes) => {
-    fetch(`http://localhost:3000/user_likes_comments`)
-      .then(resp => resp.json())
-      .then(dislikes => this.setState({likes:likes, dislikes: dislikes}))
-  }
   render() {
       const {id, user_id, message, created_at, updated_at} = this.props.comment
       const { newLikes, newDislikes } = this.state
@@ -128,7 +108,7 @@ export class Comments extends Component {
       let dislikesInt = newDislikes.filter(dislike => dislike.comment_id === id).length
       let voteInt = likesInt - dislikesInt
       let modalClose = () => this.setState({ signin: false, signup:false });
-      let audio = new Audio("full_shame.mp3");
+
     return (
       <div data-id={`${id}`}>
         <div className="fp_post" data-id={id}>

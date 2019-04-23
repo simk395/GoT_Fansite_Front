@@ -12,8 +12,8 @@ export class BreadcrumbNav extends Component {
     
     return (
         <Breadcrumb>
-            <Breadcrumb.Item>
-                <Link to="/forum"> Forum </Link>
+            <Breadcrumb.Item >
+            <Link to="/forum"> Forum </Link>
             </Breadcrumb.Item>
             {findCategory ? 
             <Breadcrumb.Item active="false">

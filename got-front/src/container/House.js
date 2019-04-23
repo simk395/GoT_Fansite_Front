@@ -12,7 +12,7 @@ import arrynBanner from '../images/house_banners/house-arryn.jpg'
 import baratheonBanner from '../images/house_banners/house-baratheon.jpg'
 import martellBanner from '../images/house_banners/house-martell.jpg'
 import freyBanner from '../images/house_banners/house-frey.jpg'
-import top from '../images/back_to_top.png'
+
 
 export class Home extends Component {
   componentDidMount(){
@@ -26,24 +26,8 @@ export class Home extends Component {
 
 
   render() {
-
-    const scrollToTop = () => {
-      const c = document.documentElement.scrollTop || document.body.scrollTop;
-      if (c > 0) {
-        window.requestAnimationFrame(scrollToTop);
-        window.scrollTo(0, c - c / 40);
-      }
-    }
-
-    const checkScroll = () => {
-      if(window.scrollY > 1140){
-      const top = <input className="back_to_top" type="image" src={top} onClick={scrollToTop}/>
-      document.querySelector("main").after(top)
-      }
-    }
-
     return (
-      <main onScroll={checkScroll} className="got_main">
+      <main className="got_main">
         <SnowStorm animationInterval="40"/>
         {/* starks */}
         <div className="view jarallax">

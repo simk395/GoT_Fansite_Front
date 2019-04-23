@@ -20,7 +20,15 @@ export class Adapter{
         return fetch(`${host}/api/v1/users`)
         .then(resp => resp.json())
     }
-    
+    static getLikes = () => {
+        return fetch("http://localhost:3000/user_likes_comments")
+        .then(resp => resp.json())
+    }
+
+    static getDislikes = () => {
+        return fetch("http://localhost:3000/user_dislikes_comments")
+        .then(resp => resp.json())
+    }
     static deleteComment = (commentId) => {
       fetch(`http://localhost:3000/comments/${commentId}`,{
       method: "DELETE",
