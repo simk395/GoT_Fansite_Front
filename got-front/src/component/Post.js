@@ -19,6 +19,15 @@ export class Post extends Component{
     emoji: false
   }
 
+  modules = {
+    toolbar: [
+      [{ 'header': [1, 2, false] }],
+      ['bold', 'italic', 'underline','strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image'],
+      ['clean']],
+  }
+
   textHandler = (value) => {
     this.setState({message: value})
   }
@@ -42,15 +51,6 @@ export class Post extends Component{
     }
     this.props.postComment(commentObj)
     this.setState({message: ""})
-  }
-
-  modules = {
-    toolbar: [
-      [{ 'header': [1, 2, false] }],
-      ['bold', 'italic', 'underline','strike', 'blockquote'],
-      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-      ['link', 'image'],
-      ['clean']],
   }
 
   handleEdit = () => {
@@ -90,11 +90,12 @@ export class Post extends Component{
               {checkUser}
             </div>
           </div>
-          <p className="fp_comment_date"> <Moment format="LLLL">{post.created_at}</Moment> {post.updated_at && (post.updated_at !== post.created_at) ? <span> Editted: <Moment format="LLLL">{post.updated_at}</Moment></span>: null}</p>
+          <p className="fp_comment_date"> <Moment format="LLL">{post.created_at}</Moment> {post.updated_at && (post.updated_at !== post.created_at) ? <span> Editted: <Moment format="LLL">{post.updated_at}</Moment></span>: null}</p>
         </div>
         <div className="fp_allComments">
           {postComments.map(comment => <Comments user={user} profiles={profiles} comment={comment} handleSignUp={handleSignUp} setLogin={setLogin}/>)}
         </div>
+        {localStorage.token ? 
         <form className="fp_create" onSubmit={e => this.formHandler(e, post.id, user.id)}>
           <ReactQuill theme="snow" className="fp_create_textarea" modules={this.modules} onChange={this.textHandler} value={message}></ReactQuill>
           {this.state.emoji === false ? null : <Picker className="emote_box" onSelect={this.logEmoji} set='emojione'/>}
@@ -103,6 +104,8 @@ export class Post extends Component{
             <input alt="" className="fp_create_btn fp_create_submit" type="image" src={enter}/>
           </div>
         </form>
+        : null  
+      }
       </div>
     )
   }

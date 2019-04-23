@@ -310,6 +310,7 @@ export class Home extends Component {
             </div>
           </div>
         </div>
+        <footer></footer>
       </main>
     )
   }

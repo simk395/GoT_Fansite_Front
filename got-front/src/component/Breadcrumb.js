@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Breadcrumb } from "react-bootstrap"
 
 export class BreadcrumbNav extends Component {
@@ -9,9 +9,7 @@ export class BreadcrumbNav extends Component {
       const data = location.split("/").slice(3,6);
       const findCategory = categories ? categories.find(category => category.id === parseInt(data[1]))  : {}
       const findPost = posts ? posts.find(post => post.id === parseInt(data[2])) : {}
-      console.log(findCategory)
-      
-      
+    
     return (
         <Breadcrumb>
             <Breadcrumb.Item>
@@ -30,4 +28,4 @@ export class BreadcrumbNav extends Component {
   }
 }
 
-export default BreadcrumbNav
+export default withRouter(BreadcrumbNav)

@@ -89,6 +89,9 @@ export class Forum extends Component {
           })}
           <Route path='/forum' render={(props) => <Category {...props} posts={newPosts} profiles={newProfiles} categories={categories} />}/>
         </Switch>
+        <footer>
+          
+        </footer>
       </div>
     )
   }

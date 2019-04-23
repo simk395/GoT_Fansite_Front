@@ -7,6 +7,8 @@ import downvote from '../images/downvote.png'
 import avatar from '../images/avatar.jpg'
 import edit from '../images/edit.png'
 import trash from '../images/delete.png'
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 
 
@@ -152,7 +154,7 @@ export class Comments extends Component {
             : null
             }
           </div>
-            <div className="fp_comment_date">{created_at} {updated_at && (updated_at !== created_at) ? `Last Editted: ${updated_at}`: null}</div>
+            <div className="fp_comment_date"><Moment format="LLL">{created_at}</Moment> {updated_at && (updated_at !== created_at) ? <span>Editted: <Moment format="LLL">{updated_at}</Moment></span> : null}</div>
         </div>
         <Signin setLogin={this.props.setLogin} handleSignUp={this.props.handleSignUp} show={this.state.signin} onHide={modalClose}/>
       </div>

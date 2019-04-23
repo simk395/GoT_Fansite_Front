@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 
 export class Feed extends Component {
@@ -11,7 +13,7 @@ export class Feed extends Component {
         const body = <div className="feed_body">
                         <Link className="feed_title" to={`/forum/${post.category_id}/${post.id}`}>{post.title}</Link>
                         <p className="feed_author">By {profile ? <Link to={`/profile/${profile.username}`}>{profile.username}</Link> : "Anonymous"}</p>
-                        <p>Posted: {post.created_at}</p>
+                        <p>Posted: <Moment format="LLL">{post.created_at}</Moment></p>
                     </div>;
         return body;
       })
