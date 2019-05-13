@@ -27,7 +27,7 @@ a:hover {
   border-radius: 3px;
   background: transparent;
   height: 1.5625rem;
-  width: 65px;
+  width: 75px;
   cursor: pointer;
   transition: color .2s;
   font-weight: 500;
@@ -130,7 +130,7 @@ a:hover {
       display: inline-block !important; }
     .fp_comment_date {
       background: transparent;
-      transform: translateX(13.5rem);
+      transform: translateX(18.5rem);
       width: 75%; }
   .fp_create {
     display: flex;
@@ -239,13 +239,13 @@ hr {
   position: absolute;
   bottom: 0;
   right: 0;
-  transform: translate(-4.5625rem, -0.9375rem); }
+  transform: translate(-7.5625rem, -0.9375rem); }
 
 .ql-container {
   height: 6rem; }
 
 #dracarys {
-  height: 25vh;
+  height: 20vh;
   width: 100vw;
   position: fixed;
   animation: flamefade 2s ease-in-out;
@@ -261,7 +261,7 @@ hr {
     height: 0;
     opacity: 0; }
   100% {
-    height: 25vh;
+    height: 20vh;
     opacity: 100%; } }
 
 .avatar {
@@ -356,7 +356,7 @@ hr {
     margin-left: 3rem; }
   .post_create_submit {
     float: right;
-    transform: translateX(-5rem); }
+    transform: translateX(-6.5rem);}
   .post_create .emoji-mart {
     position: absolute;
     bottom: 0;

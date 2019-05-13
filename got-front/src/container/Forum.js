@@ -108,13 +108,12 @@ export class Forum extends Component {
     const { categories, newPosts, newProfiles, newComments } = this.state
     const { user, setLogin, handleSignUp } = this.props
     const location = window.location.href.split("/")
-    const updateComment = Adapter.updateComment
     return (
       <div className="forum">
-      {!location.includes("create") ? <Breadcrumb posts={newPosts} categories={categories}/> : null}
+      {!location.includes("create") ? <Breadcrumb posts={newPosts} categories={categories}/> : <div>.</div>}
       <hr/>
         <Switch>
-          <Route exact path="/forum/comment/edit/:id" render={(props) => <EditComment {...props} updateComment={updateComment} comments={newComments}/>}/>
+          <Route exact path="/forum/comment/edit/:id" render={(props) => <EditComment {...props} updateComment={this.updateComment} comments={newComments}/>}/>
           <Route exact path="/forum/post/edit/:id" render={(props) => <EditPost {...props} updatePost={this.updatePost} posts={newPosts}/>}/>
           <Route path="/forum/create/:id" render={(props) => <PostCreate {...props} postCreate={this.postCreate} user={user}/>}/>
           <Route path="/forum/:categoryId/:id" render={(props) => <Post {...props} postComment={this.postComment} comments={newComments} posts={newPosts} user={user} profiles={newProfiles} setLogin={setLogin} handleSignUp={handleSignUp}/> }/>

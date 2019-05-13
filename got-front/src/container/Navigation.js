@@ -85,7 +85,7 @@ export class Navigation extends Component {
     const { setLogin, handleSignUp, handleLogout} = this.props
     const { user } = this.props.user
     const { time } = this.state
-    const countdown = <Nav.Item className="nav_countdown" as="li"><Nav.Link>Season 8 Premiere: {time.d}D {time.h}H {time.m}M {time.s}S</Nav.Link></Nav.Item>
+    const countdown = <Nav.Item className="nav_countdown" as="li"><Nav.Link>Season 8 Next Episode: {time.d}D {time.h}H {time.m}M {time.s}S</Nav.Link></Nav.Item>
     return (
       <Navbar className="nav" bg="dark" variant="dark" sticky="top">
         <Nav className="nav_list" as="ul">

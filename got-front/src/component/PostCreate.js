@@ -51,14 +51,3 @@ export class PostCreate extends Component {
 }
 
 export default withRouter(PostCreate)
-
-//   <div className="create_post">
-//     <form onSubmit={(e) => this.postCreate(e,this.state.title,this.state.comment, forumId)}>
-//         <label>Title</label>
-//         <input name="title" placeholder="enter text" onChange={this.inputHandler} value={this.state.title}></input>
-//         <ReactQuill theme="snow" placeholder="Tell us about yourself..." className="profile_edit_textarea" modules={this.modules} onChange={this.textHandler} value={bio}></ReactQuill>
-//         <button onClick={this.showEmoji}>Emoji</button>
-//         {this.state.emoji === false ? null : <Picker onSelect={this.logEmoji} set='emojione'/>}
-//         <button type="submit">AHHHHHHHHH</button>
-//     </form>
-//   </div>
