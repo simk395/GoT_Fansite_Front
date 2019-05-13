@@ -72,7 +72,7 @@ export class Comments extends Component {
   }
 
   postLike = (voteObj) => {
-    return fetch(`http://localhost:3000/user_likes_comments`,{
+    return fetch(`https://got-fansite-backend.herokuapp.com/user_likes_comments`,{
       method: "POST",
       headers: {
           "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export class Comments extends Component {
   }
 
   postDislike = (voteObj) => {
-    return fetch(`http://localhost:3000/user_dislikes_comments`,{
+    return fetch(`https://got-fansite-backend.herokuapp.com/user_dislikes_comments`,{
       method: "POST",
       headers: {
           "Content-Type": "application/json",

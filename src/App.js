@@ -16,7 +16,7 @@ class App extends Component {
     const token = localStorage.token;
 
     if (token) {
-      fetch('http://localhost:3000/api/v1/current_user', {
+      fetch('https://got-fansite-backend.herokuapp.com//api/v1/current_user', {
         method: "GET",
           headers: {
             "content-type": "application/json",

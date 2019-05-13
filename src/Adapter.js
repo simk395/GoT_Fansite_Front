@@ -1,4 +1,4 @@
-const host = "http://localhost:3000/"
+const host = "https://got-fansite-backend.herokuapp.com/"
 
 export class Adapter{ 
     static getCategory = () => {

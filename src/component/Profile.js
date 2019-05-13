@@ -19,7 +19,7 @@ export class Profile extends Component {
     
     editBio = (e, bio, id) => {
       e.preventDefault()
-      fetch(`http://localhost:3000/api/v1/users/${id}`, {
+      fetch(`https://got-fansite-backend.herokuapp.com/api/v1/users/${id}`, {
           method: "PATCH",
           headers: {
               "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export class Profile extends Component {
     }
 
     deleteAccount = () => {
-      fetch(`http://localhost:3000/api/v1/users/${this.props.user.user.id}`, {
+      fetch(`https://got-fansite-backend.herokuapp.com/api/v1/users/${this.props.user.user.id}`, {
         method: "DELETE",
         headers: {'Content-Type': 'application/json'},
         Authorization: localStorage.token

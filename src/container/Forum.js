@@ -9,7 +9,6 @@ import EditPost from '../component/EditPost'
 import EditComment from '../component/EditComment'
 import Breadcrumb from '../component/Breadcrumb'
 
-
 export class Forum extends Component {
   state = {
     categories:[],
@@ -20,7 +19,6 @@ export class Forum extends Component {
     comments: [],
     newComments: []
   }
-  
   componentDidMount(){
     Adapter.getCategory().then(categories => this.setState({categories:categories}));
     Adapter.getPosts().then(posts => this.setState({posts: posts, newPosts: posts}))
@@ -40,7 +38,7 @@ export class Forum extends Component {
   }
 
   postPost = (postObj) => {
-      fetch('http://localhost:3000/posts', {
+      fetch('https://got-fansite-backend.herokuapp.com/posts', {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
@@ -55,7 +53,7 @@ export class Forum extends Component {
   }
 
   postComment = (commentObj) => {
-    fetch("http://localhost:3000/comments", {
+    fetch("https://got-fansite-backend.herokuapp.com/comments", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -75,7 +73,7 @@ export class Forum extends Component {
       message: comment
     }
 
-   fetch(`http://localhost:3000/posts/${id}`,{
+   fetch(`https://got-fansite-backend.herokuapp.com/posts/${id}`,{
     method: "PATCH",
     headers: {
         "Content-Type": "application/json",
@@ -90,7 +88,7 @@ export class Forum extends Component {
 }
 
   updateComment = (e,id,comment) => {
-    fetch(`http://localhost:3000/comments/${id}`,{
+    fetch(`https://got-fansite-backend.herokuapp.com/comments/${id}`,{
     method: "PATCH",
     headers: {
         "Content-Type": "application/json",

@@ -25,7 +25,7 @@ export class Signup extends Component {
   }
 
   postUserObj = (userObj) => {
-    fetch('http://localhost:3000/api/v1/users', {
+    fetch('https://got-fansite-backend.herokuapp.com/api/v1/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
